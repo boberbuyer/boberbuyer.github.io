@@ -313,7 +313,7 @@
     }
 
     .header {
-        flex-direction: column;
+        /* flex-direction: column; */
         align-items: flex-start;
         gap: 10px;
     }
@@ -385,6 +385,42 @@
         font-size: 12px;
     }
 }
+.site-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 8px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    backdrop-filter: blur(6px);
+}
+
+.logo-wrap {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #007aff;
+    background-color: white;
+    flex-shrink: 0;
+}
+
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header-title-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    padding-left: 5px;
+    padding-right: 20px;
+    border-radius: 15px;
+}
 
 
 </style>
@@ -393,7 +429,12 @@
 <body>
         <div class="container">
         <div class="header">
-            <h1>Bober Service Menu</h1>
+<div class="site-header">
+  <div class="logo-wrap">
+    <img src="logo.png" alt="Logo" class="logo-img">
+  </div>
+  <div class="header-title-text">Bober Service Menu</div>
+</div>
         </div>
     <div class="header">
         <div class="tabs">
@@ -413,10 +454,10 @@
         </div>
     </div>
 </div>
-
     </div>
 
-            
+    
+   
      <div id="buy-list" class="tab-content active">
         <div class="search-bar">
             <input type"text" id="searchInput" placeholder="Search items..." onkeyup="searchItems()">
@@ -740,9 +781,8 @@
         </div>
             <!-- Остальные категории для USA можно добавить сюда -->
          </div>
-    </div>
-
-    <div id="rules" class="tab-content">
+    </div>         
+     <div id="rules" class="tab-content">
     <!-- Английский -->
     <div id="rules-en" class="lang-content">
         <div class="accordion">
@@ -890,15 +930,7 @@
         </div>
     </div>
 </div>
-    <div id="links" class="lang-content">
-        <div class="accordion">
-            <div class="accordion-title" onclick="toggleAccordion(this)">Bot </div>
-            <div class="">
-                <p>Bot helper: @boberhelp_bot</p>
-                <p>1.2 BOBER SERVIR SERVICE оставляет за собой право ограничить или заблокировать доступ к использованию Сервиса в случае несоблюдения Пользователем правил.</p>
-                <p>1.3 За несоблюдение правил предусмотрены санкции, от отказа в сотрудничестве до конфискации отправления.</p>
-            </div>
- <div id="pickup" class="tab-content">
+    <div id="pickup" class="tab-content">
     <!-- Английский -->
     <div id="pickup-en" class="lang-content active">
         <div class="accordion">
@@ -909,14 +941,14 @@
                     <div class="accordion-content">
                         <ul class="pickup-list">
                             <li><strong>Can I send warm-ups to you?</strong><br>Yes, we buy them; you can find out the price in private messages.</li>
-                            <li><strong>Which addresses can I send goods to?</strong><br>The current list is always <a href="#">here</a>.</li>
+                            <li><strong>Which addresses can I send goods to?</strong><br>The current list is in bot</li>
                             <li><strong>Can I send stolen goods/invoices/blacklisted items to you?</strong><br>Not yet; in the future, it might be possible, but for now, we can only buy from your drops. Non-compliance results in full confiscation of the parcel.</li>
                             <li><strong>Do you buy clothes/perfume?</strong><br>No, we don’t buy any clothes or perfume, only electronics. However, we do buy expensive watches (e.g., Rolex or Cartier); it’s all individual and requires discussion with us.</li>
-                            <li><strong>Can I refund to your addresses?</strong><br>Yes, we allow refunds, but only if our conditions outlined <a href="#">here</a> are met.</li>
+                            <li><strong>Can I refund to your addresses?</strong><br>Yes, we allow refunds, but only if our conditions outlined <a href="https://boberbuyer.github.io/#rules">here</a> are met.</li>
                             <li><strong>Who is the admin/support of the project?</strong><br>The only account is @bober_admin.</li>
-                            <li><strong>What’s the price for buying electronics?</strong><br>The always up-to-date list is <a href="#">here</a>.</li>
+                            <li><strong>What’s the price for buying electronics?</strong><br>The always up-to-date list is <a href="https://boberbuyer.github.io/#buy-list">here</a>.</li>
                             <li><strong>What does POP mean when filling out the form?</strong><br>It stands for "Proof of Purchase," meaning evidence of your purchase. We need to verify that the order was made legally.</li>
-                            <li><strong>What does "reroute" mean and why is it useful?</strong><br>Reroute means redirecting a parcel to our address while giving the store a random (clean) address in the city. More details are <a href="#">here</a>.</li>
+                            <li><strong>What does "reroute" mean and why is it useful?</strong><br>Reroute means redirecting a parcel to our address while giving the store a random (clean) address in the city. More details are <a href="#">we developing..., ask us dm</a>.</li>
                         </ul>
                     </div>
                 </div>
@@ -963,17 +995,17 @@
                 <div class="accordion">
                     <div class="accordion-title" onclick="toggleAccordion(this)">FAQ</div>
                     <div class="accordion-content">
-                        <ul class="pickup-list">
-                            <li><strong>Можно ли на вас слать прогревы?</strong><br>Да, мы их скупаем, прайс можно узнать в личных сообщениях.</li>
-                            <li><strong>На какие адреса можно слать товары?</strong><br>Актуальный список всегда <a href="#">в боте</a>.</li>
-                            <li><strong>Можно ли слать на вас карж/инвойсы/чернуху?</strong><br>Пока нельзя, в будущем, скорее всего, можно будет, но сейчас мы можем скупать только с ваших дропов. При несоблюдении условий — полная конфискация посылки.</li>
-                            <li><strong>Скупаете ли вы шмотки/парфюм?</strong><br>Нет, мы не скупаем никакие шмотки/парфюм, только технику, но, например, дорогие часы (Rolex или Cartier) скупаем — всё индивидуально, нужно говорить с нами.</li>
-                            <li><strong>Можно на ваши адреса рефать (refund)?</strong><br>Да, мы разрешаем возвраты, но при соблюдении наших условий, которые прописаны <a href="#">здесь</a>.</li>
-                            <li><strong>Кто админ/саппорт проекта?</strong><br>Единственный аккаунт — @bober_admin.</li>
-                            <li><strong>А какой прайс на скупку техники?</strong><br>Всегда актуальный список <a href="#">находится в вкладке buy list</a>.</li>
-                            <li><strong>Что значит POP при заполнении формы?</strong><br>Это "Proof of Purchase" — доказательство вашей покупки. Мы должны убедиться, что заказ сделан легальным путём.</li>
-                            <li><strong>Что значит reroute и чем он полезен?</strong><br>Рерут или reroute означает перенаправление посылки на наш адрес, при этом вы даёте магазину случайный (чистый) адрес в городе. Подробнее написано <a href="#">в вкладке rerout</a>.</li>
-                        </ul>
+                    <ul class="pickup-list">
+                        <li><strong>Могу ли я отправить вам разогревы?</strong><br>Да, мы их покупаем; цену можно уточнить в личных сообщениях.</li>
+                        <li><strong>На какие адреса я могу отправлять товары?</strong><br>Текущий список доступен в боте.</li>
+                        <li><strong>Могу ли я отправлять вам краденые товары/инвойсы/товары из черного списка?</strong><br>Пока нет; в будущем это может быть возможно, но сейчас мы покупаем только у ваших дропов. Несоблюдение приводит к полной конфискации посылки.</li>
+                        <li><strong>Покупаете ли вы одежду/парфюмерию?</strong><br>Нет, мы не покупаем одежду или парфюмерию, только электронику. Однако мы покупаем дорогие часы (например, Rolex или Cartier); все индивидуально и требует обсуждения с нами.</li>
+                        <li><strong>Могу ли я оформить возврат на ваши адреса?</strong><br>Да, мы разрешаем возвраты, но только при соблюдении наших условий, указанных <a href="https://boberbuyer.github.io/#rules">здесь</a>.</li>
+                        <li><strong>Кто является администратором/поддержкой проекта?</strong><br>Единственный аккаунт — @bober_admin.</li>
+                        <li><strong>Какова цена за покупку электроники?</strong><br>Актуальный список всегда доступен <a href="https://boberbuyer.github.io/#buy-list">здесь</a>.</li>
+                        <li><strong>Что означает POP при заполнении формы?</strong><br>Это сокращение от "Proof of Purchase", то есть доказательство вашей покупки. Нам нужно убедиться, что заказ сделан легально.</li>
+                        <li><strong>Что такое "reroute" и зачем он нужен?</strong><br>Reroute означает перенаправление посылки на наш адрес, при этом магазину указывается случайный (чистый) адрес в городе. Подробности <a href="#">в разработке, уточняйте в личных сообщениях</a>.</li>
+                    </ul>
                     </div>
                 </div>
                 <div class="accordion">
@@ -1067,6 +1099,23 @@
         </div>
     </div>
 </div>
+    <div id="links" class="tab-content">
+        <div class="accordion">
+            <div class="accordion-title" onclick="toggleAccordion(this)">Links</div>
+            <div class="accordion-content active">
+                <div class="accordion">
+                    <div class="accordion">
+                        <ul class="pickup-list">
+                            <p>Our bot: <a href="https://t.me/boberservice_bot">@bober_bot</a> (click) </p>
+                            <p>Our channel: <a href="https://t.me/+qDWPqtDt4lMzNDM0">@bober_channel</a> (click) </p>
+                            <p>Our feedback channel: <a href="https://t.me/+K4nBUvD3CMg5NmE0">@bober_feedback</a> (click) </p>
+                            <p>Our admin/support: <a href="https://t.me/bober_admin">@bober_admin</a> (click) </p>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <script>
     function openTab(tabName) {
         var contents = document.getElementsByClassName('tab-content');
@@ -1086,11 +1135,20 @@
         for (var i = 0; i < allLangContents.length; i++) {
             allLangContents[i].classList.remove('active');
         }
+
         document.querySelectorAll(`#rules-${lang}, #pickup-${lang}`).forEach(function(el) {
             el.classList.add('active');
         });
-        document.getElementById('current-lang').textContent = lang === 'en' ? '🇺🇸' : lang === 'ru' ? '🇷🇺' : '🇺🇦';
+
+        document.getElementById('current-lang').textContent =
+            lang === 'en' ? '🇺🇸' :
+            lang === 'ru' ? '🇷🇺' :
+            '🇺🇦';
+
+        // ✅ Прячем выпадающее меню после выбора
+        document.querySelector('.lang-dropdown-content').style.display = 'none';
     }
+
 
     function toggleAccordion(element) {
         var parent = element.parentElement;
@@ -1150,7 +1208,25 @@
         switchLang('en');
         switchRegion('eu'); // Устанавливаем EU по умолчанию
     };
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const langButton = document.getElementById("current-lang");
+        const dropdown = document.querySelector(".lang-dropdown-content");
+
+        langButton.addEventListener("click", function (e) {
+            e.stopPropagation(); // чтобы не закрывалось сразу
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        });
+
+        // Клик вне меню — закрыть
+        document.addEventListener("click", function () {
+            dropdown.style.display = "none";
+        });
+    });
+    
 </script>
+            
+            
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const hash = window.location.hash.substring(1);
