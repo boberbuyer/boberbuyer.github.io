@@ -1153,33 +1153,33 @@
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const hash = window.location.hash.substring(1); // убираем #
+        const hash = window.location.hash.substring(1);
         if (hash) {
             openTab(hash);
         }
     });
 
     function openTab(tabId) {
-        // Убираем класс active со всех вкладок
         const tabs = document.querySelectorAll(".tab-content");
         tabs.forEach(tab => tab.classList.remove("active"));
 
-        // Убираем active с кнопок, если они есть
         const buttons = document.querySelectorAll(".tab-button");
         buttons.forEach(btn => btn.classList.remove("active"));
 
-        // Показываем нужную вкладку
         const tabToShow = document.getElementById(tabId);
         if (tabToShow) {
             tabToShow.classList.add("active");
 
-            // Активируем соответствующую кнопку
             buttons.forEach(btn => {
                 if (btn.getAttribute("onclick")?.includes(tabId)) {
                     btn.classList.add("active");
                 }
             });
+
+            // ✅ Меняем URL якорь без перезагрузки
+            history.replaceState(null, null, '#' + tabId);
         }
     }
 </script>
+
             
