@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bober Buyer - Buy List</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            margin: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+        }
+        .buy-list {
+            list-style: none;
+            padding: 0;
+        }
+        .buy-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .buy-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .buy-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            margin-right: 15px;
+        }
+        .buy-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0;
+        }
+        .buy-item p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 5px 0 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .footer a {
+            color: #007aff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        @media (max-width: 500px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            .buy-item h3 {
+                font-size: 1rem;
+            }
+            .buy-item p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Bober Buyer</h1>
+        </div>
+        <ul class="buy-list">
+            <li class="buy-item">
+                <img src="https://via.placeholder.com/50?text=📱" alt="Electronics">
+                <div>
+                    <h3>Electronics</h3>
+                    <p>Smartphones, laptops, and accessories. Top prices guaranteed!</p>
+                </div>
+            </li>
+            <li class="buy-item">
+                <img src="https://via.placeholder.com/50?text=👟" alt="Sneakers">
+                <div>
+                    <h3>Sneakers & Apparel</h3>
+                    <p>Limited editions and popular brands. We buy in bulk!</p>
+                </div>
+            </li>
+            <li class="buy-item">
+                <img src="https://via.placeholder.com/50?text=🎮" alt="Gaming">
+                <div>
+                    <h3>Gaming Gear</h3>
+                    <p>Consoles, controllers, and games. Fast payouts!</p>
+                </div>
+            </li>
+            <li class="buy-item">
+                <img src="https://via.placeholder.com/50?text=🛠️" alt="Misc">
+                <div>
+                    <h3>Miscellaneous</h3>
+                    <p>Almost anything! Contact us to discuss your items.</p>
+                </div>
+            </li>
+        </ul>
+        <div class="footer">
+            Join us now! <a href="https://t.me/bober_buyer" target="_blank">t.me/bober_buyer</a> | Contact: <a href="https://t.me/bober_admin" target="_blank">@bober_admin</a>
+        </div>
+    </div>
+</body>
+</html>
