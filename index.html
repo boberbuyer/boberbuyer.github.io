@@ -400,6 +400,8 @@
             <button class="tab-button active" onclick="openTab('buy-list')">Buy List</button> 
             <button class="tab-button" onclick="openTab('rules')">Rules</button>
             <button class="tab-button" onclick="openTab('pickup')">Info & Pickup</button>
+            <button class="tab-button" onclick="openTab('links')">Links</button>
+
         </div>
 <div class="lang-selector">
     <div class="lang-dropdown">
@@ -414,6 +416,7 @@
 
     </div>
 
+            
      <div id="buy-list" class="tab-content active">
         <div class="search-bar">
             <input type"text" id="searchInput" placeholder="Search items..." onkeyup="searchItems()">
@@ -887,6 +890,14 @@
         </div>
     </div>
 </div>
+    <div id="links" class="lang-content">
+        <div class="accordion">
+            <div class="accordion-title" onclick="toggleAccordion(this)">Bot </div>
+            <div class="">
+                <p>Bot helper: @boberhelp_bot</p>
+                <p>1.2 BOBER SERVIR SERVICE оставляет за собой право ограничить или заблокировать доступ к использованию Сервиса в случае несоблюдения Пользователем правил.</p>
+                <p>1.3 За несоблюдение правил предусмотрены санкции, от отказа в сотрудничестве до конфискации отправления.</p>
+            </div>
  <div id="pickup" class="tab-content">
     <!-- Английский -->
     <div id="pickup-en" class="lang-content active">
@@ -1140,5 +1151,35 @@
         switchRegion('eu'); // Устанавливаем EU по умолчанию
     };
 </script>
-</body>
-</html>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const hash = window.location.hash.substring(1); // убираем #
+        if (hash) {
+            openTab(hash);
+        }
+    });
+
+    function openTab(tabId) {
+        // Убираем класс active со всех вкладок
+        const tabs = document.querySelectorAll(".tab-content");
+        tabs.forEach(tab => tab.classList.remove("active"));
+
+        // Убираем active с кнопок, если они есть
+        const buttons = document.querySelectorAll(".tab-button");
+        buttons.forEach(btn => btn.classList.remove("active"));
+
+        // Показываем нужную вкладку
+        const tabToShow = document.getElementById(tabId);
+        if (tabToShow) {
+            tabToShow.classList.add("active");
+
+            // Активируем соответствующую кнопку
+            buttons.forEach(btn => {
+                if (btn.getAttribute("onclick")?.includes(tabId)) {
+                    btn.classList.add("active");
+                }
+            });
+        }
+    }
+</script>
+            
