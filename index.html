@@ -16,7 +16,7 @@
             margin: 0;
         }
         .container {
-            max-width: 600px;
+            max-width: 800px;
             width: 100%;
             margin: 20px;
             background: rgba(255, 255, 255, 0.95);
@@ -30,10 +30,21 @@
             padding: 20px 0;
         }
         .header h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: #1a1a1a;
             margin: 0;
+        }
+        .category {
+            margin: 20px 0;
+        }
+        .category h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #007aff;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #007aff;
+            padding-bottom: 5px;
         }
         .buy-list {
             list-style: none;
@@ -54,10 +65,11 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
         .buy-item img {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 10px;
             margin-right: 15px;
+            object-fit: cover;
         }
         .buy-item h3 {
             font-size: 1.2rem;
@@ -87,6 +99,9 @@
                 padding: 15px;
             }
             .header h1 {
+                font-size: 1.8rem;
+            }
+            .category h2 {
                 font-size: 1.5rem;
             }
             .buy-item h3 {
@@ -101,40 +116,909 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Bober Buyer</h1>
+            <h1>Bober Buyer Buy List</h1>
         </div>
-        <ul class="buy-list">
-            <li class="buy-item">
-                <img src="https://via.placeholder.com/50?text=📱" alt="Electronics">
-                <div>
-                    <h3>Electronics</h3>
-                    <p>Smartphones, laptops, and accessories. Top prices guaranteed!</p>
-                </div>
-            </li>
-            <li class="buy-item">
-                <img src="https://via.placeholder.com/50?text=👟" alt="Sneakers">
-                <div>
-                    <h3>Sneakers & Apparel</h3>
-                    <p>Limited editions and popular brands. We buy in bulk!</p>
-                </div>
-            </li>
-            <li class="buy-item">
-                <img src="https://via.placeholder.com/50?text=🎮" alt="Gaming">
-                <div>
-                    <h3>Gaming Gear</h3>
-                    <p>Consoles, controllers, and games. Fast payouts!</p>
-                </div>
-            </li>
-            <li class="buy-item">
-                <img src="https://via.placeholder.com/50?text=🛠️" alt="Misc">
-                <div>
-                    <h3>Miscellaneous</h3>
-                    <p>Almost anything! Contact us to discuss your items.</p>
-                </div>
-            </li>
-        </ul>
+        <div class="category">
+            <h2>Apple iPhones (Unlocked Only)</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPhone 16 Pro">
+                    <div>
+                        <h3>iPhone 16 Pro/Pro Max</h3>
+                        <p>80% (128/256 GB EU, -3% for 512GB/1TB or eSIM)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPhone 16">
+                    <div>
+                        <h3>iPhone 16</h3>
+                        <p>76% (128/256 GB EU, -4% for 512GB/1TB or eSIM)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPhone 16 Plus">
+                    <div>
+                        <h3>iPhone 16 Plus</h3>
+                        <p>76% (128/256 GB EU, -4% for 512GB/1TB or eSIM)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPhone 15 Pro">
+                    <div>
+                        <h3>iPhone 15 Pro/Pro Max</h3>
+                        <p>71% (128/256 GB EU, -4% for 512GB/1TB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPhone 15 Plus">
+                    <div>
+                        <h3>iPhone 15 Plus</h3>
+                        <p>68% (128/256 GB EU, -3% for 512GB/1TB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPhone 15">
+                    <div>
+                        <h3>iPhone 15</h3>
+                        <p>68% (128/256 GB EU, -3% for 512GB/1TB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPhone 14 Pro">
+                    <div>
+                        <h3>iPhone 14 Pro/Pro Max</h3>
+                        <p>69% (128/256 GB EU, -4% for 512GB/1TB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPhone 14">
+                    <div>
+                        <h3>iPhone 14/Plus</h3>
+                        <p>65% (128/256 GB EU, -4% for 512GB/1TB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPhone 13 Pro">
+                    <div>
+                        <h3>iPhone 13 Pro/Pro Max</h3>
+                        <p>60% (128 GB EU, -5% for 512GB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPhone 13">
+                    <div>
+                        <h3>iPhone 13</h3>
+                        <p>60% (128/256 GB EU, -5% for 512GB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPhone 13 Mini">
+                    <div>
+                        <h3>iPhone 13 Mini</h3>
+                        <p>55% (128/256 GB EU, -5% for 512GB)</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>Apple MacBooks</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💻" alt="MacBook Pro 16 M4">
+                    <div>
+                        <h3>MacBook Pro 16" M4 (M4, M4 Pro, M4 Max)</h3>
+                        <p>75% (Idealo.de)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💻" alt="MacBook Air 13 M4">
+                    <div>
+                        <h3>MacBook Air 13" 2025 M4</h3>
+                        <p>80% (Idealo.de)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💻" alt="MacBook Pro 14 M4">
+                    <div>
+                        <h3>MacBook Pro 14" M4 (M4, M4 Pro, M4 Max)</h3>
+                        <p>75% (Idealo.de)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💻" alt="MacBook Pro 14 M3">
+                    <div>
+                        <h3>MacBook Pro 14" M3 (M3, M3 Pro, M3 Max)</h3>
+                        <p>70% (Idealo.de)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💻" alt="MacBook Pro 16 M3">
+                    <div>
+                        <h3>MacBook Pro 16" M3 (M3 Pro, M3 Max)</h3>
+                        <p>70% (Idealo.de)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💻" alt="MacBook Pro 14 M2">
+                    <div>
+                        <h3>MacBook Pro 14" M2</h3>
+                        <p>65% (Idealo.de)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💻" alt="MacBook Pro 16 M2">
+                    <div>
+                        <h3>MacBook Pro 16" M2</h3>
+                        <p>65% (Idealo.de)</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>Apple iPads</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPad Air 11 2025">
+                    <div>
+                        <h3>iPad Air 11" 2025</h3>
+                        <p>72% (Idealo.de)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPad Air 13 2025">
+                    <div>
+                        <h3>iPad Air 13" 2025</h3>
+                        <p>73% (Idealo.de)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPad Air M2">
+                    <div>
+                        <h3>iPad Air 11"/13" M2</h3>
+                        <p>65% (-5% for 512GB/1TB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPad Pro M4">
+                    <div>
+                        <h3>iPad Pro 11"/13" M4</h3>
+                        <p>65% (-5% for 1TB/2TB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPad Pro 12.9 M2">
+                    <div>
+                        <h3>iPad Pro 12.9" M2 6th</h3>
+                        <p>65% (-5% for 512GB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPad Pro 11 M2">
+                    <div>
+                        <h3>iPad Pro 11" M2 4th</h3>
+                        <p>60% (-5% for 512GB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPad Air 10.9 M1">
+                    <div>
+                        <h3>iPad Air 10.9" M1 5th</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPad 10.9">
+                    <div>
+                        <h3>iPad 10.9" 10th</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="iPad Mini 8.3">
+                    <div>
+                        <h3>iPad Mini 8.3" 6th</h3>
+                        <p>55%</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>Apple Watch</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=⌚" alt="Apple Watch Ultra 2">
+                    <div>
+                        <h3>Apple Watch Ultra 2</h3>
+                        <p>70% (Only M/L and One Size)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=⌚" alt="Apple Watch Ultra">
+                    <div>
+                        <h3>Apple Watch Ultra</h3>
+                        <p>68%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=⌚" alt="Apple Watch Series 10">
+                    <div>
+                        <h3>Apple Watch Series 10</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=⌚" alt="Apple Watch Series 9">
+                    <div>
+                        <h3>Apple Watch Series 9</h3>
+                        <p>50% (-6% for Red/Pink/Starlight)</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>Apple AirPods</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎧" alt="AirPods Max USB-C">
+                    <div>
+                        <h3>AirPods Max USB-C (2024)</h3>
+                        <p>71% (Except Purple)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎧" alt="AirPods Max">
+                    <div>
+                        <h3>AirPods Max</h3>
+                        <p>69% (Except Pink)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎧" alt="AirPods 4">
+                    <div>
+                        <h3>AirPods 4</h3>
+                        <p>65%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎧" alt="AirPods 4 ANC">
+                    <div>
+                        <h3>AirPods 4 ANC</h3>
+                        <p>67%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎧" alt="AirPods Pro 2">
+                    <div>
+                        <h3>AirPods Pro 2</h3>
+                        <p>67%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎧" alt="AirPods Pro">
+                    <div>
+                        <h3>AirPods Pro</h3>
+                        <p>62%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎧" alt="AirPods 3">
+                    <div>
+                        <h3>AirPods 3</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>Apple Accessories</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=✏️" alt="Apple Pencil">
+                    <div>
+                        <h3>Apple Pencil (MU8F2)</h3>
+                        <p>35%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=✏️" alt="Apple Pencil Pro">
+                    <div>
+                        <h3>Apple Pencil Pro (MX2D3)</h3>
+                        <p>40%</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>DJI Drones & Cameras</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="DJI Air 3S">
+                    <div>
+                        <h3>DJI Air 3S Fly More Combo (DJI RC 2)</h3>
+                        <p>70%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="DJI Avata 2">
+                    <div>
+                        <h3>DJI Avata 2 Fly More Combo</h3>
+                        <p>75%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="Mavic 3">
+                    <div>
+                        <h3>Mavic 3 / Mavic 3 Pro</h3>
+                        <p>70%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="Mavic 3 Pro Combo">
+                    <div>
+                        <h3>Mavic 3 Pro Fly More Combo</h3>
+                        <p>70%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="Mavic 3 Classic">
+                    <div>
+                        <h3>Mavic 3 Classic (DJI RC)</h3>
+                        <p>75%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="Mavic 3 Classic RC-N1">
+                    <div>
+                        <h3>Mavic 3 Classic (DJI RC-N1)</h3>
+                        <p>67%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="DJI Mini 4 Pro RC2">
+                    <div>
+                        <h3>DJI Mini 4 Pro RC2</h3>
+                        <p>68% EU</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="DJI Mini 4 Pro RC-N2">
+                    <div>
+                        <h3>DJI Mini 4 Pro RC-N2</h3>
+                        <p>66%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="DJI Mini 4 Pro Combo">
+                    <div>
+                        <h3>DJI Mini 4 Pro Fly More Combo RC2</h3>
+                        <p>62%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="Mini 3 Pro RC">
+                    <div>
+                        <h3>Mini 3 Pro (DJI RC)</h3>
+                        <p>50%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="Mini 3 Pro RC-N1">
+                    <div>
+                        <h3>Mini 3 Pro (DJI RC-N1)</h3>
+                        <p>50%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="Mini 3 Pro Drone">
+                    <div>
+                        <h3>Mini 3 Pro (Drone Only)</h3>
+                        <p>50%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="Air 3 RC-N2">
+                    <div>
+                        <h3>Air 3 (DJI RC-N2)</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="Air 3 Combo RC 2">
+                    <div>
+                        <h3>Air 3 Fly More Combo (DJI RC 2)</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🚁" alt="Air 3 Combo RC-N2">
+                    <div>
+                        <h3>Air 3 Fly More Combo (DJI RC-N2)</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🔋" alt="Mavic 3 Battery">
+                    <div>
+                        <h3>Mavic 3 Battery</h3>
+                        <p>35%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎮" alt="DJI RC">
+                    <div>
+                        <h3>DJI RC</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎮" alt="DJI RC Pro">
+                    <div>
+                        <h3>DJI RC Pro</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📷" alt="DJI Osmo Action 5 Pro">
+                    <div>
+                        <h3>DJI Osmo Action 5 Pro Standard/Adventure Combo</h3>
+                        <p>65%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📷" alt="DJI Osmo Action 4">
+                    <div>
+                        <h3>DJI Osmo Action 4</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📷" alt="DJI Osmo Action 4 Combo">
+                    <div>
+                        <h3>DJI Osmo Action 4 Adventure Combo</h3>
+                        <p>62%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📷" alt="DJI Osmo Pocket 3 Creator">
+                    <div>
+                        <h3>DJI Osmo Pocket 3 Creator Combo</h3>
+                        <p>80%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📷" alt="DJI Osmo Pocket 3">
+                    <div>
+                        <h3>DJI Osmo Pocket 3 Standard</h3>
+                        <p>80%</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>Dyson Products</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💇" alt="Dyson Limited Edition">
+                    <div>
+                        <h3>Dyson Limited Edition (Jasper Plum)</h3>
+                        <p>80%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💇" alt="Dyson Airwrap">
+                    <div>
+                        <h3>Dyson Airwrap</h3>
+                        <p>70% EU</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💇" alt="Dyson Supersonic">
+                    <div>
+                        <h3>Dyson Supersonic</h3>
+                        <p>63% EU</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💇" alt="Dyson Airstrait">
+                    <div>
+                        <h3>Dyson Airstrait</h3>
+                        <p>67% EU</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💇" alt="Dyson Corrale">
+                    <div>
+                        <h3>Dyson Corrale</h3>
+                        <p>62% EU</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🧹" alt="Dyson V12">
+                    <div>
+                        <h3>Dyson V12 Detect Slim Absolute (2023)</h3>
+                        <p>62% EU</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🧹" alt="Dyson V15">
+                    <div>
+                        <h3>Dyson V15 Detect Absolute (2023)</h3>
+                        <p>63% EU</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>Samsung Phones</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="Samsung Galaxy S25">
+                    <div>
+                        <h3>Samsung Galaxy S25</h3>
+                        <p>75% (EU ONLY)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="Samsung Galaxy S25 Ultra">
+                    <div>
+                        <h3>Samsung Galaxy S25 Ultra</h3>
+                        <p>76% (EU ONLY)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="Samsung Galaxy S24 Ultra">
+                    <div>
+                        <h3>Samsung Galaxy S24 Ultra</h3>
+                        <p>69% (EU ONLY)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="Samsung Galaxy S24">
+                    <div>
+                        <h3>Samsung Galaxy S24</h3>
+                        <p>68% (EU ONLY)</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>Garmin Watches</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=⌚" alt="Garmin Fenix 8 51mm">
+                    <div>
+                        <h3>Garmin Fenix 8 51mm AMOLED</h3>
+                        <p>80%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=⌚" alt="Garmin Fenix 8 47mm">
+                    <div>
+                        <h3>Garmin Fenix 8 47mm AMOLED</h3>
+                        <p>80%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=⌚" alt="Garmin Fenix 8 51mm Graphit">
+                    <div>
+                        <h3>Garmin Fenix 8 51mm AMOLED Graphit/Titanium</h3>
+                        <p>80%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=⌚" alt="Garmin Fenix 7 Pro">
+                    <div>
+                        <h3>Garmin Fenix 7 Pro Sapphire Solar</h3>
+                        <p>67%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=⌚" alt="Garmin Fenix 7X Pro">
+                    <div>
+                        <h3>Garmin Fenix 7X Pro Sapphire Solar</h3>
+                        <p>67%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=⌚" alt="Garmin Fenix 7 Pro Solar">
+                    <div>
+                        <h3>Garmin Fenix 7 Pro Solar</h3>
+                        <p>66%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=⌚" alt="Garmin Fenix 7X Solar">
+                    <div>
+                        <h3>Garmin Fenix 7X Solar</h3>
+                        <p>65%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=⌚" alt="Garmin Instinct 2X">
+                    <div>
+                        <h3>Garmin Instinct 2X Solar Tactical</h3>
+                        <p>61%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=⌚" alt="Garmin Bulk Offer">
+                    <div>
+                        <h3>Any Bulk Offer</h3>
+                        <p>80%</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>Consoles</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎮" alt="PS5 Pro">
+                    <div>
+                        <h3>Sony PlayStation 5 Pro</h3>
+                        <p>73% EU</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎮" alt="PS5 Slim Blu-ray">
+                    <div>
+                        <h3>PlayStation 5 Slim Blu-ray</h3>
+                        <p>65% EU (USA -5%)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎮" alt="PS5 Slim Digital">
+                    <div>
+                        <h3>PlayStation 5 Slim Digital</h3>
+                        <p>65% EU (USA -5%)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎮" alt="Xbox Series X">
+                    <div>
+                        <h3>Xbox Series X</h3>
+                        <p>72% EU (USA -5%)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎮" alt="Xbox Series S 1TB">
+                    <div>
+                        <h3>Xbox Series S 1TB Carbon Black/White</h3>
+                        <p>62% EU (USA -5%)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎮" alt="Xbox Series S">
+                    <div>
+                        <h3>Xbox Series S</h3>
+                        <p>60% EU (USA -5%)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎮" alt="Nintendo Switch OLED">
+                    <div>
+                        <h3>Nintendo Switch OLED</h3>
+                        <p>60% EU ONLY</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎮" alt="Valve Steam Deck OLED">
+                    <div>
+                        <h3>Valve Steam Deck (OLED)</h3>
+                        <p>70% EU ONLY</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎮" alt="Logitech G923">
+                    <div>
+                        <h3>Logitech G923 Trueforce PS/XBOX</h3>
+                        <p>55%</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>VR Headsets</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🕶️" alt="Meta Quest 3">
+                    <div>
+                        <h3>Meta Quest 3/3S</h3>
+                        <p>70% (128GB/512GB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🕶️" alt="Meta Quest 2">
+                    <div>
+                        <h3>Meta Quest 2</h3>
+                        <p>60-63% EU/UK (128-256GB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🕶️" alt="PlayStation VR2">
+                    <div>
+                        <h3>PlayStation VR2</h3>
+                        <p>65%</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>PC Components & Accessories</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💾" alt="ASUS GeForce RTX">
+                    <div>
+                        <h3>ASUS GeForce RTX 5090/5080/5070</h3>
+                        <p>70%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💾" alt="RTX 4080 Ti SUPER">
+                    <div>
+                        <h3>Graphic Cards RTX 4080 Ti SUPER</h3>
+                        <p>65%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💾" alt="RTX 4070 Ti SUPER">
+                    <div>
+                        <h3>Graphic Cards RTX 4070 Ti SUPER</h3>
+                        <p>70%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💾" alt="Nvidia RTX 4070">
+                    <div>
+                        <h3>Nvidia RTX 4070</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💾" alt="Intel Core i9">
+                    <div>
+                        <h3>Intel Core (i9-14900K/14900KF)</h3>
+                        <p>64%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=💾" alt="AMD Ryzen 9">
+                    <div>
+                        <h3>AMD Ryzen 9 7950X3D/7900X3D</h3>
+                        <p>70%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎧" alt="Sennheiser MOMENTUM 4">
+                    <div>
+                        <h3>Sennheiser MOMENTUM 4 Wireless</h3>
+                        <p>55%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🎧" alt="Bowers & Wilkins PX8">
+                    <div>
+                        <h3>Bowers & Wilkins PX8</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>Google Phones</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="Pixel 9 Pro XL">
+                    <div>
+                        <h3>Pixel 9 Pro XL</h3>
+                        <p>66% (-5% for 512GB/1TB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="Pixel 9 Pro">
+                    <div>
+                        <h3>Pixel 9 Pro</h3>
+                        <p>67% (-5% for 512GB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="Pixel 9">
+                    <div>
+                        <h3>Pixel 9</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="Pixel 8 Pro">
+                    <div>
+                        <h3>Pixel 8 Pro</h3>
+                        <p>60% (-5% for 512GB/1TB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="Pixel 8">
+                    <div>
+                        <h3>Pixel 8</h3>
+                        <p>65%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="Pixel 7 Pro">
+                    <div>
+                        <h3>Pixel 7 Pro</h3>
+                        <p>65% (-5% for 512GB)</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="Pixel 7">
+                    <div>
+                        <h3>Pixel 7</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📱" alt="Pixel 7a">
+                    <div>
+                        <h3>Pixel 7a</h3>
+                        <p>55%</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>GoPro Cameras</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📷" alt="GoPro Hero 10">
+                    <div>
+                        <h3>GoPro Hero 10</h3>
+                        <p>40%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📷" alt="GoPro Hero 11">
+                    <div>
+                        <h3>GoPro Hero 11</h3>
+                        <p>50%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📷" alt="GoPro Hero 12">
+                    <div>
+                        <h3>GoPro Hero 12</h3>
+                        <p>50%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=📷" alt="GoPro Hero 13">
+                    <div>
+                        <h3>GoPro Hero 13</h3>
+                        <p>63%</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="category">
+            <h2>3D Printers</h2>
+            <ul class="buy-list">
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🖨️" alt="Bambu Lab P1S">
+                    <div>
+                        <h3>Bambu Lab P1S</h3>
+                        <p>55%</p>
+                    </div>
+                </li>
+                <li class="buy-item">
+                    <img src="https://via.placeholder.com/60?text=🖨️" alt="Bambu Lab P1S Combo">
+                    <div>
+                        <h3>Bambu Lab P1S Combo</h3>
+                        <p>60%</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
         <div class="footer">
-            Join us now! <a href="https://t.me/bober_buyer" target="_blank">t.me/bober_buyer</a> | Contact: <a href="https://t.me/bober_admin" target="_blank">@bober_admin</a>
+            Prices based on minimal prices from Idealo.de unless specified. Contact us for bulk offers!
         </div>
     </div>
 </body>
