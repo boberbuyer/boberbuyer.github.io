@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
+<html lang="ru"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping List</title>
@@ -440,14 +438,14 @@
         <div class="tabs">
             <button class="tab-button active" onclick="openTab('buy-list')">Buy List</button> 
             <button class="tab-button" onclick="openTab('rules')">Rules</button>
-            <button class="tab-button" onclick="openTab('pickup')">Info & Pickup</button>
+            <button class="tab-button" onclick="openTab('pickup')">Info &amp; Pickup</button>
             <button class="tab-button" onclick="openTab('links')">Links</button>
 
         </div>
 <div class="lang-selector">
     <div class="lang-dropdown">
-        <button class="lang-button" id="current-lang">🇷🇺</button>
-        <div class="lang-dropdown-content">
+        <button class="lang-button" id="current-lang">🇺🇸</button>
+        <div class="lang-dropdown-content" style="display: none;">
             <button onclick="switchLang('ru')">🇷🇺</button>
             <button onclick="switchLang('en')">🇺🇸</button>
             <button onclick="switchLang('ua')">🇺🇦</button>
@@ -460,14 +458,14 @@
    
      <div id="buy-list" class="tab-content active">
         <div class="search-bar">
-            <input type"text" id="searchInput" placeholder="Search items..." onkeyup="searchItems()">
+            <input type"text"="" id="searchInput" placeholder="Search items..." onkeyup="searchItems()">
         </div> 
         <!-- Подменю для выбора региона -->
         <div class="region-submenu">
-              <button class="region-button active" onclick="switchRegion('eu')">EU Prices</button>
-             <button class="region-button" onclick="switchRegion('usa')">USA Prices</button>
+              <button class="region-button" onclick="switchRegion('eu')">EU Prices</button>
+             <button class="region-button active" onclick="switchRegion('usa')">USA Prices</button>
         </div>
-        <div id="region-eu" class="region-content ">
+        <div id="region-eu" class="region-content">
         <div class="accordion">
             <div class="accordion-title" onclick="toggleAccordion(this)">HOW WE CALCULATE FEE?</div>
             <div class="accordion-content">
@@ -493,12 +491,12 @@
         <div class="accordion">
             <div class="accordion-title" onclick="toggleAccordion(this)">Apple MacBooks</div>
             <div class="accordion-content">
-                <div class="item"><div class="item-details"><h3>MacBook Pro 16" M4 (M4, M4 Pro, M4 Max)</h3><p>80% (USA & UK Keyboards)</p></div></div>
-                <div class="item"><div class="item-details"><h3>MacBook Pro 14" M4 (M4, M4 Pro, M4 Max)</h3><p>77% (USA & UK Keyboards)</p></div></div>
-                <div class="item"><div class="item-details"><h3>MacBook Pro 14" M3 (M3, M3 Pro, M3 Max)</h3><p>70% (USA & UK Keyboards)</p></div></div>
-                <div class="item"><div class="item-details"><h3>MacBook Pro 16" M3 (M3 Pro, M3 Max)</h3><p>70% (USA & UK Keyboards)</p></div></div>
-                <div class="item"><div class="item-details"><h3>MacBook Pro 14" M2</h3><p>65% (USA & UK Keyboards)</p></div></div>
-                <div class="item"><div class="item-details"><h3>MacBook Pro 16" M2</h3><p>65% (USA & UK Keyboards)</p></div></div>
+                <div class="item"><div class="item-details"><h3>MacBook Pro 16" M4 (M4, M4 Pro, M4 Max)</h3><p>80% (USA &amp; UK Keyboards)</p></div></div>
+                <div class="item"><div class="item-details"><h3>MacBook Pro 14" M4 (M4, M4 Pro, M4 Max)</h3><p>77% (USA &amp; UK Keyboards)</p></div></div>
+                <div class="item"><div class="item-details"><h3>MacBook Pro 14" M3 (M3, M3 Pro, M3 Max)</h3><p>70% (USA &amp; UK Keyboards)</p></div></div>
+                <div class="item"><div class="item-details"><h3>MacBook Pro 16" M3 (M3 Pro, M3 Max)</h3><p>70% (USA &amp; UK Keyboards)</p></div></div>
+                <div class="item"><div class="item-details"><h3>MacBook Pro 14" M2</h3><p>65% (USA &amp; UK Keyboards)</p></div></div>
+                <div class="item"><div class="item-details"><h3>MacBook Pro 16" M2</h3><p>65% (USA &amp; UK Keyboards)</p></div></div>
             </div>
         </div>
         <div class="accordion">
@@ -636,7 +634,7 @@
                 <div class="item"><div class="item-details"><h3>Intel Core (i9-14900K/14900KF)</h3><p>64%</p></div></div>
                 <div class="item"><div class="item-details"><h3>AMD Ryzen 9 7950X3D/7900X3D</h3><p>70%</p></div></div>
                 <div class="item"><div class="item-details"><h3>Sennheiser MOMENTUM 4 Wireless</h3><p>55%</p></div></div>
-                <div class="item"><div class="item-details"><h3>Bowers & Wilkins PX8</h3><p>60%</p></div></div>
+                <div class="item"><div class="item-details"><h3>Bowers &amp; Wilkins PX8</h3><p>60%</p></div></div>
             </div>
         </div>
         <div class="accordion">
@@ -671,7 +669,7 @@
             <!-- Остальные категории для EU можно добавить сюда -->
         </div>
         <!-- Контент для USA -->
-        <div id="region-usa" class="region-content">
+        <div id="region-usa" class="region-content active">
 <div class="accordion">
             <div class="accordion-title" onclick="toggleAccordion(this)">HOW WE CALCULATE FEE?</div>
             <div class="accordion-content">
@@ -681,9 +679,9 @@
 <div class="accordion">
             <div class="accordion-title" onclick="toggleAccordion(this)">Apple MacBooks</div>
             <div class="accordion-content">
-                <div class="item"><div class="item-details"><h3>NEW MacBook Air M4 13/15 16GB/256GB</h3><p>80%</p></div></div>
-                <div class="item"><div class="item-details"><h3>NEW MacBook Air M4 13/15 16GB/512GB</h3><p>80%</p></div></div>
-                <div class="item"><div class="item-details"><h3>NEW MacBook Air M4 13/15 24GB/512GB</h3><p>82%~ (Ask DM)</p></div></div>
+                <div class="item"><div class="item-details"><h3>NEW MacBook Air M4 13/15 16GB/256GB</h3><p>85%</p></div></div>
+                <div class="item"><div class="item-details"><h3>NEW MacBook Air M4 13/15 16GB/512GB</h3><p>85%</p></div></div>
+                <div class="item"><div class="item-details"><h3>NEW MacBook Air M4 13/15 24GB/512GB</h3><p>85%</p></div></div>
                 <div class="item"><div class="item-details"><h3>MacBook Pro 14" M4 (M4, M4 Pro, M4 Max)</h3><p>82%~ (Ask DM)</p></div></div>
             </div>
         </div>
@@ -700,7 +698,7 @@
 
         <div class="accordion">
             <div class="accordion-title" onclick="toggleAccordion(this)">iPad</div>
-            <div class="accordion-content">
+            <div class="accordion-content active">
                 <div class="item"><div class="item-details"><h3>iPad Air 11" M3 / 13" M3</h3><p>80% (-5% for 512GB/1TB)</p></div></div>
                 <div class="item"><div class="item-details"><h3>iPad Air 11" M2 / 13" M2</h3><p>70% (-5% for 512GB/1TB)</p></div></div>
                 <div class="item"><div class="item-details"><h3>iPad Pro 11" M4 / 13" M4</h3><p>65% (-5% for 1TB/2TB)</p></div></div>
@@ -784,7 +782,7 @@
     </div>         
      <div id="rules" class="tab-content">
     <!-- Английский -->
-    <div id="rules-en" class="lang-content">
+    <div id="rules-en" class="lang-content active">
         <div class="accordion">
             <div class="accordion-title" onclick="toggleAccordion(this)">General Regulations</div>
             <div class="accordion-content">
@@ -1259,3 +1257,4 @@
 </script>
 
             
+</div></body></html>
