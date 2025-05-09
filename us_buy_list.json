@@ -4,7 +4,7 @@
         "items": [
             {
                 "name": "We take the minimum price from Amazon, Best Buy",
-                "percentage": 0,
+                "percentage": ,
                 "description": "And from there we calculate the percentage"
             }
         ]
