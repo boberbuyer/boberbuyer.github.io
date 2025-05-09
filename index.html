@@ -1,4 +1,4 @@
-<html lang="ru"><head><script type="text/javascript">
+<script type="text/javascript">
         var gk_isXlsx = false;
         var gk_xlsxFileLookup = {};
         var gk_fileData = {};
@@ -37,9 +37,9 @@
         }
         return gk_fileData[filename] || "";
         }
-        </script>
-
-
+        </script><!DOCTYPE html>
+<html lang="ru">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bober Service Menu</title>
@@ -206,95 +206,90 @@
             margin-bottom: 32px;
         }
 
-        .region-button.active {
-            border-bottom: 2px solid #4facfe;
-            color: #FFFFFF;
-            transition: color 0.4s, border-color 0.4s;
-            padding-bottom: 10px;
-        }
+.region-button.active {
+    border-bottom: 2px solid #4facfe;
+    color: #FFFFFF;
+    transition: color 0.4s, border-color 0.4s;
+    padding-bottom: 10px;
+}
 
-        .region-button {
-            background: none;
-            border: none;
-            color: #E5E7EB;
-            font-size: 14px;
-            font-weight: 400;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: color 0.4s, border-color 0.4s;
-            padding-bottom: 10px;
-        }
+.region-button {
+    background: none;
+    border: none;
+    color: #E5E7EB;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color 0.4s, border-color 0.4s;
+    padding-bottom: 10px;
+}
 
-        .region-button:hover {
-            color: #ffffff;
-            border-bottom: 2px solid #4facfe;
-            padding-bottom: 10px;
-        }
+.region-button:hover {
+    color: #ffffff;
+    border-bottom: 2px solid #4facfe;
+    padding-bottom: 10px;
+}
 
 
 
         .accordion {
-    margin-bottom: 15px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-}
-
-.accordion-title {
-    padding: 12px 16px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    background: linear-gradient(135deg, #f0f4ff, #dfeaff);
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-}
-
-.accordion-title:hover {
-    background: linear-gradient(135deg, #e0e9ff, #cbd9ff);
-}
-
-.accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-    background-color: #fff;
-    padding: 0 16px;
-}
-
-.accordion-content.active {
-    max-height: 1000px;
-    padding: 12px 16px;
-}
-
-         .item {
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
-            transition: background 0.2s ease;
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .item:last-child {
-            border-bottom: none;
+        .accordion-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            font-size: 16px;
+            font-weight: 400;
+            color: #E5E7EB;
+            cursor: pointer;
+            transition: color 0.2s;
         }
 
-        .item:hover {
-            background-color: #f9f9f9;
+        .accordion-title:hover {
+            color: #4facfe;
+        }
+
+        .accordion-title::after {
+            content: '↓';
+            font-size: 14px;
+            transition: transform 0.3s;
+        }
+
+        .accordion-title.active::after {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0;
+            font-size: 14px;
+            color: #9CA3AF;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+        }
+
+        .accordion-content.active {
+            max-height: 1000px;
+            padding: 16px 0;
         }
 
         .item-details h3 {
             margin: 0;
-            font-size: 15px;
-            font-weight: 600;
-            color: #222;
+            font-size: 14px;
+            color: #E5E7EB;
+            font-weight: 500;
         }
 
         .item-details p {
-            margin: 4px 0 0;
-            font-size: 13px;
-            color: #666;
-            line-height: 1.4;
+            margin: 3px 0 0;
+            color: #9CA3AF;
+            font-size: 12px;
+            line-height: 1.3;
         }
 
         .pickup-list {
@@ -436,12 +431,12 @@
         <ul class="menu">
             <li class="menu-item"><a href="#buy-list" class="menu-link active" onclick="openTab('buy-list')">Buy List</a></li>
             <li class="menu-item"><a href="#rules" class="menu-link" onclick="openTab('rules')">Rules</a></li>
-            <li class="menu-item"><a href="#pickup" class="menu-link" onclick="openTab('pickup')">Info &amp; Pickup</a></li>
+            <li class="menu-item"><a href="#pickup" class="menu-link" onclick="openTab('pickup')">Info & Pickup</a></li>
             <li class="menu-item"><a href="#links" class="menu-link" onclick="openTab('links')">Links</a></li>
             <li class="menu-item">
                 <div class="lang-selector">
                     <button class="lang-button" id="current-lang">🇷🇺</button>
-                    <div class="lang-dropdown-content" style="display: none;">
+                    <div class="lang-dropdown-content">
                         <button onclick="switchLang('ru')">🇷🇺</button>
                         <button onclick="switchLang('en')">🇺🇸</button>
                         <button onclick="switchLang('ua')">🇺🇦</button>
@@ -624,6 +619,7 @@
     }
 }
 
+
     async function loadRules() {
         try {
             const response = await fetch('rules.json');
@@ -702,5 +698,5 @@
     });
 </script>
 
-
-</body></html>
+</body>
+</html>
