@@ -206,29 +206,31 @@
             margin-bottom: 32px;
         }
 
-        .region-button.active {
-            border-bottom: 2px solid #4facfe;
-            color: #FFFFFF;
-            border-color: transparent;
-            transition: color 0.4s, border-color 0.4s;
-        }
+.region-button.active {
+    border-bottom: 2px solid #4facfe;
+    color: #FFFFFF;
+    transition: color 0.4s, border-color 0.4s;
+    padding-bottom: 10px;
+}
 
-        .region-button {
-            background: none;
-            border: none;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-            color: #E5E7EB;
-            font-size: 14px;
-            font-weight: 400;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: color 0.4s, border-color 0.4s;
-        }
+.region-button {
+    background: none;
+    border: none;
+    color: #E5E7EB;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color 0.4s, border-color 0.4s;
+    padding-bottom: 10px;
+}
 
-        .region-button:hover {
-            color: #ffffff;
-            border-bottom: 2px solid #4facfe;
-        }
+.region-button:hover {
+    color: #ffffff;
+    border-bottom: 2px solid #4facfe;
+    padding-bottom: 10px;
+}
+
 
 
         .accordion {
@@ -477,199 +479,207 @@
         </div>
     </div>
 
-    <script>
-        let rulesData = null;
-        let faqData = null;
-        let currentLang = localStorage.getItem('lang') || 'en';
+   <script>
+    let rulesData = null;
+    let faqData = null;
+    let currentLang = localStorage.getItem('lang') || 'en';
 
-        function openTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            document.querySelector(`a[href="#${tabId}"]`).classList.add('active');
-            history.replaceState(null, null, '#' + tabId);
-            if (window.innerWidth <= 768) {
-                document.querySelector('.sidebar').classList.remove('active');
-            }
-            if (tabId === 'rules') renderRules();
-            if (tabId === 'pickup') renderFaq();
+    function openTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        document.querySelector(`a[href="#${tabId}"]`).classList.add('active');
+        history.replaceState(null, null, '#' + tabId);
+        if (window.innerWidth <= 768) {
+            document.querySelector('.sidebar').classList.remove('active');
         }
+        if (tabId === 'rules') renderRules();
+        if (tabId === 'pickup') renderFaq();
+    }
 
-        function switchLang(lang) {
-            currentLang = lang;
-            localStorage.setItem('lang', lang);
-            document.getElementById('current-lang').textContent = {
-                'en': '🇺🇸',
-                'ru': '🇷🇺',
-                'ua': '🇺🇦'
-            }[lang];
-            document.querySelector('.lang-dropdown-content').style.display = 'none';
-            renderRules();
-            renderFaq();
-        }
+    function switchLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        document.getElementById('current-lang').textContent = {
+            'en': '🇺🇸',
+            'ru': '🇷🇺',
+            'ua': '🇺🇦'
+        }[lang];
+        document.querySelector('.lang-dropdown-content').style.display = 'none';
+        renderRules();
+        renderFaq();
+    }
 
-        function toggleAccordion(element) {
-            const content = element.nextElementSibling;
-            const isActive = content.classList.contains('active');
-            document.querySelectorAll('.accordion-content').forEach(c => {
-                c.classList.remove('active');
-                c.previousElementSibling.classList.remove('active');
-            });
-            if (!isActive) {
-                content.classList.add('active');
-                element.classList.add('active');
-            }
-        }
-
-        function toggleSidebar() {
-            document.querySelector('.sidebar').classList.toggle('active');
-        }
-
-        function searchItems() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
-            const accordions = document.querySelectorAll('#buy-list .accordion');
-            accordions.forEach(accordion => {
-                const items = accordion.querySelectorAll('.item');
-                let hasVisibleItems = false;
-                items.forEach(item => {
-                    const title = item.querySelector('h3').textContent.toLowerCase();
-                    const desc = item.querySelector('p').textContent.toLowerCase();
-                    item.style.display = (title.includes(input) || desc.includes(input)) ? 'block' : 'none';
-                    if (title.includes(input) || desc.includes(input)) hasVisibleItems = true;
-                });
-                accordion.style.display = hasVisibleItems ? 'block' : 'none';
-                if (hasVisibleItems) {
-                    accordion.querySelector('.accordion-content').classList.add('active');
-                    accordion.querySelector('.accordion-title').classList.add('active');
-                }
-            });
-        }
-
-        function switchRegion(region) {
-            document.querySelectorAll('.region-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            document.querySelectorAll('.region-button').forEach(button => {
-                button.classList.remove('active');
-            });
-            document.getElementById(`region-${region}`).classList.add('active');
-            document.querySelector(`.region-button[onclick="switchRegion('${region}')"]`).classList.add('active');
-        }
-
-        async function loadBuyLists() {
-            try {
-                const euResponse = await fetch('eu_buy_list.json');
-                const usaResponse = await fetch('us_buy_list.json');
-                const euData = await euResponse.json();
-                const usaData = await usaResponse.json();
-
-                const euContainer = document.getElementById('region-eu');
-                const usaContainer = document.getElementById('region-usa');
-
-                function renderItems(data, container) {
-                    data.forEach(category => {
-                        const accordion = document.createElement('div');
-                        accordion.className = 'accordion';
-                        accordion.innerHTML = `
-                            <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
-                            <div class="accordion-content">
-                                ${category.items.map(item => `
-                                    <div class="item">
-                                        <div class="item-details">
-                                            <h3>${item.name}</h3>
-                                            <p>${item.percentage}% ${item.description}</p>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        `;
-                        container.appendChild(accordion);
-                    });
-                }
-
-                renderItems(euData, euContainer);
-                renderItems(usaData, usaContainer);
-            } catch (error) {
-                console.error('Error loading buy lists:', error);
-            }
-        }
-
-        async function loadRules() {
-            try {
-                const response = await fetch('rules.json');
-                rulesData = await response.json();
-                renderRules();
-            } catch (error) {
-                console.error('Error loading rules:', error);
-            }
-        }
-
-        async function loadFaq() {
-            try {
-                const response = await fetch('faq.json');
-                faqData = await response.json();
-                renderFaq();
-            } catch (error) {
-                console.error('Error loading FAQ:', error);
-            }
-        }
-
-        function renderRules() {
-            if (!rulesData) return;
-            const container = document.getElementById('rules-content');
-            container.innerHTML = '';
-            rulesData.sections.forEach(section => {
-                const accordion = document.createElement('div');
-                accordion.className = 'accordion';
-                accordion.innerHTML = `
-                    <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
-                    <div class="accordion-content">
-                        ${section.content[currentLang].map(item => `<p>${item}</p>`).join('')}
-                    </div>
-                `;
-                container.appendChild(accordion);
-            });
-        }
-
-        function renderFaq() {
-            if (!faqData) return;
-            const container = document.getElementById('pickup-content');
-            container.innerHTML = '';
-            faqData.sections.forEach(section => {
-                const accordion = document.createElement('div');
-                accordion.className = 'accordion';
-                accordion.innerHTML = `
-                    <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
-                    <div class="accordion-content">
-                        <ul class="pickup-list">
-                            ${section.content[currentLang].map(item => `<li>${item}</li>`).join('')}
-                        </ul>
-                    </div>
-                `;
-                container.appendChild(accordion);
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const hash = window.location.hash.substring(1);
-            if (hash) openTab(hash);
-            else openTab('buy-list');
-            switchLang(currentLang);
-            switchRegion('eu');
-            loadBuyLists();
-            loadRules();
-            loadFaq();
-
-            const langButton = document.getElementById('current-lang');
-            const dropdown = document.querySelector('.lang-dropdown-content');
-            langButton.addEventListener('click', e => {
-                e.stopPropagation();
-                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-            });
-            document.addEventListener('click', () => {
-                dropdown.style.display = 'none';
-            });
+    function toggleAccordion(element) {
+        const content = element.nextElementSibling;
+        const isActive = content.classList.contains('active');
+        document.querySelectorAll('.accordion-content').forEach(c => {
+            c.classList.remove('active');
+            c.previousElementSibling.classList.remove('active');
         });
-    </script>
+        if (!isActive) {
+            content.classList.add('active');
+            element.classList.add('active');
+        }
+    }
+
+    function toggleSidebar() {
+        document.querySelector('.sidebar').classList.toggle('active');
+    }
+
+    function searchItems() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const accordions = document.querySelectorAll('#buy-list .accordion');
+        accordions.forEach(accordion => {
+            const items = accordion.querySelectorAll('.item');
+            let hasVisibleItems = false;
+            items.forEach(item => {
+                const title = item.querySelector('h3').textContent.toLowerCase();
+                const desc = item.querySelector('p').textContent.toLowerCase();
+                const isVisible = title.includes(input) || desc.includes(input);
+                item.style.display = isVisible ? 'block' : 'none';
+                if (isVisible) hasVisibleItems = true;
+            });
+            accordion.style.display = hasVisibleItems ? 'block' : 'none';
+            if (hasVisibleItems) {
+                accordion.querySelector('.accordion-content').classList.add('active');
+                accordion.querySelector('.accordion-title').classList.add('active');
+            }
+        });
+    }
+
+    function switchRegion(region) {
+        document.querySelectorAll('.region-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        document.querySelectorAll('.region-button').forEach(button => {
+            button.classList.remove('active');
+        });
+        document.getElementById(`region-${region}`).classList.add('active');
+        document.querySelector(`.region-button[onclick="switchRegion('${region}')"]`).classList.add('active');
+    }
+
+    async function loadBuyLists() {
+        try {
+            const euResponse = await fetch('eu_buy_list.json');
+            const usaResponse = await fetch('us_buy_list.json');
+
+            if (!euResponse.ok) throw new Error('Ошибка загрузки EU Buy List');
+            if (!usaResponse.ok) throw new Error('Ошибка загрузки USA Buy List');
+
+            const euData = await euResponse.json();
+            const usaData = await usaResponse.json();
+
+            const euContainer = document.getElementById('region-eu');
+            const usaContainer = document.getElementById('region-usa');
+
+            renderItems(euData, euContainer);
+            renderItems(usaData, usaContainer);
+
+        } catch (error) {
+            console.error('Ошибка при загрузке buy list:', error);
+        }
+
+        function renderItems(data, container) {
+            container.innerHTML = '';
+            data.forEach(category => {
+                const accordion = document.createElement('div');
+                accordion.className = 'accordion';
+                accordion.innerHTML = `
+                    <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
+                    <div class="accordion-content">
+                        ${category.items.map(item => `
+                            <div class="item">
+                                <div class="item-details">
+                                    <h3>${item.name}</h3>
+                                    <p>${item.percentage}% ${item.description}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(accordion);
+            });
+        }
+    }
+
+    async function loadRules() {
+        try {
+            const response = await fetch('rules.json');
+            rulesData = await response.json();
+            renderRules();
+        } catch (error) {
+            console.error('Error loading rules:', error);
+        }
+    }
+
+    async function loadFaq() {
+        try {
+            const response = await fetch('faq.json');
+            faqData = await response.json();
+            renderFaq();
+        } catch (error) {
+            console.error('Error loading FAQ:', error);
+        }
+    }
+
+    function renderRules() {
+        if (!rulesData) return;
+        const container = document.getElementById('rules-content');
+        container.innerHTML = '';
+        rulesData.sections.forEach(section => {
+            const accordion = document.createElement('div');
+            accordion.className = 'accordion';
+            accordion.innerHTML = `
+                <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
+                <div class="accordion-content">
+                    ${section.content[currentLang].map(item => `<p>${item}</p>`).join('')}
+                </div>
+            `;
+            container.appendChild(accordion);
+        });
+    }
+
+    function renderFaq() {
+        if (!faqData) return;
+        const container = document.getElementById('pickup-content');
+        container.innerHTML = '';
+        faqData.sections.forEach(section => {
+            const accordion = document.createElement('div');
+            accordion.className = 'accordion';
+            accordion.innerHTML = `
+                <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
+                <div class="accordion-content">
+                    <ul class="pickup-list">
+                        ${section.content[currentLang].map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            container.appendChild(accordion);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const hash = window.location.hash.substring(1);
+        if (hash) openTab(hash);
+        else openTab('buy-list');
+        switchLang(currentLang);
+        switchRegion('eu');
+        loadBuyLists();
+        loadRules();
+        loadFaq();
+
+        const langButton = document.getElementById('current-lang');
+        const dropdown = document.querySelector('.lang-dropdown-content');
+        langButton.addEventListener('click', e => {
+            e.stopPropagation();
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+        document.addEventListener('click', () => {
+            dropdown.style.display = 'none';
+        });
+    });
+</script>
+
 </body>
 </html>
