@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bober Service Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Gotham', 'Helvetica', 'Arial', sans-serif;
+            background: #1C2526;
+            color: #E5E7EB;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: rgba(44, 53, 57, 0.95);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 24px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+            border-radius: 0 16px 16px 0;
+        }
+
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+        .site-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .logo-wrap {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-title-text {
+            font-size: 22px;
+            font-weight: 500;
+            color: #E5E7EB;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-item {
+            margin-bottom: 8px;
+        }
+
+        .menu-link {
+            color: #9CA3AF;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 14px 20px;
+            border-radius: 12px;
+            display: block;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .menu-link:hover {
+            color: #E5E7EB;
+        }
+
+        .menu-link.active {
+            color: #FFFFFF;
+        }
+
+        .menu-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            right: 20px;
+            height: 2px;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .content {
+            margin-left: 280px;
+            padding: 40px;
+            min-height: 100vh;
+        }
+
+        .tab-content {
+            display: none;
+            background: rgba(37, 45, 48, 0.95);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s, transform 0.4s;
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .search-bar {
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 14px 14px 14px 44px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #E5E7EB;
+            transition: box-shadow 0.2s;
+        }
+
+        .search-bar input:focus {
+            box-shadow: 0 0 0 2px linear-gradient(45deg, #4facfe, #00f2fe);
+            border-color: transparent;
+            outline: none;
+        }
+
+        .search-bar::before {
+            content: '🔍';
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9CA3AF;
+            font-size: 20px;
+        }
+
+        .region-submenu {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .region-button {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #E5E7EB;
+            font-size: 14px;
+            font-weight: 400;
+            padding: 10px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .region-button:hover {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: #FFFFFF;
+            border-color: transparent;
+            transform: scale(1.05);
+        }
+
+        .region-button.active {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: #FFFFFF;
+            border-color: transparent;
+        }
+
+        .accordion {
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .accordion-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            font-size: 16px;
+            font-weight: 400;
+            color: #E5E7EB;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .accordion-title:hover {
+            color: #4facfe;
+        }
+
+        .accordion-title::after {
+            content: '↓';
+            font-size: 14px;
+            transition: transform 0.3s;
+        }
+
+        .accordion-title.active::after {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0;
+            font-size: 14px;
+            color: #9CA3AF;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+        }
+
+        .accordion-content.active {
+            max-height: 1000px;
+            padding: 16px 0;
+        }
+
+        .item-details h3 {
+            margin: 0;
+            font-size: 14px;
+            color: #E5E7EB;
+            font-weight: 500;
+        }
+
+        .item-details p {
+            margin: 3px 0 0;
+            color: #9CA3AF;
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        .pickup-list {
+            margin: 0;
+            padding: 0 0 0 20px;
+            color: #9CA3AF;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .pickup-list li {
+            margin-bottom: 8px;
+        }
+
+        .pickup-list li strong {
+            color: #E5E7EB;
+        }
+
+        .lang-selector {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-button {
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background 0.3s;
+        }
+
+        .lang-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lang-dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(44, 53, 57, 0.95);
+            min-width: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            z-index: 1;
+            right: 0;
+        }
+
+        .lang-dropdown-content button {
+            display: block;
+            padding: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+            color: #E5E7EB;
+            transition: background 0.3s;
+        }
+
+        .lang-dropdown-content button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .lang-selector:hover .lang-dropdown-content {
+            display: block;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: #E5E7EB;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                border-radius: 0;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .content {
+                margin-left: 0;
+                padding: 24px;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .search-bar input {
+                font-size: 15px;
+                padding: 12px 12px 12px 40px;
+            }
+
+            .region-submenu {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .region-button {
+                font-size: 13px;
+                padding: 8px 16px;
+            }
+
+            .accordion-title {
+                font-size: 15px;
+                padding: 12px 0;
+            }
+
+            .tab-content {
+                padding: 24px;
+                border-radius: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar">
+        <div class="site-header">
+            <div class="logo-wrap">
+                <img src="logo.png" alt="Logo" class="logo-img">
+            </div>
+            <div class="header-title-text">Bober Service</div>
+        </div>
+        <ul class="menu">
+            <li class="menu-item"><a href="#buy-list" class="menu-link active" onclick="openTab('buy-list')">Buy List</a></li>
+            <li class="menu-item"><a href="#rules" class="menu-link" onclick="openTab('rules')">Rules</a></li>
+            <li class="menu-item"><a href="#pickup" class="menu-link" onclick="openTab('pickup')">Info & Pickup</a></li>
+            <li class="menu-item"><a href="#links" class="menu-link" onclick="openTab('links')">Links</a></li>
+            <li class="menu-item">
+                <div class="lang-selector">
+                    <button class="lang-button" id="current-lang">🇷🇺</button>
+                    <div class="lang-dropdown-content">
+                        <button onclick="switchLang('ru')">🇷🇺</button>
+                        <button onclick="switchLang('en')">🇺🇸</button>
+                        <button onclick="switchLang('ua')">🇺🇦</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div id="buy-list" class="tab-content active">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search items..." onkeyup="searchItems()">
+            </div>
+            <div class="region-submenu">
+                <button class="region-button active" onclick="switchRegion('eu')">EU Prices</button>
+                <button class="region-button" onclick="switchRegion('usa')">USA Prices</button>
+            </div>
+            <div id="region-eu" class="region-content active"></div>
+            <div id="region-usa" class="region-content"></div>
+        </div>
+        <div id="rules" class="tab-content">
+            <div id="rules-content"></div>
+        </div>
+        <div id="pickup" class="tab-content">
+            <div id="pickup-content"></div>
+        </div>
+        <div id="links" class="tab-content">
+            <div class="accordion">
+                <div class="accordion-title" onclick="toggleAccordion(this)">Links</div>
+                <div class="accordion-content">
+                    <ul class="pickup-list">
+                        <li>Our bot: <a href="https://t.me/boberservice_bot">@bober_bot</a></li>
+                        <li>Our channel: <a href="https://t.me/+qDWPqtDt4lMzNDM0">@bober_channel</a></li>
+                        <li>Our feedback channel: <a href="https://t.me/+K4nBUvD3CMg5NmE0">@bober_feedback</a></li>
+                        <li>Our admin/support: <a href="https://t.me/bober_admin">@bober_admin</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let rulesData = null;
+        let faqData = null;
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`a[href="#${tabId}"]`).classList.add('active');
+            history.replaceState(null, null, '#' + tabId);
+            if (window.innerWidth <= 768) {
+                document.querySelector('.sidebar').classList.remove('active');
+            }
+            // Проверяем, загружены ли данные перед рендерингом
+            if (tabId === 'rules' && rulesData) renderRules();
+            if (tabId === 'pickup' && faqData) renderFaq();
+        }
+
+        function switchLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            document.getElementById('current-lang').textContent = {
+                'en': '🇺🇸',
+                'ru': '🇷🇺',
+                'ua': '🇺🇦'
+            }[lang];
+            document.querySelector('.lang-dropdown-content').style.display = 'none';
+            // Рендерим только если данные уже загружены
+            if (rulesData) renderRules();
+            if (faqData) renderFaq();
+        }
+
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const isActive = content.classList.contains('active');
+            document.querySelectorAll('.accordion-content').forEach(c => {
+                c.classList.remove('active');
+                c.previousElementSibling.classList.remove('active');
+            });
+            if (!isActive) {
+                content.classList.add('active');
+                element.classList.add('active');
+            }
+        }
+
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        }
+
+        function searchItems() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const accordions = document.querySelectorAll('#buy-list .accordion');
+            accordions.forEach(accordion => {
+                const items = accordion.querySelectorAll('.item');
+                let hasVisibleItems = false;
+                items.forEach(item => {
+                    const title = item.querySelector('h3').textContent.toLowerCase();
+                    const desc = item.querySelector('p').textContent.toLowerCase();
+                    item.style.display = (title.includes(input) || desc.includes(input)) ? 'block' : 'none';
+                    if (title.includes(input) || desc.includes(input)) hasVisibleItems = true;
+                });
+                accordion.style.display = hasVisibleItems ? 'block' : 'none';
+                if (hasVisibleItems) {
+                    accordion.querySelector('.accordion-content').classList.add('active');
+                    accordion.querySelector('.accordion-title').classList.add('active');
+                }
+            });
+        }
+
+        function switchRegion(region) {
+            document.querySelectorAll('.region-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.region-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(`region-${region}`).classList.add('active');
+            document.querySelector(`.region-button[onclick="switchRegion('${region}')"]`).classList.add('active');
+        }
+
+        async function loadBuyLists() {
+            try {
+                const euResponse = await fetch('eu_buy_list.json');
+                const usaResponse = await fetch('us_buy_list.json');
+                const euData = await euResponse.json();
+                const usaData = await usaResponse.json();
+
+                const euContainer = document.getElementById('region-eu');
+                const usaContainer = document.getElementById('region-usa');
+
+                function renderItems(data, container) {
+                    data.forEach(category => {
+                        const accordion = document.createElement('div');
+                        accordion.className = 'accordion';
+                        accordion.innerHTML = `
+                            <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
+                            <div class="accordion-content">
+                                ${category.items.map(item => `
+                                    <div class="item">
+                                        <div class="item-details">
+                                            <h3>${item.name}</h3>
+                                            <p>${item.percentage}% ${item.description}</p>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                        container.appendChild(accordion);
+                    });
+                }
+
+                renderItems(euData, euContainer);
+                renderItems(usaData, usaContainer);
+            } catch (error) {
+                console.error('Error loading buy lists:', error);
+            }
+        }
+
+        async function loadRules() {
+            try {
+                const response = await fetch('rules.json');
+                if (!response.ok) throw new Error(`Failed to fetch rules.json: ${response.statusText}`);
+                rulesData = await response.json();
+                console.log('Rules data loaded:', rulesData);
+                // Если вкладка Rules активна, сразу рендерим
+                if (document.getElementById('rules').classList.contains('active')) {
+                    renderRules();
+                }
+            } catch (error) {
+                console.error('Error loading rules:', error);
+                document.getElementById('rules-content').innerHTML = '<p>Error loading rules. Please try again later.</p>';
+            }
+        }
+
+        async function loadFaq() {
+            try {
+                const response = await fetch('faq.json');
+                if (!response.ok) throw new Error(`Failed to fetch faq.json: ${response.statusText}`);
+                faqData = await response.json();
+                console.log('FAQ data loaded:', faqData);
+                // Если вкладка Info & Pickup активна, сразу рендерим
+                if (document.getElementById('pickup').classList.contains('active')) {
+                    renderFaq();
+                }
+            } catch (error) {
+                console.error('Error loading FAQ:', error);
+                document.getElementById('pickup-content').innerHTML = '<p>Error loading FAQ. Please try again later.</p>';
+            }
+        }
+
+        function renderRules() {
+            if (!rulesData) {
+                console.warn('Rules data not loaded yet.');
+                return;
+            }
+            const container = document.getElementById('rules-content');
+            container.innerHTML = '';
+            rulesData.sections.forEach(section => {
+                const accordion = document.createElement('div');
+                accordion.className = 'accordion';
+                accordion.innerHTML = `
+                    <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
+                    <div class="accordion-content">
+                        ${section.content[currentLang].map(item => `<p>${item}</p>`).join('')}
+                    </div>
+                `;
+                container.appendChild(accordion);
+            });
+        }
+
+        function renderFaq() {
+            if (!faqData) {
+                console.warn('FAQ data not loaded yet.');
+                return;
+            }
+            const container = document.getElementById('pickup-content');
+            container.innerHTML = '';
+            faqData.sections.forEach(section => {
+                const accordion = document.createElement('div');
+                accordion.className = 'accordion';
+                accordion.innerHTML = `
+                    <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
+                    <div class="accordion-content">
+                        <ul class="pickup-list">
+                            ${section.content[currentLang].map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+                container.appendChild(accordion);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash) openTab(hash);
+            else openTab('buy-list');
+            switchLang(currentLang);
+            switchRegion('eu');
+            loadBuyLists();
+            loadRules();
+            loadFaq();
+
+            const langButton = document.getElementById('current-lang');
+            const dropdown = document.querySelector('.lang-dropdown-content');
+            langButton.addEventListener('click', e => {
+                e.stopPropagation();
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            });
+            document.addEventListener('click', () => {
+                dropdown.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
