@@ -1,4 +1,43 @@
-<!DOCTYPE html>
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +52,7 @@
 
         body {
             font-family: 'Gotham', 'Helvetica', 'Arial', sans-serif;
-            background: #1C2526;
+            background: #15191afa;
             color: #E5E7EB;
             min-height: 100vh;
             overflow-x: hidden;
@@ -25,7 +64,7 @@
             position: fixed;
             left: 0;
             top: 0;
-            background: rgba(44, 53, 57, 0.95);
+            background: rgb(46 53 56 / 95%);
             border-right: 1px solid rgba(255, 255, 255, 0.1);
             padding: 40px 24px;
             backdrop-filter: blur(10px);
@@ -167,30 +206,30 @@
             margin-bottom: 32px;
         }
 
+        .region-button.active {
+            border-bottom: 2px solid #4facfe;
+            color: #FFFFFF;
+            border-color: transparent;
+            transition: color 0.4s, border-color 0.4s;
+        }
+
         .region-button {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: none;
+            border: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
             color: #E5E7EB;
             font-size: 14px;
             font-weight: 400;
             padding: 10px 20px;
-            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: color 0.4s, border-color 0.4s;
         }
 
         .region-button:hover {
-            background: linear-gradient(45deg, #4facfe, #00f2fe);
-            color: #FFFFFF;
-            border-color: transparent;
-            transform: scale(1.05);
+            color: #ffffff;
+            border-bottom: 2px solid #4facfe;
         }
 
-        .region-button.active {
-            background: linear-gradient(45deg, #4facfe, #00f2fe);
-            color: #FFFFFF;
-            border-color: transparent;
-        }
 
         .accordion {
             margin-bottom: 16px;
@@ -452,9 +491,8 @@
             if (window.innerWidth <= 768) {
                 document.querySelector('.sidebar').classList.remove('active');
             }
-            // Проверяем, загружены ли данные перед рендерингом
-            if (tabId === 'rules' && rulesData) renderRules();
-            if (tabId === 'pickup' && faqData) renderFaq();
+            if (tabId === 'rules') renderRules();
+            if (tabId === 'pickup') renderFaq();
         }
 
         function switchLang(lang) {
@@ -466,9 +504,8 @@
                 'ua': '🇺🇦'
             }[lang];
             document.querySelector('.lang-dropdown-content').style.display = 'none';
-            // Рендерим только если данные уже загружены
-            if (rulesData) renderRules();
-            if (faqData) renderFaq();
+            renderRules();
+            renderFaq();
         }
 
         function toggleAccordion(element) {
@@ -560,40 +597,25 @@
         async function loadRules() {
             try {
                 const response = await fetch('rules.json');
-                if (!response.ok) throw new Error(`Failed to fetch rules.json: ${response.statusText}`);
                 rulesData = await response.json();
-                console.log('Rules data loaded:', rulesData);
-                // Если вкладка Rules активна, сразу рендерим
-                if (document.getElementById('rules').classList.contains('active')) {
-                    renderRules();
-                }
+                renderRules();
             } catch (error) {
                 console.error('Error loading rules:', error);
-                document.getElementById('rules-content').innerHTML = '<p>Error loading rules. Please try again later.</p>';
             }
         }
 
         async function loadFaq() {
             try {
                 const response = await fetch('faq.json');
-                if (!response.ok) throw new Error(`Failed to fetch faq.json: ${response.statusText}`);
                 faqData = await response.json();
-                console.log('FAQ data loaded:', faqData);
-                // Если вкладка Info & Pickup активна, сразу рендерим
-                if (document.getElementById('pickup').classList.contains('active')) {
-                    renderFaq();
-                }
+                renderFaq();
             } catch (error) {
                 console.error('Error loading FAQ:', error);
-                document.getElementById('pickup-content').innerHTML = '<p>Error loading FAQ. Please try again later.</p>';
             }
         }
 
         function renderRules() {
-            if (!rulesData) {
-                console.warn('Rules data not loaded yet.');
-                return;
-            }
+            if (!rulesData) return;
             const container = document.getElementById('rules-content');
             container.innerHTML = '';
             rulesData.sections.forEach(section => {
@@ -610,10 +632,7 @@
         }
 
         function renderFaq() {
-            if (!faqData) {
-                console.warn('FAQ data not loaded yet.');
-                return;
-            }
+            if (!faqData) return;
             const container = document.getElementById('pickup-content');
             container.innerHTML = '';
             faqData.sections.forEach(section => {
