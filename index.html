@@ -560,48 +560,64 @@
     }
 
     async function loadBuyLists() {
+    try {
+        const euResponse = await fetch('eu_buy_list.json');
+        const usaResponse = await fetch('us_buy_list.json');
+
+        if (!euResponse.ok) throw new Error(`EU buy list not found: ${euResponse.status}`);
+        if (!usaResponse.ok) throw new Error(`USA buy list not found: ${usaResponse.status}`);
+
+        const euText = await euResponse.text();
+        const usaText = await usaResponse.text();
+
+        if (!euText.trim()) throw new Error("EU buy list is empty");
+        if (!usaText.trim()) throw new Error("USA buy list is empty");
+
+        let euData, usaData;
         try {
-            const euResponse = await fetch('eu_buy_list.json');
-            const usaResponse = await fetch('us_buy_list.json');
-
-            if (!euResponse.ok) throw new Error('Ошибка загрузки EU Buy List');
-            if (!usaResponse.ok) throw new Error('Ошибка загрузки USA Buy List');
-
-            const euData = await euResponse.json();
-            const usaData = await usaResponse.json();
-
-            const euContainer = document.getElementById('region-eu');
-            const usaContainer = document.getElementById('region-usa');
-
-            renderItems(euData, euContainer);
-            renderItems(usaData, usaContainer);
-
-        } catch (error) {
-            console.error('Ошибка при загрузке buy list:', error);
+            euData = JSON.parse(euText);
+        } catch (e) {
+            throw new Error("EU JSON is malformed");
         }
 
-        function renderItems(data, container) {
-            container.innerHTML = '';
-            data.forEach(category => {
-                const accordion = document.createElement('div');
-                accordion.className = 'accordion';
-                accordion.innerHTML = `
-                    <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
-                    <div class="accordion-content">
-                        ${category.items.map(item => `
-                            <div class="item">
-                                <div class="item-details">
-                                    <h3>${item.name}</h3>
-                                    <p>${item.percentage}% ${item.description}</p>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-                container.appendChild(accordion);
-            });
+        try {
+            usaData = JSON.parse(usaText);
+        } catch (e) {
+            throw new Error("USA JSON is malformed");
         }
+
+        const euContainer = document.getElementById('region-eu');
+        const usaContainer = document.getElementById('region-usa');
+
+        renderItems(euData, euContainer);
+        renderItems(usaData, usaContainer);
+
+    } catch (error) {
+        console.error('Ошибка при загрузке buy list:', error.message);
     }
+
+    function renderItems(data, container) {
+        container.innerHTML = '';
+        data.forEach(category => {
+            const accordion = document.createElement('div');
+            accordion.className = 'accordion';
+            accordion.innerHTML = `
+                <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
+                <div class="accordion-content">
+                    ${category.items.map(item => `
+                        <div class="item">
+                            <div class="item-details">
+                                <h3>${item.name}</h3>
+                                <p>${item.percentage}% ${item.description}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            container.appendChild(accordion);
+        });
+    }
+}
 
     async function loadRules() {
         try {
