@@ -1,74 +1,62 @@
-<html lang="ru"><head><script type="text/javascript">
+<html lang="ru">
+<head>
+    <script type="text/javascript">
         var gk_isXlsx = false;
         var gk_xlsxFileLookup = {};
         var gk_fileData = {};
         function filledCell(cell) {
-          return cell !== '' && cell != null;
+            return cell !== '' && cell != null;
         }
         function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
+            if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+                try {
+                    var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                    var firstSheetName = workbook.SheetNames[0];
+                    var worksheet = workbook.Sheets[firstSheetName];
+                    var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                    var filteredData = jsonData.filter(row => row.some(filledCell));
+                    var headerRowIndex = filteredData.findIndex((row, index) =>
+                        row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                    );
+                    if (headerRowIndex === -1 || headerRowIndex > 25) {
+                        headerRowIndex = 0;
+                    }
+                    var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+                    csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                    return csv;
+                } catch (e) {
+                    console.error(e);
+                    return "";
                 }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
             }
+            return gk_fileData[filename] || "";
         }
-        return gk_fileData[filename] || "";
-        }
-        </script>
-
-
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bober Service Menu</title>
     <style>
-            a {
+        a {
             color: #4facfe;
             text-decoration: none;
             transition: color 0.3s ease, text-decoration 0.3s ease;
             font-weight: 500;
-            }
-
-            a:hover {
-                color: #00f2fe;
-                text-decoration: underline;
-            }
-
-            a:visited {
-                color: #38bdf8;
-            }
-
-            a:active {
-                color: #67e8f9;
-            }
+        }
+        a:hover {
+            color: #00f2fe;
+            text-decoration: underline;
+        }
+        a:visited {
+            color: #38bdf8;
+        }
+        a:active {
+            color: #67e8f9;
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Gotham', 'Helvetica', 'Arial', sans-serif;
             background: #15191afa;
@@ -77,7 +65,6 @@
             overflow-x: hidden;
             display: flex;
         }
-
         .sidebar {
             width: 260px;
             height: 100vh;
@@ -92,18 +79,15 @@
             z-index: 1000;
             border-radius: 0 16px 16px 0;
         }
-
         .sidebar.hidden {
             transform: translateX(-100%);
         }
-
         .site-header {
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 40px;
         }
-
         .logo-wrap {
             width: 45px;
             height: 45px;
@@ -113,7 +97,6 @@
             background-color: white;
             flex-shrink: 0;
         }
-
         .logo-img {
             width: 100%;
             height: 100%;
@@ -124,7 +107,6 @@
             font-weight: 500;
             color: #E5E7EB;
         }
-
         .menu {
             list-style: none;
             padding: 0;
@@ -133,11 +115,9 @@
             flex-direction: column;
             gap: 8px;
         }
-
         .menu-item {
             margin-bottom: 8px;
         }
-
         .menu-link {
             color: #9CA3AF;
             text-decoration: none;
@@ -149,15 +129,12 @@
             transition: color 0.3s;
             position: relative;
         }
-
         .menu-link:hover {
             color: #E5E7EB;
         }
-
         .menu-link.active {
             color: #FFFFFF;
         }
-
         .menu-link.active::after {
             content: '';
             position: absolute;
@@ -167,12 +144,10 @@
             height: 2px;
             background: linear-gradient(45deg, #4facfe, #00f2fe);
         }
-
         .lang-selector {
             position: relative;
             margin-top: auto;
         }
-
         .lang-button {
             color: #9CA3AF;
             text-decoration: none;
@@ -187,11 +162,9 @@
             border: none;
             text-align: left;
         }
-
         .lang-button:hover {
             color: #E5E7EB;
         }
-
         .lang-dropdown-content {
             display: none;
             position: absolute;
@@ -203,7 +176,6 @@
             border-radius: 12px;
             z-index: 1;
         }
-
         .lang-dropdown-content button {
             color: #9CA3AF;
             text-decoration: none;
@@ -218,16 +190,13 @@
             border: none;
             text-align: center;
         }
-
         .lang-dropdown-content button:hover {
             color: #E5E7EB;
             background: rgba(255, 255, 255, 0.1);
         }
-
         .lang-selector:hover .lang-dropdown-content {
             display: block;
         }
-
         .content {
             margin-left: 260px;
             padding: 0;
@@ -235,7 +204,6 @@
             height: 100vh;
             overflow: hidden;
         }
-
         .tab-content {
             display: none;
             background: rgba(37, 45, 48, 0.95);
@@ -250,13 +218,11 @@
             width: 100%;
             overflow: auto;
         }
-
         .tab-content.active {
             display: block;
             opacity: 1;
             transform: translateY(0);
         }
-
         #form.tab-content {
             margin: 0;
             padding: 0;
@@ -264,18 +230,15 @@
             box-shadow: none;
             border-radius: 0;
         }
-
         #form.tab-content.active {
             display: block;
             opacity: 1;
             transform: none;
         }
-
         .search-bar {
             margin-bottom: 32px;
             position: relative;
         }
-
         .search-bar input {
             width: 100%;
             padding: 14px 14px 14px 44px;
@@ -286,13 +249,11 @@
             color: #E5E7EB;
             transition: box-shadow 0.2s;
         }
-
         .search-bar input:focus {
             box-shadow: 0 0 0 2px linear-gradient(45deg, #4facfe, #00f2fe);
             border-color: transparent;
             outline: none;
         }
-
         .search-bar::before {
             content: '🔍';
             position: absolute;
@@ -302,20 +263,17 @@
             color: #9CA3AF;
             font-size: 20px;
         }
-
         .region-submenu {
             display: flex;
             gap: 16px;
             margin-bottom: 32px;
         }
-
         .region-button.active {
             border-bottom: 2px solid #4facfe;
             color: #FFFFFF;
             transition: color 0.4s, border-color 0.4s;
             padding-bottom: 10px;
         }
-
         .region-button {
             background: none;
             border: none;
@@ -327,104 +285,90 @@
             transition: color 0.4s, border-color 0.4s;
             padding-bottom: 10px;
         }
-
         .region-button:hover {
             color: #ffffff;
             border-bottom: 2px solid #4facfe;
             padding-bottom: 10px;
         }
+        .accordion {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .accordion-title {
+            background: rgb(45 52 55);
+            padding: 12px 16px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #E5E7EB;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+            position: relative;
+        }
+        .accordion-title:hover {
+            background: rgb(12 12 12 / 17%);
+        }
+        .accordion-title::after {
+            content: '↓';
+            font-size: 14px;
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .accordion-title.active::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 16px;
+            color: #D1D
 
-.accordion {
-    margin-bottom: 15px;
-    border-radius: 8px;
-    overflow: hidden; /* важно: чтобы скругления не обрезались */
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.accordion-title {
-    background: rgb(45 52 55);
-    padding: 12px 16px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #E5E7EB;
-    border-radius: 8px 8px 0 0; /* только верхние скругления */
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-    position: relative;
-}
-
-.accordion-title:hover {
-    background: rgb(12 12 12 / 17%);
-}
-
-.accordion-title::after {
-    content: '↓';
-    font-size: 14px;
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: transform 0.3s ease-in-out;
-}
-
-.accordion-title.active::after {
-    transform: translateY(-50%) rotate(180deg);
-}
-
-.accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    padding: 0 16px;
-    color: #D1D5DB;
-    font-size: 14px;
-    line-height: 1.5;
-    background: rgb(12 12 12 / 17%);
-    border-radius: 0 0 8px 8px; /* только нижние скругления */
-    transition: all 0.3s ease-in-out;
-}
-
-.accordion-content.active {
-    max-height: 1000px;
-    padding: 12px 16px;
-    overflow: auto;
-}
-
-.accordion-content p {
-    margin: 0 0 8px 0;
-    color: #D1D5DB;
-}
-
-
+5DB;
+            font-size: 14px;
+            line-height: 1.5;
+            background: rgb(12 12 12 / 17%);
+            border-radius: 0 0 8px 8px;
+            transition: all 0.3s ease-in-out;
+        }
+        .accordion-content.active {
+            max-height: 1000px;
+            padding: 12px 16px;
+            overflow: auto;
+        }
+        .accordion-content p {
+            margin: 0 0 8px 0;
+            color: #D1D5DB;
+        }
         .item {
             padding: 10px 0;
             margin-bottom: 8px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: background 0.3s ease-in-out;
         }
-
         .item:hover {
             background: rgba(255, 255, 255, 0.05);
         }
-
         .item:last-child {
             border-bottom: none;
         }
-
         .item-details h3 {
             margin: 0;
             font-size: 14px;
             color: #E5E7EB;
             font-weight: 500;
         }
-
         .item-details p {
             margin: 3px 0 0;
             color: #D1D5DB;
             font-size: 12px;
             line-height: 1.3;
         }
-
         .pickup-list {
             margin: 0;
             padding: 0 0 0 20px;
@@ -432,15 +376,12 @@
             font-size: 14px;
             line-height: 1.5;
         }
-
         .pickup-list li {
             margin-bottom: 8px;
         }
-
         .pickup-list li strong {
             color: #E5E7EB;
         }
-
         .hamburger {
             display: none;
             font-size: 24px;
@@ -453,80 +394,65 @@
             left: 20px;
             z-index: 1100;
         }
-
         .form-iframe {
             width: 100%;
             height: 100vh;
             border: none;
             border-radius: 0;
         }
-
         @media (max-width: 768px) {
             .sidebar {
                 transform: translateX(-100%);
                 border-radius: 0;
             }
-
             .sidebar.active {
                 transform: translateX(0);
             }
-
             .content {
                 margin-left: 0;
                 padding: 0;
                 width: 100%;
             }
-
             .hamburger {
                 display: block;
             }
-
             .form-iframe {
                 height: 100vh;
             }
-
             .lang-dropdown-content {
                 left: 50%;
                 transform: translateX(-50%);
                 top: 100%;
             }
-
             .accordion-title {
                 font-size: 14px;
                 padding: 10px 12px;
             }
-
             .accordion-content {
                 padding: 0 12px;
             }
-
             .accordion-content.active {
                 padding: 10px 12px;
             }
-
             .item-details h3 {
                 font-size: 13px;
             }
-
             .item-details p {
                 font-size: 12px;
             }
             a {
-            color: #4facfe;
-            text-decoration: none;
-            transition: color 0.3s ease, text-decoration 0.3s ease;
-            font-weight: 500;
+                color: #4facfe;
+                text-decoration: none;
+                transition: color 0.3s ease, text-decoration 0.3s ease;
+                font-weight: 500;
             }
-
             a:hover {
                 color: #00f2fe;
                 text-decoration: underline;
             }
-
             a:visited {
                 color: #38bdf8;
             }
-
             a:active {
                 color: #67e8f9;
             }
@@ -538,15 +464,12 @@
                 border-radius: 20px;
                 box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
             }
-
-            /* Мобильная адаптация */
             @media (max-width: 768px) {
                 .tab-inner {
                     padding: 16px 20px;
                     border-radius: 16px;
                 }
             }
-
         }
     </style>
 </head>
@@ -575,159 +498,18 @@
             </li>
         </ul>
     </div>
-
     <div class="content">
-
         <div id="buy-list" class="tab-content">
             <div class="tab-inner">
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search items..." onkeyup="searchItems()">
-            </div>
-            <div class="region-submenu">
-                <button class="region-button active" onclick="switchRegion('eu')">EU Prices</button>
-                <button class="region-button" onclick="switchRegion('usa')">USA Prices</button>
-            </div>
-            <div id="region-eu" class="region-content active"><p>Loading buy list...</p></div>
-            <div id="region-usa" class="region-content"><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">HOW WE CALCULATE FEE?</div>
-                <div class="accordion-content">
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>We take the minimum price from Amazon, Best Buy</h3>
-                                <p>0% And from there we calculate the percentage</p>
-                            </div>
-                        </div>
-                    
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search items..." onkeyup="searchItems()">
                 </div>
-            </div><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">Apple MacBooks</div>
-                <div class="accordion-content">
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>NEW MacBook Air M4 13/15 16GB/256GB</h3>
-                                <p>80% </p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>NEW MacBook Air M4 13/15 16GB/512GB</h3>
-                                <p>80% </p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>NEW MacBook Air M4 13/15 24GB/512GB</h3>
-                                <p>75% </p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>MacBook Pro 14" M4 (M4, M4 Pro, M4 Max)</h3>
-                                <p>77% </p>
-                            </div>
-                        </div>
-                    
+                <div class="region-submenu">
+                    <button class="region-button active" onclick="switchRegion('eu')">EU Prices</button>
+                    <button class="region-button" onclick="switchRegion('usa')">USA Prices</button>
                 </div>
-            </div><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">iPhone (Unlocked ONLY)</div>
-                <div class="accordion-content">
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPhone 16 Pro/Pro Max</h3>
-                                <p>70% (128/256 GB) (-5% for 512GB or 1TB or eSIM)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPhone 16</h3>
-                                <p>69% (128/256 GB) (-5% for 512GB or 1TB or eSIM)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPhone 16 Plus</h3>
-                                <p>69% (128/256 GB EU) (-4% for 512GB or 1TB or eSIM)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPhone 15</h3>
-                                <p>65% (128/256 GB EU) (-5% for 512GB or 1TB)</p>
-                            </div>
-                        </div>
-                    
-                </div>
-            </div><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">iPad</div>
-                <div class="accordion-content">
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad Air 11" M3 / 13" M3</h3>
-                                <p>76% (-5% for 512GB/1TB)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad Air 11" M2 / 13" M2</h3>
-                                <p>66% (-5% for 512GB/1TB)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad Pro 11" M4 / 13" M4</h3>
-                                <p>65% (-5% for 1TB/2TB)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad Pro 12.9" M2 6th</h3>
-                                <p>65% (-5% for 512GB)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad Pro 11" M2 4th</h3>
-                                <p>60% (-5% for 512GB)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad Air 10.9" M1 5th</h3>
-                                <p>60% </p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad 10.9" 10th</h3>
-                                <p>60% </p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad Mini 8.3" 6th</h3>
-                                <p>55% </p>
-                            </div>
-                        </div>
-                    
-                </div>
-            </div></div>
+                <div id="region-eu" class="region-content active"><p>Loading buy list...</p></div>
+                <div id="region-usa" class="region-content"><p>Loading buy list...</p></div>
             </div>
         </div>
         <div id="rules" class="tab-content">
@@ -801,263 +583,207 @@
             <iframe src="https://app.nocodb.com/#/nc/form/3ab4d606-d930-4ab5-85bc-81a0181a39b2" class="form-iframe"></iframe>
         </div>
     </div>
+    <script>
+        let rulesData = null;
+        let faqData = null;
+        let buyListData = null;
+        let currentLang = localStorage.getItem('lang') || 'en';
 
-   <script>
-    let rulesData = null;
-    let faqData = null;
-    let buyListDataEU = null;
-    let buyListDataUSA = null;
-    let currentLang = localStorage.getItem('lang') || 'en';
-
-    function openTab(tabId) {
-        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-        document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-        document.querySelector(`a[href="#${tabId}"]`).classList.add('active');
-        history.replaceState(null, null, '#' + tabId);
-        if (window.innerWidth <= 768) {
-            document.querySelector('.sidebar').classList.remove('active');
-        }
-        if (tabId === 'rules') renderRules();
-        if (tabId === 'pickup') renderFaq();
-        if (tabId === 'buy-list') renderBuyLists();
-    }
-
-    function switchLang(lang) {
-        currentLang = lang;
-        localStorage.setItem('lang', lang);
-        document.getElementById('current-lang').textContent = {
-            'en': '🇺🇸',
-            'ru': '🇷🇺',
-            'ua': '🇺🇦'
-        }[lang];
-        document.querySelector('.lang-dropdown-content').style.display = 'none';
-        renderRules();
-        renderFaq();
-    }
-
-    function toggleAccordion(element) {
-        const content = element.nextElementSibling;
-        const isActive = content.classList.contains('active');
-        document.querySelectorAll('.accordion-content').forEach(c => {
-            c.classList.remove('active');
-            c.previousElementSibling.classList.remove('active');
-        });
-        if (!isActive) {
-            content.classList.add('active');
-            element.classList.add('active');
-        }
-    }
-
-    function toggleSidebar() {
-        document.querySelector('.sidebar').classList.toggle('active');
-    }
-
-    function searchItems() {
-        const input = document.getElementById('searchInput').value.toLowerCase();
-        const accordions = document.querySelectorAll('#buy-list .accordion');
-        accordions.forEach(accordion => {
-            const items = accordion.querySelectorAll('.item');
-            let hasVisibleItems = false;
-            items.forEach(item => {
-                const title = item.querySelector('h3').textContent.toLowerCase();
-                const desc = item.querySelector('p').textContent.toLowerCase();
-                const isVisible = title.includes(input) || desc.includes(input);
-                item.style.display = isVisible ? 'block' : 'none';
-                if (isVisible) hasVisibleItems = true;
-            });
-            accordion.style.display = hasVisibleItems ? 'block' : 'none';
-            if (hasVisibleItems) {
-                accordion.querySelector('.accordion-content').classList.add('active');
-                accordion.querySelector('.accordion-title').classList.add('active');
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`a[href="#${tabId}"]`).classList.add('active');
+            history.replaceState(null, null, '#' + tabId);
+            if (window.innerWidth <= 768) {
+                document.querySelector('.sidebar').classList.remove('active');
             }
-        });
-    }
-
-    function switchRegion(region) {
-        document.querySelectorAll('.region-content').forEach(content => {
-            content.classList.remove('active');
-        });
-        document.querySelectorAll('.region-button').forEach(button => {
-            button.classList.remove('active');
-        });
-        document.getElementById(`region-${region}`).classList.add('active');
-        document.querySelector(`.region-button[onclick="switchRegion('${region}')"]`).classList.add('active');
-        renderBuyLists(); // Re-render based on the selected region
-    }
-
-    function renderItems(data, container) {
-        if (!data || !Array.isArray(data)) {
-            console.error('Invalid data format for rendering items:', data);
-            return;
+            if (tabId === 'rules') renderRules();
+            if (tabId === 'pickup') renderFaq();
+            if (tabId === 'buy-list') renderBuyLists();
         }
-        container.innerHTML = '';
-        data.forEach(category => {
-            if (!category.category || !Array.isArray(category.items)) {
-                console.warn('Skipping invalid category:', category);
+
+        function switchLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            document.getElementById('current-lang').textContent = {
+                'en': '🇺🇸',
+                'ru': '🇷🇺',
+                'ua': '🇺🇦'
+            }[lang];
+            document.querySelector('.lang-dropdown-content').style.display = 'none';
+            renderRules();
+            renderFaq();
+            renderBuyLists();
+        }
+
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const isActive = content.classList.contains('active');
+            document.querySelectorAll('.accordion-content').forEach(c => {
+                c.classList.remove('active');
+                c.previousElementSibling.classList.remove('active');
+            });
+            if (!isActive) {
+                content.classList.add('active');
+                element.classList.add('active');
+            }
+        }
+
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        }
+
+        function searchItems() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const accordions = document.querySelectorAll('#buy-list .accordion');
+            accordions.forEach(accordion => {
+                const items = accordion.querySelectorAll('.item');
+                let hasVisibleItems = false;
+                items.forEach(item => {
+                    const title = item.querySelector('h3').textContent.toLowerCase();
+                    const desc = item.querySelector('p').textContent.toLowerCase();
+                    const isVisible = title.includes(input) || desc.includes(input);
+                    item.style.display = isVisible ? 'block' : 'none';
+                    if (isVisible) hasVisibleItems = true;
+                });
+                accordion.style.display = hasVisibleItems ? 'block' : 'none';
+                if (hasVisibleItems) {
+                    accordion.querySelector('.accordion-content').classList.add('active');
+                    accordion.querySelector('.accordion-title').classList.add('active');
+                }
+            });
+        }
+
+        function switchRegion(region) {
+            document.querySelectorAll('.region-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.region-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(`region-${region}`).classList.add('active');
+            document.querySelector(`.region-button[onclick="switchRegion('${region}')"]`).classList.add('active');
+            renderBuyLists();
+        }
+
+        function renderBuyLists() {
+            if (!buyListData) {
+                document.getElementById('region-eu').innerHTML = '<p>Loading buy list...</p>';
+                document.getElementById('region-usa').innerHTML = '<p>Loading buy list...</p>';
                 return;
             }
-            const accordion = document.createElement('div');
-            accordion.className = 'accordion';
-            accordion.innerHTML = `
-                <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
-                <div class="accordion-content">
-                    ${category.items.map(item => {
-                        if (!item.name || typeof item.percentage === 'undefined' || !item.description) {
-                            console.warn('Skipping invalid item:', item);
-                            return '';
-                        }
-                        return `
+            const activeRegion = document.querySelector('.region-button.active').textContent.includes('EU') ? 'eu' : 'usa';
+            const container = document.getElementById(`region-${activeRegion}`);
+            container.innerHTML = '';
+            buyListData[activeRegion].forEach(section => {
+                const accordion = document.createElement('div');
+                accordion.className = 'accordion';
+                accordion.innerHTML = `
+                    <div class="accordion-title" onclick="toggleAccordion(this)">${section.title}</div>
+                    <div class="accordion-content">
+                        ${section.items.map(item => `
                             <div class="item">
                                 <div class="item-details">
                                     <h3>${item.name}</h3>
                                     <p>${item.percentage}% ${item.description}</p>
                                 </div>
                             </div>
-                        `;
-                    }).join('')}
-                </div>
-            `;
-            container.appendChild(accordion);
-        });
-    }
-
-    function renderBuyLists() {
-        const activeRegion = document.querySelector('.region-button.active').textContent.includes('EU') ? 'eu' : 'usa';
-        const container = document.getElementById(`region-${activeRegion}`);
-        const data = activeRegion === 'eu' ? buyListDataEU : buyListDataUSA;
-
-        if (!data) {
-            container.innerHTML = '<p>Loading buy list...</p>';
-            return;
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(accordion);
+            });
         }
 
-        renderItems(data, container);
-    }
-
-   async function loadBuyLists() {
-    try {
-        const euResponse = await fetch('eu_buy_list.json');
-        const usaResponse = await fetch('us_buy_list.json');
-
-        if (!euResponse.ok) throw new Error('Ошибка загрузки EU Buy List');
-        if (!usaResponse.ok) throw new Error('Ошибка загрузки USA Buy List');
-
-        const euData = await euResponse.json();
-        const usaData = await usaResponse.json();
-
-        const euContainer = document.getElementById('region-eu');
-        const usaContainer = document.getElementById('region-usa');
-
-        renderItems(euData, euContainer);
-        renderItems(usaData, usaContainer);
-
-    } catch (error) {
-        console.error('Ошибка при загрузке buy list:', error);
-    }
-
-    function renderItems(data, container) {
-        container.innerHTML = ''; // очищаем контейнер перед добавлением
-        data.forEach(category => {
-            const accordion = document.createElement('div');
-            accordion.className = 'accordion';
-            accordion.innerHTML = `
-                <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
-                <div class="accordion-content">
-                    ${category.items.map(item => `
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>${item.name}</h3>
-                                <p>${item.percentage}% ${item.description}</p>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-            container.appendChild(accordion);
-        });
-    }
-}
-
-
-    async function loadRules() {
-        try {
-            const response = await fetch('rules.json');
-            rulesData = await response.json();
-            renderRules();
-        } catch (error) {
-            console.error('Error loading rules:', error);
+        async function loadBuyLists() {
+            try {
+                const response = await fetch('buy_list.json');
+                if (!response.ok) throw new Error('Error loading Buy List');
+                buyListData = await response.json();
+                renderBuyLists();
+            } catch (error) {
+                console.error('Error loading buy list:', error);
+                document.getElementById('region-eu').innerHTML = '<p>Error loading buy list.</p>';
+                document.getElementById('region-usa').innerHTML = '<p>Error loading buy list.</p>';
+            }
         }
-    }
 
-    async function loadFaq() {
-        try {
-            const response = await fetch('faq.json');
-            faqData = await response.json();
-            renderFaq();
-        } catch (error) {
-            console.error('Error loading FAQ:', error);
+        async function loadRules() {
+            try {
+                const response = await fetch('rules.json');
+                rulesData = await response.json();
+                renderRules();
+            } catch (error) {
+                console.error('Error loading rules:', error);
+            }
         }
-    }
 
-    function renderRules() {
-        if (!rulesData) return;
-        const container = document.getElementById('rules-content');
-        container.innerHTML = '';
-        rulesData.sections.forEach(section => {
-            const accordion = document.createElement('div');
-            accordion.className = 'accordion';
-            accordion.innerHTML = `
-                <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
-                <div class="accordion-content">
-                    ${section.content[currentLang].map(item => `<p>${item}</p>`).join('')}
-                </div>
-            `;
-            container.appendChild(accordion);
+        async function loadFaq() {
+            try {
+                const response = await fetch('faq.json');
+                faqData = await response.json();
+                renderFaq();
+            } catch (error) {
+                console.error('Error loading FAQ:', error);
+            }
+        }
+
+        function renderRules() {
+            if (!rulesData) return;
+            const container = document.getElementById('rules-content');
+            container.innerHTML = '';
+            rulesData.sections.forEach(section => {
+                const accordion = document.createElement('div');
+                accordion.className = 'accordion';
+                accordion.innerHTML = `
+                    <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
+                    <div class="accordion-content">
+                        ${section.content[currentLang].map(item => `<p>${item}</p>`).join('')}
+                    </div>
+                `;
+                container.appendChild(accordion);
+            });
+        }
+
+        function renderFaq() {
+            if (!faqData) return;
+            const container = document.getElementById('pickup-content');
+            container.innerHTML = '';
+            faqData.sections.forEach(section => {
+                const accordion = document.createElement('div');
+                accordion.className = 'accordion';
+                accordion.innerHTML = `
+                    <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
+                    <div class="accordion-content">
+                        <ul class="pickup-list">
+                            ${section.content[currentLang].map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+                container.appendChild(accordion);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash) openTab(hash);
+            else openTab('buy-list');
+            switchLang(currentLang);
+            switchRegion('eu');
+            loadBuyLists();
+            loadRules();
+            loadFaq();
+            const langButton = document.getElementById('current-lang');
+            const dropdown = document.querySelector('.lang-dropdown-content');
+            langButton.addEventListener('click', e => {
+                e.stopPropagation();
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            });
+            document.addEventListener('click', () => {
+                dropdown.style.display = 'none';
+            });
         });
-    }
-
-    function renderFaq() {
-        if (!faqData) return;
-        const container = document.getElementById('pickup-content');
-        container.innerHTML = '';
-        faqData.sections.forEach(section => {
-            const accordion = document.createElement('div');
-            accordion.className = 'accordion';
-            accordion.innerHTML = `
-                <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
-                <div class="accordion-content">
-                    <ul class="pickup-list">
-                        ${section.content[currentLang].map(item => `<li>${item}</li>`).join('')}
-                    </ul>
-                </div>
-            `;
-            container.appendChild(accordion);
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const hash = window.location.hash.substring(1);
-        if (hash) openTab(hash);
-        else openTab('buy-list');
-        switchLang(currentLang);
-        switchRegion('eu');
-        loadBuyLists();
-        loadRules();
-        loadFaq();
-
-        const langButton = document.getElementById('current-lang');
-        const dropdown = document.querySelector('.lang-dropdown-content');
-        langButton.addEventListener('click', e => {
-            e.stopPropagation();
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        });
-        document.addEventListener('click', () => {
-            dropdown.style.display = 'none';
-        });
-    });
-</script>
-
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d504600fad53aa',t:'MTc0NjgzMzc2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d526edffee53bd',t:'MTc0NjgzNTE4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d53d826d071d62',t:'MTc0NjgzNjEwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
-
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d611533a71bbb2',t:'MTc0Njg0NDc4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
+    </script>
+</body>
+</html>
