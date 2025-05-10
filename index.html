@@ -372,55 +372,80 @@
             padding: 12px 16px;
             overflow: visible;
         }
-        .item-header, .item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 0;
-            margin-bottom: 8px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .item-header {
-            font-weight: 500;
-            color: #E5E7EB;
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .item:hover { background: rgba(255, 255, 255, 0.05); }
-        .item:last-child, .item-header:last-child { border-bottom: none; }
-        .item-name, .header-name {
-            flex: 1;
-            font-size: 14px;
-            font-weight: 500;
-            color: #E5E7EB;
-        }
-        .item-percentage, .header-percentage {
-            width: 100px;
-            font-size: 14px;
-            text-align: right;
-            color: #D1D5DB;
-        }
-        .item-description, .header-description {
-            flex: 2;
-            font-size: 14px;
-            color: #D1D5DB;
-        }
-        .item-image, .header-image {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: #E5E7EB;
-        }
-        .item-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-            animation: fadeIn 0.3s ease-in;
-        }
+.item-header, .item {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Consistent gap for even spacing */
+    padding: 0px 0;
+    margin-bottom: 0px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.item-header {
+    font-weight: 500;
+    color: #E5E7EB;
+}
+.item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+.item:last-child, .item-header:last-child {
+    border-bottom: none;
+}
+.item-name, .header-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: #E5E7EB;
+    text-align: left;
+}
+.item-percentage, .header-percentage {
+    flex: 1;
+    font-size: 14px;
+    color: #D1D5DB;
+    text-align: center;
+}
+.item-description, .header-description {
+    flex: 1;
+    font-size: 14px;
+    color: #D1D5DB;
+    text-align: left;
+}
+.item-image, .header-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #E5E7EB;
+}
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    animation: fadeIn 0.3s ease-in;
+}
+@media (max-width: 768px) {
+    .item-header, .item {
+        gap: 12px; /* Slightly smaller gap for mobile */
+        flex-wrap: wrap;
+        padding: 10px 0;
+    }
+    .item-name, .header-name {
+        font-size: 13px;
+    }
+    .item-percentage, .header-percentage {
+        font-size: 12px;
+    }
+    .item-description, .header-description {
+        font-size: 12px;
+    }
+    .item-image, .header-image {
+        width: 40px;
+        height: 40px;
+    }
+}
         .pickup-list {
             margin: 0;
             padding: 0 0 0 20px;
