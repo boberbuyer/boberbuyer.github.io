@@ -1,20 +1,32 @@
 {
   "eu": [
     {
-      "title": "Category Name",
+      "title": "Apple MacBooks",
       "items": [
-        { "name": "Item Name", "percentage": 80, "description": "Description" },
+        { "name": "NEW MacBook Air M4 13/15 16GB/256GB", "percentage": 80, "description": "" },
+        { "name": "NEW MacBook Air M4 13/15 16GB/512GB", "percentage": 80, "description": "" }
       ]
     },
+    {
+      "title": "iPhone (Unlocked ONLY)",
+      "items": [
+        { "name": "iPhone 16 Pro/Pro Max", "percentage": 70, "description": "(128/256 GB) (-5% for 512GB or 1TB or eSIM)" }
+      ]
+    }
   ],
-
-  
   "usa": [
     {
-      "title": "Category Name",
+      "title": "HOW WE CALCULATE FEE?",
       "items": [
-        { "name": "Item Name", "percentage": 80, "description": "Description" },
+        { "name": "We take the minimum price from Amazon, Best Buy", "percentage": 0, "description": "And from there we calculate the percentage" }
       ]
     },
+    {
+      "title": "Apple MacBooks",
+      "items": [
+        { "name": "NEW MacBook Air M4 13/15 16GB/256GB", "percentage": 80, "description": "" },
+        { "name": "NEW MacBook Air M4 13/15 24GB/512GB", "percentage": 75, "description": "" }
+      ]
+    }
   ]
 }
