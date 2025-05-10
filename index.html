@@ -4,6 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bober Service Menu</title>
     <style>
+        .region-content {
+            display: none;
+        }
+        
+        .region-content.active {
+            display: block;
+        }
         a {
             color: #4facfe;
             text-decoration: none;
@@ -543,11 +550,11 @@
                 <div class="search-bar">
                     <input type="text" id="searchInput" placeholder="Search items..." onkeyup="searchItems()">
                 </div>
-                <div class="region-submenu">
-                    <button class="region-button active" onclick="switchRegion('eu')">EU Prices</button>
-                    <button class="region-button" onclick="switchRegion('usa')">USA Prices</button>
-                </div>
-                <div id="region-eu" class="region-content active"></div>
+                    <div class="region-submenu">
+                        <button class="region-button" data-region="eu" onclick="switchRegion('eu')">EU Prices</button>
+                        <button class="region-button" data-region="usa" onclick="switchRegion('usa')">USA Prices</button>
+                    </div>
+                <div id="region-eu" class="region-content"></div>
                 <div id="region-usa" class="region-content"></div>
             </div>
         </div>
@@ -722,21 +729,31 @@
 
         function switchRegion(region) {
             console.log(`Switching to region: ${region}`);
+            
+            // Сохраняем текущий регион
             currentRegion = region;
+        
+            // Удаляем класс .active у всех регионов и кнопок
             document.querySelectorAll('.region-content').forEach(content => content.classList.remove('active'));
             document.querySelectorAll('.region-button').forEach(button => button.classList.remove('active'));
+        
+            // Находим контейнер региона и добавляем .active
             const container = document.getElementById(`region-${region}`);
             if (container) {
                 container.classList.add('active');
             } else {
                 console.error(`Region container #region-${region} not found`);
             }
-            const button = document.querySelector(`.region-button[onclick="switchRegion('${region}')"]`);
+        
+            // Находим кнопку региона через data-region и добавляем .active
+            const button = document.querySelector(`.region-button[data-region="${region}"]`);
             if (button) {
                 button.classList.add('active');
             } else {
                 console.error(`Region button for ${region} not found`);
             }
+        
+            // Рендерим список для выбранного региона
             renderBuyLists(region);
         }
 
