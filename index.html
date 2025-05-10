@@ -246,8 +246,8 @@
             display: none;
             padding: 20px;
             border-radius: 15px;
-            min-height: 600px;
-            max-height: calc(85vh - 80px);
+            min-height: 600px; /* Фиксированная высота на основе содержимого rules */
+            max-height: calc(85vh - 80px); /* Учитываем padding и отступы */
             overflow-y: auto;
             opacity: 0;
             transform: scale(0.95) translateY(20px);
@@ -271,8 +271,8 @@
             position: absolute;
             top: 0;
             left: 0;
-            min-height: unset;
-            max-height: unset;
+            min-height: unset; /* Сброс фиксированной высоты для form */
+            max-height: unset; /* Сброс максимальной высоты для form */
         }
 
         #form.tab-content.active {
@@ -501,29 +501,24 @@
             border-radius: 0;
         }
 
-        /* Обновлённые стили для кнопки Get Address */
+        /* Стили для кнопки Get Address */
         .get-address-btn {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            background: transparent;
-            color: #00f2fe;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: #FFFFFF;
             font-size: 16px;
             font-weight: 500;
+            padding: 12px 24px;
             border: none;
-            border-top: 2px solid;
-            border-image: linear-gradient(90deg, #4facfe, #00f2fe) 1;
+            border-radius: 12px;
             cursor: pointer;
-            transition: color 0.3s ease, transform 0.3s ease;
-            z-index: 1001; /* Выше контента, но ниже гамбургера (z-index: 1100) */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
             display: none; /* По умолчанию скрыто */
         }
 
         .get-address-btn:hover {
-            color: #4facfe;
-            transform: translateY(-2px);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
         }
 
         @media (max-width: 768px) {
@@ -701,6 +696,8 @@
             </div>
             <div id="pickup" class="tab-content">
                 <div id="pickup-content"></div>
+                <!-- Добавляем кнопку Get Address в вкладку Info & Pickup -->
+                <button id="get-address-btn" class="get-address-btn" onclick="handleGetAddress()">Get Address</button>
             </div>
             <div id="links" class="tab-content">
                 <div class="accordion">
@@ -720,9 +717,6 @@
             <iframe src="https://app.nocodb.com/#/nc/form/3ab4d606-d930-4ab5-85bc-81a0181a39b2" class="form-iframe"></iframe>
         </div>
     </div>
-
-    <!-- Кнопка Get Address перенесена в конец body для корректного наложения -->
-    <button id="get-address-btn" class="get-address-btn" onclick="handleGetAddress()">Get Address</button>
 
     <script>
         let rulesData = null;
