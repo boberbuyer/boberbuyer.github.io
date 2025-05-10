@@ -86,13 +86,11 @@
         }
 
         .logo-wrap {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
             overflow: hidden;
-            border: 2px solid #007aff;
-            background-color: white;
-            flex-shrink: 0;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
         }
 
         .logo-img {
@@ -148,6 +146,65 @@
             right: 20px;
             height: 2px;
             background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .lang-selector {
+            position: relative;
+            margin-top: auto;
+        }
+
+        .lang-button {
+            color: #9CA3AF;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 14px 20px;
+            border-radius: 12px;
+            display: block;
+            transition: color 0.3s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            text-align: left;
+        }
+
+        .lang-button:hover {
+            color: #E5E7EB;
+        }
+
+        .lang-dropdown-content {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background: rgba(44, 53, 57, 0.95);
+            min-width: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            z-index: 1;
+        }
+
+        .lang-dropdown-content button {
+            color: #9CA3AF;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 14px 20px;
+            border-radius: 12px;
+            display: block;
+            transition: color 0.3s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            text-align: center;
+        }
+
+        .lang-dropdown-content button:hover {
+            color: #E5E7EB;
+        }
+
+        .lang-selector:hover .lang-dropdown-content {
+            display: block;
         }
 
         .content {
@@ -331,64 +388,6 @@
             color: #E5E7EB;
         }
 
-        .lang-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
-        .lang-button {
-            padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-
-        .lang-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .lang-dropdown-content {
-            display: none;
-            position: absolute;
-            top: 60px;
-            right: 0;
-            background: rgba(44, 53, 57, 0.95);
-            min-width: 40px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            z-index: 1;
-        }
-
-        .lang-dropdown-content button {
-            display: block;
-            padding: 8px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            width: 40px;
-            text-align: center;
-            color: #E5E7EB;
-            transition: background 0.3s;
-        }
-
-        .lang-dropdown-content button:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .lang-selector:hover .lang-dropdown-content {
-            display: block;
-        }
-
         .hamburger {
             display: none;
             font-size: 24px;
@@ -433,9 +432,10 @@
                 height: 100vh;
             }
 
-            .lang-selector {
-                top: 10px;
-                right: 10px;
+            .lang-dropdown-content {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 100%;
             }
         }
     </style>
@@ -455,15 +455,15 @@
             <li class="menu-item"><a href="#pickup" class="menu-link" onclick="openTab('pickup')">Info & Pickup</a></li>
             <li class="menu-item"><a href="#links" class="menu-link" onclick="openTab('links')">Links</a></li>
             <li class="menu-item"><a href="#form" class="menu-link" onclick="openTab('form')">Form</a></li>
+            <li class="menu-item lang-selector">
+                <button class="lang-button" id="current-lang">Language</button>
+                <div class="lang-dropdown-content">
+                    <button onclick="switchLang('ru')">🇷🇺</button>
+                    <button onclick="switchLang('en')">🇺🇸</button>
+                    <button onclick="switchLang('ua')">🇺🇦</button>
+                </div>
+            </li>
         </ul>
-    </div>
-    <div class="lang-selector">
-        <button class="lang-button" id="current-lang">🇷🇺</button>
-        <div class="lang-dropdown-content">
-            <button onclick="switchLang('ru')">🇷🇺</button>
-            <button onclick="switchLang('en')">🇺🇸</button>
-            <button onclick="switchLang('ua')">🇺🇦</button>
-        </div>
     </div>
 
     <div class="content">
@@ -524,10 +524,10 @@
         currentLang = lang;
         localStorage.setItem('lang', lang);
         document.getElementById('current-lang').textContent = {
-            'en': '🇺🇸',
-            'ru': '🇷🇺',
-            'ua': '🇺🇦'
-        }[lang];
+            'en': 'Language',
+            'ru': 'Language',
+            'ua': 'Language'
+        }[lang] || 'Language';
         document.querySelector('.lang-dropdown-content').style.display = 'none';
         renderRules();
         renderFaq();
