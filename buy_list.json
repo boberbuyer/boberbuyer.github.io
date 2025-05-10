@@ -1,0 +1,18 @@
+{
+  "eu": [
+    {
+      "title": "Category Name",
+      "items": [
+        { "name": "Item Name", "percentage": 80, "description": "Description" },
+      ]
+    },
+  ],
+  "usa": [
+    {
+      "title": "Category Name",
+      "items": [
+        { "name": "Item Name", "percentage": 80, "description": "Description" },
+      ]
+    },
+  ]
+}
