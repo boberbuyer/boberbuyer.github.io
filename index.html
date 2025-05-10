@@ -802,7 +802,8 @@
         </div>
     </div>
 
-   <script>let buyListDataEU = null;
+   <script>
+let buyListDataEU = null;
 let buyListDataUSA = null;
 
 function openTab(tabId) {
@@ -912,7 +913,6 @@ async function loadBuyLists() {
         if (!euResponse.ok) throw new Error(`Не удалось загрузить eu_buy_list.json: ${euResponse.status}`);
         const usaResponse = await fetch('us_buy_list.json');
         if (!usaResponse.ok) throw new Error(`Не удалось загрузить us_buy_list.json: ${usaResponse.status}`);
-        
         try {
             buyListDataEU = await euResponse.json();
         } catch (e) {
@@ -923,7 +923,6 @@ async function loadBuyLists() {
         } catch (e) {
             throw new Error(`Некорректный JSON в us_buy_list.json: ${e.message}`);
         }
-        
         renderBuyLists();
     } catch (error) {
         console.error('Ошибка загрузки Buy List:', error.message);
