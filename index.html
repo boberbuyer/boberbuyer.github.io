@@ -859,10 +859,25 @@ function switchRegion(region) {
     console.log(`Switching to region: ${region}`);
     document.querySelectorAll('.region-content').forEach(content => content.classList.remove('active'));
     document.querySelectorAll('.region-button').forEach(button => button.classList.remove('active'));
-    document.getElementById(`region-${region}`).classList.add('active');
-    document.querySelector(`.region-button[onclick="switchRegion('${region}')"]`).classList.add('active');
+    
+    const regionContainer = document.getElementById(`region-${region}`);
+    if (!regionContainer) {
+        console.error(`Region container for ${region} not found`);
+        return;
+    }
+
+    regionContainer.classList.add('active');
+
+    const button = document.querySelector(`.region-button[data-region="${region}"]`);
+    if (button) {
+        button.classList.add('active');
+    } else {
+        console.warn(`Region button for ${region} not found`);
+    }
+
     renderBuyLists(region);
 }
+
 
 function renderItems(data, container) {
     container.innerHTML = '';
@@ -937,10 +952,10 @@ async function loadBuyLists() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    openTab('buy-list');
-    switchRegion('eu');
-    loadBuyLists();
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadBuyLists(); // сначала загрузка
+    switchRegion('eu');   // потом отображение нужного региона
+    openTab('buy-list');  // и вкладки
 });</script>
 
 
