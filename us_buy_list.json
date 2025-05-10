@@ -1,6 +1,6 @@
 [
     {
-        "category": "HOW WE CALCULATE FEE?",
+        "category": "HOW ",
         "items": [
             {
                 "name": "We take the minimum price from Amazon, Best Buy",
@@ -8,100 +8,4 @@
                 "description": "And from there we calculate the percentage"
             }
         ]
-    },
-    {
-        "category": "Apple MacBooks",
-        "items": [
-            {
-                "name": "NEW MacBook Air M4 13/15 16GB/256GB",
-                "percentage": 80,
-                "description": ""
-            },
-            {
-                "name": "NEW MacBook Air M4 13/15 16GB/512GB",
-                "percentage": 80,
-                "description": ""
-            },
-            {
-                "name": "NEW MacBook Air M4 13/15 24GB/512GB",
-                "percentage": 75,
-                "description": ""
-            },
-            {
-                "name": "MacBook Pro 14\" M4 (M4, M4 Pro, M4 Max)",
-                "percentage": 77,
-                "description": ""
-            }
-        ]
-    },
-    {
-        "category": "iPhone (Unlocked ONLY)",
-        "items": [
-            {
-                "name": "iPhone 16 Pro/Pro Max",
-                "percentage": 70,
-                "description": "(128/256 GB) (-5% for 512GB or 1TB or eSIM)"
-            },
-            {
-                "name": "iPhone 16",
-                "percentage": 69,
-                "description": "(128/256 GB) (-5% for 512GB or 1TB or eSIM)"
-            },
-            {
-                "name": "iPhone 16 Plus",
-                "percentage": 69,
-                "description": "(128/256 GB EU) (-4% for 512GB or 1TB or eSIM)"
-            },
-            {
-                "name": "iPhone 15",
-                "percentage": 65,
-                "description": "(128/256 GB EU) (-5% for 512GB or 1TB)"
-            }
-        ]
-    },
-    {
-        "category": "iPad",
-        "items": [
-            {
-                "name": "iPad Air 11\" M3 / 13\" M3",
-                "percentage": 76,
-                "description": "(-5% for 512GB/1TB)"
-            },
-            {
-                "name": "iPad Air 11\" M2 / 13\" M2",
-                "percentage": 66,
-                "description": "(-5% for 512GB/1TB)"
-            },
-            {
-                "name": "iPad Pro 11\" M4 / 13\" M4",
-                "percentage": 65,
-                "description": "(-5% for 1TB/2TB)"
-            },
-            {
-                "name": "iPad Pro 12.9\" M2 6th",
-                "percentage": 65,
-                "description": "(-5% for 512GB)"
-            },
-            {
-                "name": "iPad Pro 11\" M2 4th",
-                "percentage": 60,
-                "description": "(-5% for 512GB)"
-            },
-            {
-                "name": "iPad Air 10.9\" M1 5th",
-                "percentage": 60,
-                "description": ""
-            },
-            {
-                "name": "iPad 10.9\" 10th",
-                "percentage": 60,
-                "description": ""
-            },
-            {
-                "name": "iPad Mini 8.3\" 6th",
-                "percentage": 55,
-                "description": ""
-            }
-        ]
     }
-]
