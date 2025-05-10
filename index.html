@@ -560,9 +560,9 @@
             <div class="header-title-text">Bober Service</div>
         </div>
         <ul class="menu">
-            <li class="menu-item"><a href="#buy-list" class="menu-link active" onclick="openTab('buy-list')">Buy List</a></li>
+            <li class="menu-item"><a href="#buy-list" class="menu-link" onclick="openTab('buy-list')">Buy List</a></li>
             <li class="menu-item"><a href="#rules" class="menu-link" onclick="openTab('rules')">Rules</a></li>
-            <li class="menu-item"><a href="#pickup" class="menu-link" onclick="openTab('pickup')">Info &amp; Pickup</a></li>
+            <li class="menu-item"><a href="#pickup" class="menu-link active" onclick="openTab('pickup')">Info &amp; Pickup</a></li>
             <li class="menu-item"><a href="#links" class="menu-link" onclick="openTab('links')">Links</a></li>
             <li class="menu-item"><a href="#form" class="menu-link" onclick="openTab('form')">Form</a></li>
             <li class="menu-item lang-selector">
@@ -578,7 +578,7 @@
 
     <div class="content">
 
-        <div id="buy-list" class="tab-content active">
+        <div id="buy-list" class="tab-content">
             <div class="tab-inner">
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Search items..." onkeyup="searchItems()">
@@ -600,8 +600,8 @@
                     
                 </div>
             </div><div class="accordion">
-                <div class="accordion-title active" onclick="toggleAccordion(this)">iPhone (Unlocked ONLY)</div>
-                <div class="accordion-content active">
+                <div class="accordion-title" onclick="toggleAccordion(this)">iPhone (Unlocked ONLY)</div>
+                <div class="accordion-content">
                     
                         <div class="item">
                             <div class="item-details">
@@ -1643,19 +1643,12 @@
                 </div>
             </div></div>
         </div>
-        <div id="pickup" class="tab-content">
+        <div id="pickup" class="tab-content active">
             <div id="pickup-content"><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">FAQ</div>
-                <div class="accordion-content">
+                <div class="accordion-title active" onclick="toggleAccordion(this)">ЧЗВ</div>
+                <div class="accordion-content active">
                     <ul class="pickup-list">
-                        <li><strong>Могу ли я отправить вам разогревы?</strong><br>Да, мы их покупаем; цену можно уточнить в личных сообщениях.</li><li><strong>На какие адреса я могу отправлять товары?</strong><br>Текущий список доступен в боте.</li><li><strong>Могу ли я отправлять вам краденые товары/инвойсы/товары из черного списка?</strong><br>Пока нет; в будущем это может быть возможно, но сейчас мы покупаем только у ваших дропов. Несоблюдение приводит к полной конфискации посылки.</li><li><strong>Покупаете ли вы одежду/парфюмерию?</strong><br>Нет, мы не покупаем одежду или парфюмерию, только электронику. Однако мы покупаем дорогие часы (например, Rolex или Cartier); все индивидуально и требует обсуждения с нами.</li><li><strong>Могу ли я оформить возврат на ваши адреса?</strong><br>Да, мы разрешаем возвраты, но только при соблюдении наших условий, указанных <a href="#rules">здесь</a>.</li><li><strong>Кто является администратором/поддержкой проекта?</strong><br>Единственный аккаунт — @bober_admin.</li><li><strong>Какова цена за покупку электроники?</strong><br>Актуальный список всегда доступен <a href="#buy-list">здесь</a>.</li><li><strong>Что означает POP при заполнении формы?</strong><br>Это сокращение от 'Proof of Purchase', то есть доказательство вашей покупки. Нам нужно убедиться, что заказ сделан легально.</li><li><strong>Что такое 'reroute' и зачем он нужен?</strong><br>Reroute означает перенаправление посылки на наш адрес, при этом магазину указывается случайный (чистый) адрес в городе. Подробности <a href="#">в разработке, уточняйте в личных сообщениях</a>.</li>
-                    </ul>
-                </div>
-            </div><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">Рерут</div>
-                <div class="accordion-content">
-                    <ul class="pickup-list">
-                        <li>Как сделать рероут посылок и что значит буква (R) рядом с адресом?</li><li><a href="#">клик</a></li>
+                        <li><strong>Могу ли я отправить вам прогревы?</strong><br>Да, мы их покупаем; цену можно уточнить в личных сообщениях.</li><li><strong>На какие адреса я могу отправлять товары?</strong><br>Текущий список доступен в боте.</li><li><strong>Могу ли я отправлять вам краденые товары/инвойсы/товары из черного списка/товары с магазинов за которыми может прийти полиция?</strong><br>Нет. Мы не принимаем такие посылки, если вы сделали это мы либо вернем либо прекратим соотрудничество с вами.</li><li><strong>Покупаете ли вы одежду/парфюмерию?</strong><br>Нет, мы не покупаем одежду или парфюмерию, только электронику. Однако мы покупаем дорогие часы (например, Rolex или Cartier); все индивидуально и требует обсуждения с нами.</li><li><strong>Могу ли я оформить возврат на ваши адреса?</strong><br>Да, мы разрешаем возвраты, но только при соблюдении наших условий, указанных в правилах</li><li><strong>Кто является администратором/поддержкой проекта?</strong><br>Единственный аккаунт — @bobercc</li><li><strong>Какова цена за покупку электроники?</strong><br>Актуальный список всегда доступен в Buy List вкладка</li><li><strong>Что означает POP при заполнении формы?</strong><br>Это сокращение от 'Proof of Purchase', то есть доказательство вашей покупки. Нам нужно убедиться, что заказ сделан легально.</li><li><strong>Что такое 'reroute' и зачем он нужен?</strong><br>Reroute означает перенаправление посылки на наш адрес, при этом магазину указывается случайный (чистый) адрес в городе</li>
                     </ul>
                 </div>
             </div><div class="accordion">
@@ -1669,14 +1662,14 @@
                 <div class="accordion-title" onclick="toggleAccordion(this)">Стоимость пикапа</div>
                 <div class="accordion-content">
                     <ul class="pickup-list">
-                        <li><strong>1.</strong> Стоимость пикапа посылки составляет $55 или 75$ в зависимости от цены пака. Пожалуйста, согласовывайте с нами заказы на прогрев; иначе мы не заберем их с пункта.</li><li><strong>2.</strong> Стоимость адреса вычитается из оплаты.</li>
+                        <li><strong>1.</strong> Стоимость самовывоза посылки составляет $55 иногда 75 в зависимости от цены пака. Пожалуйста, согласовывайте с нами заказы на прогрев; иначе мы не заберем их с пункта.</li><li><strong>2.</strong> Стоимость адреса вычитается из оплаты.</li>
                     </ul>
                 </div>
             </div><div class="accordion">
                 <div class="accordion-title" onclick="toggleAccordion(this)">Депозит для получения адреса</div>
                 <div class="accordion-content">
                     <ul class="pickup-list">
-                        <li><strong>1.</strong> Чтобы получить адрес, необходимо внести депозит в размере $11.</li><li><strong>2.</strong> Депозит возвращается при выплате, если не было отправлено заказов на прогрев либо манибек по .</li>
+                        <li><strong>1.</strong> Чтобы получить адрес, необходимо внести депозит в размере $10.</li><li><strong>2.</strong> Депозит возвращается при оплате, если не было отправлено заказов на прогрев.</li>
                     </ul>
                 </div>
             </div></div>
@@ -1955,6 +1948,7 @@
     });
 </script>
 
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d504600fad53aa',t:'MTc0NjgzMzc2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d526edffee53bd',t:'MTc0NjgzNTE4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d53d826d071d62',t:'MTc0NjgzNjEwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d504600fad53aa',t:'MTc0NjgzMzc2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d526edffee53bd',t:'MTc0NjgzNTE4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d53d826d071d62',t:'MTc0NjgzNjEwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+
 
 </body></html>
