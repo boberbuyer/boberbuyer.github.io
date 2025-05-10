@@ -682,36 +682,50 @@
         renderItems(data, container);
     }
 
-    async function loadBuyLists() {
+   async function loadBuyLists() {
     try {
         const euResponse = await fetch('eu_buy_list.json');
         const usaResponse = await fetch('us_buy_list.json');
 
-        if (!euResponse.ok) throw new Error(`EU buy list not found: ${euResponse.status}`);
-        if (!usaResponse.ok) throw new Error(`USA buy list not found: ${usaResponse.status}`);
+        if (!euResponse.ok) throw new Error('Ошибка загрузки EU Buy List');
+        if (!usaResponse.ok) throw new Error('Ошибка загрузки USA Buy List');
 
-        const euText = await euResponse.text();
-        const usaText = await usaResponse.text();
-        buyListDataEU = JSON.parse(euText.trim());
-        buyListDataUSA = JSON.parse(usaText.trim());
+        const euData = await euResponse.json();
+        const usaData = await usaResponse.json();
 
-        console.log('Loaded EU data:', buyListDataEU);
-        console.log('Loaded USA data:', buyListDataUSA);
+        const euContainer = document.getElementById('region-eu');
+        const usaContainer = document.getElementById('region-usa');
 
-        renderBuyLists();
+        renderItems(euData, euContainer);
+        renderItems(usaData, usaContainer);
+
     } catch (error) {
-        console.error('Error loading buy list:', error.message);
-        const errorContainer = document.createElement('div');
-        errorContainer.className = 'accordion';
-        errorContainer.innerHTML = `
-            <div class="accordion-title" onclick="toggleAccordion(this)">Error</div>
-            <div class="accordion-content">
-                <p>Failed to load buy list: ${error.message}. Please check the server or contact support.</p>
-            </div>
-        `;
-        document.getElementById('buy-list').appendChild(errorContainer);
+        console.error('Ошибка при загрузке buy list:', error);
+    }
+
+    function renderItems(data, container) {
+        container.innerHTML = ''; // очищаем контейнер перед добавлением
+        data.forEach(category => {
+            const accordion = document.createElement('div');
+            accordion.className = 'accordion';
+            accordion.innerHTML = `
+                <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
+                <div class="accordion-content">
+                    ${category.items.map(item => `
+                        <div class="item">
+                            <div class="item-details">
+                                <h3>${item.name}</h3>
+                                <p>${item.percentage}% ${item.description}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            container.appendChild(accordion);
+        });
     }
 }
+
 
     async function loadRules() {
         try {
