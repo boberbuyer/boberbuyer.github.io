@@ -701,8 +701,6 @@
             </div>
             <div id="pickup" class="tab-content">
                 <div id="pickup-content"></div>
-                <!-- Добавляем кнопку Get Address в вкладку Info & Pickup -->
-                <button id="get-address-btn" class="get-address-btn" onclick="handleGetAddress()">Get Address</button>
             </div>
             <div id="links" class="tab-content">
                 <div class="accordion">
@@ -722,6 +720,9 @@
             <iframe src="https://app.nocodb.com/#/nc/form/3ab4d606-d930-4ab5-85bc-81a0181a39b2" class="form-iframe"></iframe>
         </div>
     </div>
+
+    <!-- Кнопка Get Address перенесена в конец body для корректного наложения -->
+    <button id="get-address-btn" class="get-address-btn" onclick="handleGetAddress()">Get Address</button>
 
     <script>
         let rulesData = null;
