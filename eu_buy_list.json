@@ -1,10 +1,10 @@
 [
     {
-        "category": "HOW WE CALCULATE FEE? sdfdsc",
+        "category": "HOW WE CALCULATE FEE?",
         "items": [
             {
                 "name": "We take the minimum price from Amazon, Best Buy",
-                "percentage": 0 ,
+                "percentage": 0,
                 "description": "And from there we calculate the percentage"
             }
         ]
@@ -103,5 +103,10 @@
                 "description": ""
             }
         ]
-    }
-]
+    },
+    {
+        "category": "Apple Watch",
+        "items": [
+            {
+                "name": "Apple Watch Ultra 2",
+                "percentage":
