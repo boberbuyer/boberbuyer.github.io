@@ -683,34 +683,35 @@
     }
 
     async function loadBuyLists() {
-        try {
-            const euResponse = await fetch('eu_buy_list.json');
-            const usaResponse = await fetch('us_buy_list.json');
+    try {
+        const euResponse = await fetch('eu_buy_list.json');
+        const usaResponse = await fetch('us_buy_list.json');
 
-            if (!euResponse.ok) throw new Error(`EU buy list not found: ${euResponse.status}`);
-            if (!usaResponse.ok) throw new Error(`USA buy list not found: ${usaResponse.status}`);
+        if (!euResponse.ok) throw new Error(`EU buy list not found: ${euResponse.status}`);
+        if (!usaResponse.ok) throw new Error(`USA buy list not found: ${usaResponse.status}`);
 
-            buyListDataEU = await euResponse.json();
-            buyListDataUSA = await usaResponse.json();
+        const euText = await euResponse.text();
+        const usaText = await usaResponse.text();
+        buyListDataEU = JSON.parse(euText.trim());
+        buyListDataUSA = JSON.parse(usaText.trim());
 
-            console.log('Loaded EU data:', buyListDataEU);
-            console.log('Loaded USA data:', buyListDataUSA);
+        console.log('Loaded EU data:', buyListDataEU);
+        console.log('Loaded USA data:', buyListDataUSA);
 
-            renderBuyLists();
-
-        } catch (error) {
-            console.error('Error loading buy list:', error.message);
-            const errorContainer = document.createElement('div');
-            errorContainer.className = 'accordion';
-            errorContainer.innerHTML = `
-                <div class="accordion-title" onclick="toggleAccordion(this)">Error</div>
-                <div class="accordion-content">
-                    <p>Failed to load buy list: ${error.message}. Please check the server or contact support.</p>
-                </div>
-            `;
-            document.getElementById('buy-list').appendChild(errorContainer);
-        }
+        renderBuyLists();
+    } catch (error) {
+        console.error('Error loading buy list:', error.message);
+        const errorContainer = document.createElement('div');
+        errorContainer.className = 'accordion';
+        errorContainer.innerHTML = `
+            <div class="accordion-title" onclick="toggleAccordion(this)">Error</div>
+            <div class="accordion-content">
+                <p>Failed to load buy list: ${error.message}. Please check the server or contact support.</p>
+            </div>
+        `;
+        document.getElementById('buy-list').appendChild(errorContainer);
     }
+}
 
     async function loadRules() {
         try {
