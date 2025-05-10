@@ -1,12 +1,110 @@
-[
+{
+  "sections": [
     {
-        "category": "HOWssss",
-        "items": [
-            {
-                "name": "We take the minimum price from Amazon, Idealo",
-                "percentage": 0,
-                "description": "And from there we calculate the percentage"
-            }
+      "title": {
+        "en": "Fee Calculation",
+        "ru": "Расчет комиссии",
+        "ua": "Розрахунок комісії"
+      },
+      "content": {
+        "en": [
+          {
+            "name": "Minimum Price from Amazon, Best Buy",
+            "percentage": 0,
+            "description": "We take the minimum price from Amazon, Best Buy and calculate the percentage from there."
+          }
+        ],
+        "ru": [
+          {
+            "name": "Минимальная цена с Amazon, Best Buy",
+            "percentage": 0,
+            "description": "Мы берем минимальную цену с Amazon, Best Buy и рассчитываем процент от нее."
+          }
+        ],
+        "ua": [
+          {
+            "name": "Мінімальна ціна з Amazon, Best Buy",
+            "percentage": 0,
+            "description": "Ми беремо мінімальну ціну з Amazon, Best Buy і розраховуємо відсоток від неї."
+          }
         ]
+      }
+    },
+    {
+      "title": {
+        "en": "Apple MacBooks",
+        "ru": "Apple MacBooks",
+        "ua": "Apple MacBooks"
+      },
+      "content": {
+        "en": [
+          {
+            "name": "NEW MacBook Air M4 13/15 16GB/256GB",
+            "percentage": 80,
+            "description": ""
+          },
+          {
+            "name": "NEW MacBook Air M4 13/15 16GB/512GB",
+            "percentage": 80,
+            "description": ""
+          },
+          {
+            "name": "NEW MacBook Air M4 13/15 24GB/512GB",
+            "percentage": 75,
+            "description": ""
+          },
+          {
+            "name": "MacBook Pro 14\" M4 (M4, M4 Pro, M4 Max)",
+            "percentage": 77,
+            "description": ""
+          }
+        ],
+        "ru": [
+          {
+            "name": "NEW MacBook Air M4 13/15 16GB/256GB",
+            "percentage": 80,
+            "description": ""
+          },
+          {
+            "name": "NEW MacBook Air M4 13/15 16GB/512GB",
+            "percentage": 80,
+            "description": ""
+          },
+          {
+            "name": "NEW MacBook Air M4 13/15 24GB/512GB",
+            "percentage": 75,
+            "description": ""
+          },
+          {
+            "name": "MacBook Pro 14\" M4 (M4, M4 Pro, M4 Max)",
+            "percentage": 77,
+            "description": ""
+          }
+        ],
+        "ua": [
+          {
+            "name": "NEW MacBook Air M4 13/15 16GB/256GB",
+            "percentage": 80,
+            "description": ""
+          },
+          {
+            "name": "NEW MacBook Air M4 13/15 16GB/512GB",
+            "percentage": 80,
+            "description": ""
+          },
+          {
+            "name": "NEW MacBook Air M4 13/15 24GB/512GB",
+            "percentage": 75,
+            "description": ""
+          },
+          {
+            "name": "MacBook Pro 14\" M4 (M4, M4 Pro, M4 Max)",
+            "percentage": 77,
+            "description": ""
+          }
+        ]
+      }
     }
-]
+    // Add more sections for iPhone, iPad, etc.
+  ]
+}
