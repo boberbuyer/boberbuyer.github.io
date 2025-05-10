@@ -661,65 +661,50 @@
         document.querySelectorAll('.region-button').forEach(button => {
             button.classList.remove('active');
         });
-        document.getElementById(`region-${region}`).classList.add('active');
-        document.querySelector(`.region-button[onclick="switchRegion('${region}')"]`).classList.add('active');
-        if (isBuyListLoaded) renderBuyLists();
+        const targetContent = document.getElementById(`region-${region}`);
+        const targetButton = document.querySelector(`.region-button[onclick="switchRegion('${region}')"]`);
+        if (targetContent) targetContent.classList.add('active');
+        if (targetButton) targetButton.classList.add('active');
     }
 
+
     function renderBuyLists() {
-        const euContainer = document.getElementById('region-eu');
-        const usaContainer = document.getElementById('region-usa');
-        const activeRegion = document.querySelector('.region-button.active').textContent.includes('EU') ? 'eu' : 'usa';
-        const container = document.getElementById(`region-${activeRegion}`);
+    const euContainer = document.getElementById('region-eu');
+    const usaContainer = document.getElementById('region-usa');
 
-        if (!buyListData || !buyListData.eu || !buyListData.usa) {
-            euContainer.innerHTML = '<p>Loading buy list...</p>';
-            usaContainer.innerHTML = '<p>Loading buy list...</p>';
-            console.error('buyListData is not loaded or missing eu/usa keys:', buyListData);
-            return;
-        }
+    if (!buyListData || !buyListData.eu || !buyListData.usa) {
+        euContainer.innerHTML = '<p>Error: buy list not loaded.</p>';
+        usaContainer.innerHTML = '<p>Error: buy list not loaded.</p>';
+        return;
+    }
 
+    const renderRegion = (regionData, container) => {
         container.innerHTML = '';
-        const sections = buyListData[activeRegion] || [];
-        if (!Array.isArray(sections)) {
-            container.innerHTML = '<p>Invalid data format for region.</p>';
-            console.error(`buyListData[${activeRegion}] is not an array:`, sections);
-            return;
-        }
-
-        sections.forEach(section => {
-            if (!section.title || !Array.isArray(section.items)) {
-                console.warn('Skipping invalid section:', section);
-                return;
-            }
+        regionData.forEach(section => {
+            if (!section.title || !Array.isArray(section.items)) return;
             const accordion = document.createElement('div');
             accordion.className = 'accordion';
             accordion.innerHTML = `
                 <div class="accordion-title" onclick="toggleAccordion(this)">${section.title}</div>
                 <div class="accordion-content">
-                    ${section.items.map(item => {
-                        if (!item.name || item.percentage === undefined || item.description === undefined) {
-                            console.warn('Skipping invalid item:', item);
-                            return '';
-                        }
-                        return `
-                            <div class="item">
-                                <div class="item-details">
-                                    <h3>${item.name}</h3>
-                                    <p>${item.percentage}% ${item.description}</p>
-                                </div>
+                    ${section.items.map(item => `
+                        <div class="item">
+                            <div class="item-details">
+                                <h3>${item.name}</h3>
+                                <p>${item.percentage}% ${item.description}</p>
                             </div>
-                        `;
-                    }).join('')}
+                        </div>
+                    `).join('')}
                 </div>
             `;
             container.appendChild(accordion);
         });
+    };
 
-        if (sections.length === 0) {
-            container.innerHTML = '<p>No items available for this region.</p>';
-        }
-    }
+    renderRegion(buyListData.eu, euContainer);
+    renderRegion(buyListData.usa, usaContainer);
+}
+
 
     async function loadBuyLists() {
         try {
