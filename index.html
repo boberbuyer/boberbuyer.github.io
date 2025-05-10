@@ -625,7 +625,7 @@
         </div>
     </div>
 
-    <!-- Replace the <script> section in the previous index.html with this -->
+   <!-- Replace the <script> section in the previous index.html with this -->
 <script>
     let rulesData = null;
     let faqData = null;
@@ -640,14 +640,19 @@
         const theme = Telegram.WebApp.themeParams;
         document.body.style.backgroundColor = theme.bg_color || '#15191afa';
         document.querySelector('.sidebar').style.backgroundColor = theme.secondary_bg_color || 'rgb(46 53 56 / 95%)';
-        Telegram.WebApp.BackButton.onClick(() => {
-            if (document.querySelector('.sidebar').classList.contains('active')) {
-                toggleSidebar();
-            } else {
-                openTab('buy-list');
-            }
-        });
-        Telegram.WebApp.BackButton.show();
+        // Check if BackButton is supported (version >= 6.1)
+        if (Telegram.WebApp.version >= '6.1') {
+            Telegram.WebApp.BackButton.onClick(() => {
+                if (document.querySelector('.sidebar').classList.contains('active')) {
+                    toggleSidebar();
+                } else {
+                    openTab('buy-list');
+                }
+            });
+            Telegram.WebApp.BackButton.show();
+        } else {
+            console.warn('BackButton not supported in Telegram WebApp version', Telegram.WebApp.version);
+        }
     }
 
     function openTab(tabId) {
@@ -747,7 +752,6 @@
                 <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
                 <div class="accordion-content">
                     ${category.items.map(item => {
-                        // Allow empty description ('' is valid)
                         if (!item.name || typeof item.percentage === 'undefined') {
                             console.warn('Skipping invalid item:', item);
                             return '';
@@ -786,12 +790,12 @@
     async function loadBuyLists() {
         try {
             console.log('Loading buy lists...');
-            const euResponse = await fetch('https://boberbuyer.github.io/eu_buy_list.json', {
+            const euResponse = await fetch('https://yourdomain.com/eu_buy_list.json', {
                 headers: {
                     'Cache-Control': 'no-cache'
                 }
             });
-            const usaResponse = await fetch('https://boberbuyer.github.io/us_buy_list.json', {
+            const usaResponse = await fetch('https://yourdomain.com/us_buy_list.json', {
                 headers: {
                     'Cache-Control': 'no-cache'
                 }
@@ -805,11 +809,14 @@
 
             console.log('Buy lists loaded:', { buyListDataEU, buyListDataUSA });
 
+            // Render both regions immediately after loading
             const euContainer = document.getElementById('region-eu');
             const usaContainer = document.getElementById('region-usa');
-
             renderItems(buyListDataEU, euContainer);
             renderItems(buyListDataUSA, usaContainer);
+
+            // Re-render the active region to ensure consistency
+            renderBuyLists();
 
         } catch (error) {
             console.error('Error loading buy lists:', error);
@@ -820,7 +827,7 @@
 
     async function loadRules() {
         try {
-            const response = await fetch('https://boberbuyer.github.io/rules.json');
+            const response = await fetch('https://yourdomain.com/rules.json');
             rulesData = await response.json();
             renderRules();
         } catch (error) {
@@ -831,7 +838,7 @@
 
     async function loadFaq() {
         try {
-            const response = await fetch('https://boberbuyer.github.io/faq.json');
+            const response = await fetch('https://yourdomain.com/faq.json');
             faqData = await response.json();
             renderFaq();
         } catch (error) {
@@ -876,13 +883,15 @@
         });
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
         const hash = window.location.hash.substring(1);
         if (hash) openTab(hash);
         else openTab('buy-list');
         switchLang(currentLang);
         switchRegion('eu');
-        loadBuyLists();
+
+        // Wait for buy lists to load before rendering
+        await loadBuyLists();
         loadRules();
         loadFaq();
 
