@@ -401,7 +401,7 @@
     flex: 1;
     font-size: 14px;
     color: #D1D5DB;
-    text-align: center;
+    text-align: left;
 }
 .item-description, .header-description {
     flex: 1;
@@ -420,8 +420,8 @@
     color: #E5E7EB;
 }
 .item-image img {
-    width: 100%;
-    height: 100%;
+    width: 70%;
+    height: 70%;
     object-fit: cover;
     border-radius: 8px;
     animation: fadeIn 0.3s ease-in;
@@ -761,10 +761,21 @@
         }
 
         function toggleAccordion(element) {
+            const parentTab = element.closest('.tab-content');
+            const allContents = parentTab.querySelectorAll('.accordion-content');
+            const allTitles = parentTab.querySelectorAll('.accordion-title');
             const content = element.nextElementSibling;
             const isActive = content.classList.contains('active');
-            content.classList.toggle('active');
-            element.classList.toggle('active');
+
+            // Close all accordions in the current tab
+            allContents.forEach(c => c.classList.remove('active'));
+            allTitles.forEach(t => t.classList.remove('active'));
+
+            // Open the clicked accordion if it wasn't already active
+            if (!isActive) {
+                content.classList.add('active');
+                element.classList.add('active');
+            }
         }
 
         function toggleSidebar() {
