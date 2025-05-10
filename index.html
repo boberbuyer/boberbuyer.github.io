@@ -1,68 +1,29 @@
-<html lang="ru"><head><script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script>
-
-
+<html lang="ru">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bober Service Menu</title>
     <style>
-            a {
+        a {
             color: #4facfe;
             text-decoration: none;
             transition: color 0.3s ease, text-decoration 0.3s ease;
             font-weight: 500;
-            }
+        }
 
-            a:hover {
-                color: #00f2fe;
-                text-decoration: underline;
-            }
+        a:hover {
+            color: #00f2fe;
+            text-decoration: underline;
+        }
 
-            a:visited {
-                color: #38bdf8;
-            }
+        a:visited {
+            color: #38bdf8;
+        }
 
-            a:active {
-                color: #67e8f9;
-            }
+        a:active {
+            color: #67e8f9;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -119,6 +80,7 @@
             height: 100%;
             object-fit: cover;
         }
+
         .header-title-text {
             font-size: 22px;
             font-weight: 500;
@@ -334,67 +296,66 @@
             padding-bottom: 10px;
         }
 
-.accordion {
-    margin-bottom: 15px;
-    border-radius: 8px;
-    overflow: hidden; /* важно: чтобы скругления не обрезались */
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
+        .accordion {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
 
-.accordion-title {
-    background: rgb(45 52 55);
-    padding: 12px 16px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #E5E7EB;
-    border-radius: 8px 8px 0 0; /* только верхние скругления */
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-    position: relative;
-}
+        .accordion-title {
+            background: rgb(45 52 55);
+            padding: 12px 16px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #E5E7EB;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+            position: relative;
+        }
 
-.accordion-title:hover {
-    background: rgb(12 12 12 / 17%);
-}
+        .accordion-title:hover {
+            background: rgb(12 12 12 / 17%);
+        }
 
-.accordion-title::after {
-    content: '↓';
-    font-size: 14px;
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: transform 0.3s ease-in-out;
-}
+        .accordion-title::after {
+            content: '↓';
+            font-size: 14px;
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease-in-out;
+        }
 
-.accordion-title.active::after {
-    transform: translateY(-50%) rotate(180deg);
-}
+        .accordion-title.active::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
 
-.accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    padding: 0 16px;
-    color: #D1D5DB;
-    font-size: 14px;
-    line-height: 1.5;
-    background: rgb(12 12 12 / 17%);
-    border-radius: 0 0 8px 8px; /* только нижние скругления */
-    transition: all 0.3s ease-in-out;
-}
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 16px;
+            color: #D1D5DB;
+            font-size: 14px;
+            line-height: 1.5;
+            background: rgb(12 12 12 / 17%);
+            border-radius: 0 0 8px 8px;
+            transition: all 0.3s ease-in-out;
+        }
 
-.accordion-content.active {
-    max-height: 1000px;
-    padding: 12px 16px;
-    overflow: auto;
-}
+        .accordion-content.active {
+            max-height: 1000px;
+            padding: 12px 16px;
+            overflow: auto;
+        }
 
-.accordion-content p {
-    margin: 0 0 8px 0;
-    color: #D1D5DB;
-}
-
+        .accordion-content p {
+            margin: 0 0 8px 0;
+            color: #D1D5DB;
+        }
 
         .item {
             padding: 10px 0;
@@ -511,11 +472,12 @@
             .item-details p {
                 font-size: 12px;
             }
+
             a {
-            color: #4facfe;
-            text-decoration: none;
-            transition: color 0.3s ease, text-decoration 0.3s ease;
-            font-weight: 500;
+                color: #4facfe;
+                text-decoration: none;
+                transition: color 0.3s ease, text-decoration 0.3s ease;
+                font-weight: 500;
             }
 
             a:hover {
@@ -530,6 +492,7 @@
             a:active {
                 color: #67e8f9;
             }
+
             .tab-inner {
                 max-width: 960px;
                 margin: 0 auto;
@@ -539,14 +502,12 @@
                 box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
             }
 
-            /* Мобильная адаптация */
             @media (max-width: 768px) {
                 .tab-inner {
                     padding: 16px 20px;
                     border-radius: 16px;
                 }
             }
-
         }
     </style>
 </head>
@@ -562,7 +523,7 @@
         <ul class="menu">
             <li class="menu-item"><a href="#buy-list" class="menu-link" onclick="openTab('buy-list')">Buy List</a></li>
             <li class="menu-item"><a href="#rules" class="menu-link" onclick="openTab('rules')">Rules</a></li>
-            <li class="menu-item"><a href="#pickup" class="menu-link active" onclick="openTab('pickup')">Info &amp; Pickup</a></li>
+            <li class="menu-item"><a href="#pickup" class="menu-link active" onclick="openTab('pickup')">Info & Pickup</a></li>
             <li class="menu-item"><a href="#links" class="menu-link" onclick="openTab('links')">Links</a></li>
             <li class="menu-item"><a href="#form" class="menu-link" onclick="openTab('form')">Form</a></li>
             <li class="menu-item lang-selector">
@@ -577,212 +538,113 @@
     </div>
 
     <div class="content">
-
         <div id="buy-list" class="tab-content">
             <div class="tab-inner">
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search items..." onkeyup="searchItems()">
-            </div>
-            <div class="region-submenu">
-                <button class="region-button active" onclick="switchRegion('eu')">EU Prices</button>
-                <button class="region-button" onclick="switchRegion('usa')">USA Prices</button>
-            </div>
-            <div id="region-eu" class="region-content active"><p>Loading buy list...</p></div>
-            <div id="region-usa" class="region-content"><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">HOW WE CALCULATE FEE?</div>
-                <div class="accordion-content">
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>We take the minimum price from Amazon, Best Buy</h3>
-                                <p>0% And from there we calculate the percentage</p>
-                            </div>
-                        </div>
-                    
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search items..." onkeyup="searchItems()">
                 </div>
-            </div><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">Apple MacBooks</div>
-                <div class="accordion-content">
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>NEW MacBook Air M4 13/15 16GB/256GB</h3>
-                                <p>80% </p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>NEW MacBook Air M4 13/15 16GB/512GB</h3>
-                                <p>80% </p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>NEW MacBook Air M4 13/15 24GB/512GB</h3>
-                                <p>75% </p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>MacBook Pro 14" M4 (M4, M4 Pro, M4 Max)</h3>
-                                <p>77% </p>
-                            </div>
-                        </div>
-                    
+                <div class="region-submenu">
+                    <button class="region-button active" onclick="switchRegion('eu')">EU Prices</button>
+                    <button class="region-button" onclick="switchRegion('usa')">USA Prices</button>
                 </div>
-            </div><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">iPhone (Unlocked ONLY)</div>
-                <div class="accordion-content">
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPhone 16 Pro/Pro Max</h3>
-                                <p>70% (128/256 GB) (-5% for 512GB or 1TB or eSIM)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPhone 16</h3>
-                                <p>69% (128/256 GB) (-5% for 512GB or 1TB or eSIM)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPhone 16 Plus</h3>
-                                <p>69% (128/256 GB EU) (-4% for 512GB or 1TB or eSIM)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPhone 15</h3>
-                                <p>65% (128/256 GB EU) (-5% for 512GB or 1TB)</p>
-                            </div>
-                        </div>
-                    
-                </div>
-            </div><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">iPad</div>
-                <div class="accordion-content">
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad Air 11" M3 / 13" M3</h3>
-                                <p>76% (-5% for 512GB/1TB)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad Air 11" M2 / 13" M2</h3>
-                                <p>66% (-5% for 512GB/1TB)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad Pro 11" M4 / 13" M4</h3>
-                                <p>65% (-5% for 1TB/2TB)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad Pro 12.9" M2 6th</h3>
-                                <p>65% (-5% for 512GB)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad Pro 11" M2 4th</h3>
-                                <p>60% (-5% for 512GB)</p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad Air 10.9" M1 5th</h3>
-                                <p>60% </p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad 10.9" 10th</h3>
-                                <p>60% </p>
-                            </div>
-                        </div>
-                    
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>iPad Mini 8.3" 6th</h3>
-                                <p>55% </p>
-                            </div>
-                        </div>
-                    
-                </div>
-            </div></div>
+                <div id="region-eu" class="region-content active"></div>
+                <div id="region-usa" class="region-content"></div>
             </div>
         </div>
         <div id="rules" class="tab-content">
-            <div id="rules-content"><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">Общие положения</div>
-                <div class="accordion-content">
-                    <p>1.1 Используя сервис BOBER SERVICE, Пользователь автоматически соглашается с данными Правилами. Незнание правил не освобождает от ответственности за использование сервиса.</p><p>1.2 BOBER SERVICE оставляет за собой право ограничить или заблокировать доступ к использованию Сервиса в случае несоблюдения Пользователем правил.</p><p>1.3 За несоблюдение правил предусмотрены санкции, от отказа в сотрудничестве до конфискации отправления.</p>
+            <div id="rules-content">
+                <div class="accordion">
+                    <div class="accordion-title" onclick="toggleAccordion(this)">Общие положения</div>
+                    <div class="accordion-content">
+                        <p>1.1 Используя сервис BOBER SERVICE, Пользователь автоматически соглашается с данными Правилами. Незнание правил не освобождает от ответственности за использование сервиса.</p>
+                        <p>1.2 BOBER SERVICE оставляет за собой право ограничить или заблокировать доступ к использованию Сервиса в случае несоблюдения Пользователем правил.</p>
+                        <p>1.3 За несоблюдение правил предусмотрены санкции, от отказа в сотрудничестве до конфискации отправления.</p>
+                    </div>
                 </div>
-            </div><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">Правила работы сервиса</div>
-                <div class="accordion-content">
-                    <p>2.1. Цена товара, определяющая процент выплаты за товар, устанавливается на момент получения отправления.</p><p>2.2. Пользователю, заполняющему форму покупки в Сервисе, предоставляется возможность выбора варианта оплаты из предложенных Сервисом: USDT(TRC20).</p><p>2.3. Заказы, оформленные с использованием украденных кредитных карт, будут возвращены в магазин.</p><p>2.4 В случае потери отправления курьерской компанией по различным причинам мы не несем ответственности.</p><p>2.5 Запрещено отправлять посылки с полицейским отчетом или UA (несанкционированная транзакция) на жилые адреса через PayPal. Через Amazon — разрешено.</p><p>2.6 При заполнении нашей формы покупки вы обязаны приложить видео- или фотоотчет со страницы заказа и страницы банка, показывающий все даты заказа, если:</p><p>A) Ваше устройство относится к категории сложных устройств, таких как: телефоны, планшеты, ноутбуки, дроны, любые устройства Apple или подобные, которые могут быть заблокированы магазином. (здесь требуется видео)</p><p>B) Ваше устройство относится к категории несложных устройств, таких как: камера, EcoFlow, монитор, наушники и т.д. (здесь достаточно фото)</p><p>Несоблюдение этого пункта дает нам право конфисковать вашу посылку без оплаты. Однако мы предоставим вам 2 дня на предоставление доказательств.</p><p>Если вы попытаетесь обмануть нас, используя программы для редактирования фото/видео, мы конфискуем вашу посылку и немедленно прекратим все дальнейшее сотрудничество с вами.</p><p>2.7 Несанкционированное распространение адресов запрещено. В случае такой необходимости обратитесь к администрации за разрешением.</p><p>2.8 В Германии запрещено делать посылки из магазинов, таких как Otto, Mediamarkt, Saturn. Также полностью запрещены все магазины с ebay.de.</p><p>2.9 В случае потери или мошенничества с дропом предоставляется компенсация в размере 100% стоимости отправления.</p>
+                <div class="accordion">
+                    <div class="accordion-title" onclick="toggleAccordion(this)">Правила работы сервиса</div>
+                    <div class="accordion-content">
+                        <p>2.1. Цена товара, определяющая процент выплаты за товар, устанавливается на момент получения отправления.</p>
+                        <p>2.2. Пользователю, заполняющему форму покупки в Сервисе, предоставляется возможность выбора варианта оплаты из предложенных Сервисом: USDT(TRC20).</p>
+                        <p>2.3. Заказы, оформленные с использованием украденных кредитных карт, будут возвращены в магазин.</p>
+                        <p>2.4 В случае потери отправления курьерской компанией по различным причинам мы не несем ответственности.</p>
+                        <p>2.5 Запрещено отправлять посылки с полицейским отчетом или UA (несанкционированная транзакция) на жилые адреса через PayPal. Через Amazon — разрешено.</p>
+                        <p>2.6 При заполнении нашей формы покупки вы обязаны приложить видео- или фотоотчет со страницы заказа и страницы банка, показывающий все даты заказа, если:</p>
+                        <p>A) Ваше устройство относится к категории сложных устройств, таких как: телефоны, планшеты, ноутбуки, дроны, любые устройства Apple или подобные, которые могут быть заблокированы магазином. (здесь требуется видео)</p>
+                        <p>B) Ваше устройство относится к категории несложных устройств, таких как: камера, EcoFlow, монитор, наушники и т.д. (здесь достаточно фото)</p>
+                        <p>Несоблюдение этого пункта дает нам право конфисковать вашу посылку без оплаты. Однако мы предоставим вам 2 дня на предоставление доказательств.</p>
+                        <p>Если вы попытаетесь обмануть нас, используя программы для редактирования фото/видео, мы конфискуем вашу посылку и немедленно прекратим все дальнейшее сотрудничество с вами.</p>
+                        <p>2.7 Несанкционированное распространение адресов запрещено. В случае такой необходимости обратитесь к администрации за разрешением.</p>
+                        <p>2.8 В Германии запрещено делать посылки из магазинов, таких как Otto, Mediamarkt, Saturn. Также полностью запрещены все магазины с ebay.de.</p>
+                        <p>2.9 В случае потери или мошенничества с дропом предоставляется компенсация в размере 100% стоимости отправления.</p>
+                    </div>
                 </div>
-            </div><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">Обработка заказов и основные правила</div>
-                <div class="accordion-content">
-                    <p>3.1. Обязательно менять адрес для каждого отправления. (ВАЖНО)</p><p>3.2 Отправка товаров с прогревом разрешена ТОЛЬКО по согласованию с администрацией.</p><p>3.3. После принятия посылки по нашему адресу отправка на проверку занимает 1-2 дня.</p><p>3.4. Посылки могут быть отправлены только на имя, утвержденное нами.</p><p>3.5 После доставки посылки по нашему адресу от НОВЫХ клиентов и получения подтверждения от наших дропов, товары отправляются на проверку. Этот процесс занимает от 2 до 5 дней, исключая выходные, праздники и другие нерабочие периоды. (ВАЖНО)</p>
+                <div class="accordion">
+                    <div class="accordion-title" onclick="toggleAccordion(this)">Обработка заказов и основные правила</div>
+                    <div class="accordion-content">
+                        <p>3.1. Обязательно менять адрес для каждого отправления. (ВАЖНО)</p>
+                        <p>3.2 Отправка товаров с прогревом разрешена ТОЛЬКО по согласованию с администрацией.</p>
+                        <p>3.3. После принятия посылки по нашему адресу отправка на проверку занимает 1-2 дня.</p>
+                        <p>3.4. Посылки могут быть отправлены только на имя, утвержденное нами.</p>
+                        <p>3.5 После доставки посылки по нашему адресу от НОВЫХ клиентов и получения подтверждения от наших дропов, товары отправляются на проверку. Этот процесс занимает от 2 до 5 дней, исключая выходные, праздники и другие нерабочие периоды. (ВАЖНО)</p>
+                    </div>
                 </div>
-            </div><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">Процесс оплаты</div>
-                <div class="accordion-content">
-                    <p>4.1 Ожидайте оплату на ваш кошелек USDT TRC-20 в течение 24 часов после проверки ваших товаров.</p><p>4.2 При использовании опции покупки не забывайте о сервисном сборе за обработку вашего отправления.</p><p>4.3 Актуальный прайс-лист наших адресов - нажмите здесь</p><p>4.4 Пожалуйста, помните, что все налоги и таможенные пошлины оплачиваются клиентом.</p>
+                <div class="accordion">
+                    <div class="accordion-title" onclick="toggleAccordion(this)">Процесс оплаты</div>
+                    <div class="accordion-content">
+                        <p>4.1 Ожидайте оплату на ваш кошелек USDT TRC-20 в течение 24 часов после проверки ваших товаров.</p>
+                        <p>4.2 При использовании опции покупки не забывайте о сервисном сборе за обработку вашего отправления.</p>
+                        <p>4.3 Актуальный прайс-лист наших адресов - нажмите здесь</p>
+                        <p>4.4 Пожалуйста, помните, что все налоги и таможенные пошлины оплачиваются клиентом.</p>
+                    </div>
                 </div>
-            </div></div>
+            </div>
         </div>
         <div id="pickup" class="tab-content active">
-            <div id="pickup-content"><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">FAQ</div>
-                <div class="accordion-content">
-                    <ul class="pickup-list">
-                        <li><strong>Могу ли я отправить вам разогревы?</strong><br>Да, мы их покупаем; цену можно уточнить в личных сообщениях.</li><li><strong>На какие адреса я могу отправлять товары?</strong><br>Текущий список доступен в боте.</li><li><strong>Могу ли я отправлять вам краденые товары/инвойсы/товары из черного списка?</strong><br>Пока нет; в будущем это может быть возможно, но сейчас мы покупаем только у ваших дропов. Несоблюдение приводит к полной конфискации посылки.</li><li><strong>Покупаете ли вы одежду/парфюмерию?</strong><br>Нет, мы не покупаем одежду или парфюмерию, только электронику. Однако мы покупаем дорогие часы (например, Rolex или Cartier); все индивидуально и требует обсуждения с нами.</li><li><strong>Могу ли я оформить возврат на ваши адреса?</strong><br>Да, мы разрешаем возвраты, но только при соблюдении наших условий, указанных <a href="#rules">здесь</a>.</li><li><strong>Кто является администратором/поддержкой проекта?</strong><br>Единственный аккаунт — @bober_admin.</li><li><strong>Какова цена за покупку электроники?</strong><br>Актуальный список всегда доступен <a href="#buy-list">здесь</a>.</li><li><strong>Что означает POP при заполнении формы?</strong><br>Это сокращение от 'Proof of Purchase', то есть доказательство вашей покупки. Нам нужно убедиться, что заказ сделан легально.</li><li><strong>Что такое 'reroute' и зачем он нужен?</strong><br>Reroute означает перенаправление посылки на наш адрес, при этом магазину указывается случайный (чистый) адрес в городе. Подробности <a href="#">в разработке, уточняйте в личных сообщениях</a>.</li>
-                    </ul>
+            <div id="pickup-content">
+                <div class="accordion">
+                    <div class="accordion-title" onclick="toggleAccordion(this)">FAQ</div>
+                    <div class="accordion-content">
+                        <ul class="pickup-list">
+                            <li><strong>Могу ли я отправить вам разогревы?</strong><br>Да, мы их покупаем; цену можно уточнить в личных сообщениях.</li>
+                            <li><strong>На какие адреса я могу отправлять товары?</strong><br>Текущий список доступен в боте.</li>
+                            <li><strong>Могу ли я отправлять вам краденые товары/инвойсы/товары из черного списка?</strong><br>Пока нет; в будущем это может быть возможно, но сейчас мы покупаем только у ваших дропов. Несоблюдение приводит к полной конфискации посылки.</li>
+                            <li><strong>Покупаете ли вы одежду/парфюмерию?</strong><br>Нет, мы не покупаем одежду или парфюмерию, только электронику. Однако мы покупаем дорогие часы (например, Rolex или Cartier); все индивидуально и требует обсуждения с нами.</li>
+                            <li><strong>Могу ли я оформить возврат на ваши адреса?</strong><br>Да, мы разрешаем возвраты, но только при соблюдении наших условий, указанных <a href="#rules">здесь</a>.</li>
+                            <li><strong>Кто является администратором/поддержкой проекта?</strong><br>Единственный аккаунт — @bober_admin.</li>
+                            <li><strong>Какова цена за покупку электроники?</strong><br>Актуальный список всегда доступен <a href="#buy-list">здесь</a>.</li>
+                            <li><strong>Что означает POP при заполнении формы?</strong><br>Это сокращение от 'Proof of Purchase', то есть доказательство вашей покупки. Нам нужно убедиться, что заказ сделан легально.</li>
+                            <li><strong>Что такое 'reroute' и зачем он нужен?</strong><br>Reroute означает перенаправление посылки на наш адрес, при этом магазину указывается случайный (чистый) адрес в городе. Подробности <a href="#">в разработке, уточняйте в личных сообщениях</a>.</li>
+                        </ul>
+                    </div>
                 </div>
-            </div><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">Заработок с нами</div>
-                <div class="accordion-content">
-                    <ul class="pickup-list">
-                        <li><strong>Зарабатывайте вместе с нами</strong><br>Направляйте клиентов, которые готовы продать нам свою технику. Сообщите об этом в личные сообщения, обязательно указав тег вашего друга. После подтверждения сделки вы получите вознаграждение.</li>
-                    </ul>
+                <div class="accordion">
+                    <div class="accordion-title" onclick="toggleAccordion(this)">Заработок с нами</div>
+                    <div class="accordion-content">
+                        <ul class="pickup-list">
+                            <li><strong>Зарабатывайте вместе с нами</strong><br>Направляйте клиентов, которые готовы продать нам свою технику. Сообщите об этом в личные сообщения, обязательно указав тег вашего друга. После подтверждения сделки вы получите вознаграждение.</li>
+                        </ul>
+                    </div>
                 </div>
-            </div><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">Стоимость пикапа</div>
-                <div class="accordion-content">
-                    <ul class="pickup-list">
-                        <li><strong>1.</strong> Стоимость пикапа посылки составляет $55 или 75$ в зависимости от цены пака. Пожалуйста, согласовывайте с нами заказы на прогрев; иначе мы не заберем их с пункта.</li><li><strong>2.</strong> Стоимость адреса вычитается из оплаты.</li>
-                    </ul>
+                <div class="accordion">
+                    <div class="accordion-title" onclick="toggleAccordion(this)">Стоимость пикапа</div>
+                    <div class="accordion-content">
+                        <ul class="pickup-list">
+                            <li><strong>1.</strong> Стоимость пикапа посылки составляет $55 или 75$ в зависимости от цены пака. Пожалуйста, согласовывайте с нами заказы на прогрев; иначе мы не заберем их с пункта.</li>
+                            <li><strong>2.</strong> Стоимость адреса вычитается из оплаты.</li>
+                        </ul>
+                    </div>
                 </div>
-            </div><div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">Депозит для получения адреса</div>
-                <div class="accordion-content">
-                    <ul class="pickup-list">
-                        <li><strong>1.</strong> Чтобы получить адрес, необходимо внести депозит в размере $11.</li><li><strong>2.</strong> Депозит возвращается при выплате, если не было отправлено заказов на прогрев либо манибек по запросу пользователя.</li>
-                    </ul>
+                <div class="accordion">
+                    <div class="accordion-title" onclick="toggleAccordion(this)">Депозит для получения адреса</div>
+                    <div class="accordion-content">
+                        <ul class="pickup-list">
+                            <li><strong>1.</strong> Чтобы получить адрес, необходимо внести депозит в размере $11.</li>
+                            <li><strong>2.</strong> Депозит возвращается при выплате, если не было отправлено заказов на прогрев либо манибек по запросу пользователя.</li>
+                        </ul>
+                    </div>
                 </div>
-            </div></div>
+            </div>
         </div>
         <div id="links" class="tab-content">
             <div class="accordion">
@@ -802,161 +664,160 @@
         </div>
     </div>
 
-   <script>
-let buyListDataEU = null;
-let buyListDataUSA = null;
+    <script>
+        let buyListDataEU = null;
+        let buyListDataUSA = null;
+        let currentRegion = 'eu';
 
-function openTab(tabId) {
-    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-    document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
-    document.getElementById(tabId).classList.add('active');
-    document.querySelector(`a[href="#${tabId}"]`).classList.add('active');
-    if (window.innerWidth <= 768) {
-        document.querySelector('.sidebar').classList.remove('active');
-    }
-    if (tabId === 'buy-list') renderBuyLists();
-}
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`a[href="#${tabId}"]`).classList.add('active');
+            if (window.innerWidth <= 768) {
+                document.querySelector('.sidebar').classList.remove('active');
+            }
+            if (tabId === 'buy-list' && buyListDataEU && buyListDataUSA) {
+                renderBuyLists(currentRegion);
+            }
+        }
 
-function toggleAccordion(element) {
-    const content = element.nextElementSibling;
-    const isActive = content.classList.contains('active');
-    document.querySelectorAll('.accordion-content').forEach(c => {
-        c.classList.remove('active');
-        c.previousElementSibling.classList.remove('active');
-    });
-    if (!isActive) {
-        content.classList.add('active');
-        element.classList.add('active');
-    }
-}
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const isActive = content.classList.contains('active');
+            document.querySelectorAll('.accordion-content').forEach(c => {
+                c.classList.remove('active');
+                c.previousElementSibling.classList.remove('active');
+            });
+            if (!isActive) {
+                content.classList.add('active');
+                element.classList.add('active');
+            }
+        }
 
-function toggleSidebar() {
-    document.querySelector('.sidebar').classList.toggle('active');
-}
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        }
 
-function searchItems() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
-    const accordions = document.querySelectorAll('#buy-list .accordion');
-    accordions.forEach(accordion => {
-        const items = accordion.querySelectorAll('.item');
-        let hasVisibleItems = false;
-        items.forEach(item => {
-            const title = item.querySelector('h3').textContent.toLowerCase();
-            const desc = item.querySelector('p').textContent.toLowerCase();
-            const isVisible = title.includes(input) || desc.includes(input);
-            item.style.display = isVisible ? 'block' : 'none';
-            if (isVisible) hasVisibleItems = true;
+        function searchItems() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const accordions = document.querySelectorAll('#buy-list .accordion');
+            accordions.forEach(accordion => {
+                const items = accordion.querySelectorAll('.item');
+                let hasVisibleItems = false;
+                items.forEach(item => {
+                    const title = item.querySelector('h3').textContent.toLowerCase();
+                    const desc = item.querySelector('p').textContent.toLowerCase();
+                    const isVisible = title.includes(input) || desc.includes(input);
+                    item.style.display = isVisible ? 'block' : 'none';
+                    if (isVisible) hasVisibleItems = true;
+                });
+                accordion.style.display = hasVisibleItems ? 'block' : 'none';
+                if (hasVisibleItems) {
+                    accordion.querySelector('.accordion-content').classList.add('active');
+                    accordion.querySelector('.accordion-title').classList.add('active');
+                }
+            });
+        }
+
+        function switchRegion(region) {
+            console.log(`Switching to region: ${region}`);
+            currentRegion = region;
+            document.querySelectorAll('.region-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.region-button').forEach(button => button.classList.remove('active'));
+            const container = document.getElementById(`region-${region}`);
+            if (container) {
+                container.classList.add('active');
+            } else {
+                console.error(`Region container #region-${region} not found`);
+            }
+            const button = document.querySelector(`.region-button[onclick="switchRegion('${region}')"]`);
+            if (button) {
+                button.classList.add('active');
+            } else {
+                console.error(`Region button for ${region} not found`);
+            }
+            renderBuyLists(region);
+        }
+
+        function renderItems(data, container) {
+            container.innerHTML = ''; // Clear container before rendering
+            if (!data || !Array.isArray(data)) {
+                container.innerHTML = '<p>Ошибка: данные не загружены.</p>';
+                return;
+            }
+            data.forEach(category => {
+                if (!category.category || !Array.isArray(category.items)) return;
+                const accordion = document.createElement('div');
+                accordion.className = 'accordion';
+                accordion.innerHTML = `
+                    <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
+                    <div class="accordion-content">
+                        ${category.items.map(item => {
+                            if (!item.name || typeof item.percentage === 'undefined' || !item.description) return '';
+                            return `
+                                <div class="item">
+                                    <div class="item-details">
+                                        <h3>${item.name}</h3>
+                                        <p>${item.percentage}% ${item.description}</p>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+                container.appendChild(accordion);
+            });
+            if (container.innerHTML === '') {
+                container.innerHTML = '<p>Нет товаров для отображения.</p>';
+            }
+        }
+
+        function renderBuyLists(region) {
+            console.log(`Rendering Buy List for region: ${region}`);
+            const container = document.getElementById(`region-${region}`);
+            if (!container) {
+                console.error(`Container for region ${region} not found`);
+                return;
+            }
+            const data = region === 'eu' ? buyListDataEU : buyListDataUSA;
+            renderItems(data, container);
+        }
+
+        async function loadBuyLists() {
+            try {
+                console.log('Loading eu_buy_list.json');
+                const euResponse = await fetch('eu_buy_list.json');
+                if (!euResponse.ok) throw new Error(`Не удалось загрузить eu_buy_list.json: ${euResponse.status}`);
+                console.log('Loading us_buy_list.json');
+                const usaResponse = await fetch('us_buy_list.json');
+                if (!usaResponse.ok) throw new Error(`Не удалось загрузить us_buy_list.json: ${usaResponse.status}`);
+                try {
+                    buyListDataEU = await euResponse.json();
+                    console.log('EU Buy List loaded:', buyListDataEU);
+                } catch (e) {
+                    throw new Error(`Некорректный JSON в eu_buy_list.json: ${e.message}`);
+                }
+                try {
+                    buyListDataUSA = await usaResponse.json();
+                    console.log('USA Buy List loaded:', buyListDataUSA);
+                } catch (e) {
+                    throw new Error(`Некорректный JSON в us_buy_list.json: ${e.message}`);
+                }
+                // Render the initial region after data is loaded
+                renderBuyLists(currentRegion);
+            } catch (error) {
+                console.error('Ошибка загрузки Buy List:', error.message);
+                document.getElementById('region-eu').innerHTML = `<p>Ошибка загрузки EU списка: ${error.message}</p>`;
+                document.getElementById('region-usa').innerHTML = `<p>Ошибка загрузки USA списка: ${error.message}</p>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadBuyLists(); // Load data first
+            openTab('buy-list'); // Then open the tab
+            switchRegion('eu');  // Then set the initial region
         });
-        accordion.style.display = hasVisibleItems ? 'block' : 'none';
-        if (hasVisibleItems) {
-            accordion.querySelector('.accordion-content').classList.add('active');
-            accordion.querySelector('.accordion-title').classList.add('active');
-        }
-    });
-}
-
-function switchRegion(region) {
-    console.log(`Switching to region: ${region}`);
-    document.querySelectorAll('.region-content').forEach(content => content.classList.remove('active'));
-    document.querySelectorAll('.region-button').forEach(button => button.classList.remove('active'));
-    
-    const regionContainer = document.getElementById(`region-${region}`);
-    if (!regionContainer) {
-        console.error(`Region container for ${region} not found`);
-        return;
-    }
-
-    regionContainer.classList.add('active');
-
-    const button = document.querySelector(`.region-button[data-region="${region}"]`);
-    if (button) {
-        button.classList.add('active');
-    } else {
-        console.warn(`Region button for ${region} not found`);
-    }
-
-    renderBuyLists(region);
-}
-
-
-function renderItems(data, container) {
-    container.innerHTML = '';
-    if (!data || !Array.isArray(data)) {
-        container.innerHTML = '<p>Ошибка: данные не загружены.</p>';
-        return;
-    }
-    data.forEach(category => {
-        if (!category.category || !Array.isArray(category.items)) return;
-        const accordion = document.createElement('div');
-        accordion.className = 'accordion';
-        accordion.innerHTML = `
-            <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
-            <div class="accordion-content">
-                ${category.items.map(item => {
-                    if (!item.name || typeof item.percentage === 'undefined' || !item.description) return '';
-                    return `
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>${item.name}</h3>
-                                <p>${item.percentage}% ${item.description}</p>
-                            </div>
-                        </div>
-                    `;
-                }).join('')}
-            </div>
-        `;
-        container.appendChild(accordion);
-    });
-    if (container.innerHTML === '') {
-        container.innerHTML = '<p>Нет товаров для отображения.</p>';
-    }
-}
-
-function renderBuyLists(region = 'eu') {
-    console.log(`Rendering Buy List for region: ${region}`);
-    const container = document.getElementById(`region-${region}`);
-    const data = region === 'eu' ? buyListDataEU : buyListDataUSA;
-    if (!data) {
-        console.warn(`No data for ${region} region`);
-        container.innerHTML = '<p>Загрузка...</p>';
-        return;
-    }
-    renderItems(data, container);
-}
-
-async function loadBuyLists() {
-    try {
-        console.log('Loading eu_buy_list.json');
-        const euResponse = await fetch('eu_buy_list.json');
-        if (!euResponse.ok) throw new Error(`Не удалось загрузить eu_buy_list.json: ${euResponse.status}`);
-        console.log('Loading us_buy_list.json');
-        const usaResponse = await fetch('us_buy_list.json');
-        if (!usaResponse.ok) throw new Error(`Не удалось загрузить us_buy_list.json: ${usaResponse.status}`);
-        try {
-            buyListDataEU = await euResponse.json();
-            console.log('EU Buy List loaded:', buyListDataEU);
-        } catch (e) {
-            throw new Error(`Некорректный JSON в eu_buy_list.json: ${e.message}`);
-        }
-        try {
-            buyListDataUSA = await usaResponse.json();
-            console.log('USA Buy List loaded:', buyListDataUSA);
-        } catch (e) {
-            throw new Error(`Некорректный JSON в us_buy_list.json: ${e.message}`);
-        }
-        renderBuyLists('eu');
-    } catch (error) {
-        console.error('Ошибка загрузки Buy List:', error.message);
-        document.getElementById('region-eu').innerHTML = `<p>Ошибка загрузки EU списка: ${error.message}</p>`;
-        document.getElementById('region-usa').innerHTML = `<p>Ошибка загрузки USA списка: ${error.message}</p>`;
-    }
-}
-
-document.addEventListener('DOMContentLoaded', async () => {
-    await loadBuyLists(); // сначала загрузка
-    switchRegion('eu');   // потом отображение нужного региона
-    openTab('buy-list');  // и вкладки
-});</script>
-
-
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d6bc4eefef028d',t:'MTc0Njg1MTc4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
+    </script>
+</body>
+</html>
