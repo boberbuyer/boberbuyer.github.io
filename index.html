@@ -803,31 +803,18 @@
     </div>
 
    <script>
- let buyListDataEU = null;
+let buyListDataEU = null;
 let buyListDataUSA = null;
-let currentLang = localStorage.getItem('lang') || 'en';
 
 function openTab(tabId) {
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
     document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
     document.getElementById(tabId).classList.add('active');
     document.querySelector(`a[href="#${tabId}"]`).classList.add('active');
-    history.replaceState(null, null, '#' + tabId);
     if (window.innerWidth <= 768) {
         document.querySelector('.sidebar').classList.remove('active');
     }
     if (tabId === 'buy-list') renderBuyLists();
-}
-
-function switchLang(lang) {
-    currentLang = lang;
-    localStorage.setItem('lang', lang);
-    document.getElementById('current-lang').textContent = {
-        'en': '🇺🇸',
-        'ru': '🇷🇺',
-        'ua': '🇺🇦'
-    }[lang];
-    document.querySelector('.lang-dropdown-content').style.display = 'none';
 }
 
 function toggleAccordion(element) {
@@ -869,12 +856,8 @@ function searchItems() {
 }
 
 function switchRegion(region) {
-    document.querySelectorAll('.region-content').forEach(content => {
-        content.classList.remove('active');
-    });
-    document.querySelectorAll('.region-button').forEach(button => {
-        button.classList.remove('active');
-    });
+    document.querySelectorAll('.region-content').forEach(content => content.classList.remove('active'));
+    document.querySelectorAll('.region-button').forEach(button => button.classList.remove('active'));
     document.getElementById(`region-${region}`).classList.add('active');
     document.querySelector(`.region-button[onclick="switchRegion('${region}')"]`).classList.add('active');
     renderBuyLists();
@@ -883,24 +866,18 @@ function switchRegion(region) {
 function renderItems(data, container) {
     container.innerHTML = '';
     if (!data || !Array.isArray(data)) {
-        container.innerHTML = '<p>No data available. Please try again later.</p>';
+        container.innerHTML = '<p>Ошибка: данные не загружены.</p>';
         return;
     }
     data.forEach(category => {
-        if (!category.category || !Array.isArray(category.items)) {
-            console.warn('Skipping invalid category:', category);
-            return;
-        }
+        if (!category.category || !Array.isArray(category.items)) return;
         const accordion = document.createElement('div');
         accordion.className = 'accordion';
         accordion.innerHTML = `
             <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
             <div class="accordion-content">
                 ${category.items.map(item => {
-                    if (!item.name || typeof item.percentage === 'undefined' || !item.description) {
-                        console.warn('Skipping invalid item:', item);
-                        return '';
-                    }
+                    if (!item.name || typeof item.percentage === 'undefined' || !item.description) return '';
                     return `
                         <div class="item">
                             <div class="item-details">
@@ -915,7 +892,7 @@ function renderItems(data, container) {
         container.appendChild(accordion);
     });
     if (container.innerHTML === '') {
-        container.innerHTML = '<p>No valid items to display.</p>';
+        container.innerHTML = '<p>Нет товаров для отображения.</p>';
     }
 }
 
@@ -923,53 +900,46 @@ function renderBuyLists() {
     const activeRegion = document.querySelector('.region-button.active').textContent.includes('EU') ? 'eu' : 'usa';
     const container = document.getElementById(`region-${activeRegion}`);
     const data = activeRegion === 'eu' ? buyListDataEU : buyListDataUSA;
-
     if (!data) {
-        container.innerHTML = '<p>Loading buy list...</p>';
+        container.innerHTML = '<p>Загрузка...</p>';
         return;
     }
-
     renderItems(data, container);
 }
 
 async function loadBuyLists() {
     try {
         const euResponse = await fetch('eu_buy_list.json');
+        if (!euResponse.ok) throw new Error(`Failed to load eu_buy_list.json: ${euResponse.status}`);
         const usaResponse = await fetch('us_buy_list.json');
-
-        if (!euResponse.ok) throw new Error('Failed to load EU Buy List');
-        if (!usaResponse.ok) throw new Error('Failed to load USA Buy List');
-
-        buyListDataEU = await euResponse.json();
-        buyListDataUSA = await usaResponse.json();
-
+        if (!usaResponse.ok) throw new Error(`Failed to load us_buy_list.json: ${usaResponse.status}`);
+        
+        try {
+            buyListDataEU = await euResponse.json();
+        } catch (e) {
+            throw new Error(`Invalid JSON in eu_buy_list.json: ${e.message}`);
+        }
+        try {
+            buyListDataUSA = await usaResponse.json();
+        } catch (e) {
+            throw new Error(`Invalid JSON in us_buy_list.json: ${e.message}`);
+        }
+        
         renderBuyLists();
     } catch (error) {
-        console.error('Error loading buy lists:', error);
-        document.getElementById('region-eu').innerHTML = '<p>Failed to load EU buy list. Please check your server and JSON files.</p>';
-        document.getElementById('region-usa').innerHTML = '<p>Failed to load USA buy list. Please check your server and JSON files.</p>';
+        console.error('Ошибка загрузки Buy List:', error.message);
+        document.getElementById('region-eu').innerHTML = `<p>Ошибка загрузки EU списка: ${error.message}</p>`;
+        document.getElementById('region-usa').innerHTML = `<p>Ошибка загрузки USA списка: ${error.message}</p>`;
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const hash = window.location.hash.substring(1);
-    if (hash) openTab(hash);
-    else openTab('buy-list');
-    switchLang(currentLang);
+    openTab('buy-list');
     switchRegion('eu');
     loadBuyLists();
-
-    const langButton = document.getElementById('current-lang');
-    const dropdown = document.querySelector('.lang-dropdown-content');
-    langButton.addEventListener('click', e => {
-        e.stopPropagation();
-        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-    });
-    document.addEventListener('click', () => {
-        dropdown.style.display = 'none';
-    });
 });</script>
 
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d504600fad53aa',t:'MTc0NjgzMzc2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d526edffee53bd',t:'MTc0NjgzNTE4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d53d826d071d62',t:'MTc0NjgzNjEwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
-
+<script>(function(){...})();</script>
+<iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d6bc4eefef028d',t:'MTc0Njg1MTc4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
