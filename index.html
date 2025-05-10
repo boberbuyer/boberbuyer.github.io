@@ -671,11 +671,15 @@
         </div>
     </div>
 
-  <script>
-    let buyListDataEU = null;
-    let buyListDataUSA = null;
-    let currentRegion = 'eu';
+   <script>
+    let rulesData = null; // Данные правил
+    let faqData = null;   // Данные FAQ
+    let buyListDataEU = null; // Данные для региона EU
+    let buyListDataUSA = null; // Данные для региона USA
+    let currentRegion = 'eu'; // Текущий регион
+    let currentLang = localStorage.getItem('lang') || 'en'; // Текущий язык (по умолчанию английский)
 
+    // Переключение вкладок
     function openTab(tabId) {
         document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
         document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
@@ -684,11 +688,28 @@
         if (window.innerWidth <= 768) {
             document.querySelector('.sidebar').classList.remove('active');
         }
+        if (tabId === 'rules') renderRules();
+        if (tabId === 'pickup') renderFaq();
         if (tabId === 'buy-list' && buyListDataEU && buyListDataUSA) {
-            renderBuyLists(currentRegion); // Рендер при открытии вкладки
+            renderBuyLists(currentRegion);
         }
     }
 
+    // Переключение языка
+    function switchLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('lang', lang); // Сохраняем язык в локальном хранилище
+        document.getElementById('current-lang').textContent = {
+            'en': '🇺🇸',
+            'ru': '🇷🇺',
+            'ua': '🇺🇦'
+        }[lang]; // Обновляем флаг языка
+        document.querySelector('.lang-dropdown-content').style.display = 'none'; // Скрываем выпадающее меню
+        renderRules(); // Обновляем правила
+        renderFaq();   // Обновляем FAQ
+    }
+
+    // Переключение аккордеона
     function toggleAccordion(element) {
         const content = element.nextElementSibling;
         const isActive = content.classList.contains('active');
@@ -702,10 +723,12 @@
         }
     }
 
+    // Переключение боковой панели
     function toggleSidebar() {
         document.querySelector('.sidebar').classList.toggle('active');
     }
 
+    // Поиск по элементам
     function searchItems() {
         const input = document.getElementById('searchInput').value.toLowerCase();
         const accordions = document.querySelectorAll('#buy-list .accordion');
@@ -727,38 +750,30 @@
         });
     }
 
+    // Переключение региона
     function switchRegion(region) {
         console.log(`Switching to region: ${region}`);
-        
-        // Сохраняем текущий регион
         currentRegion = region;
-    
-        // Удаляем класс .active у всех регионов и кнопок
         document.querySelectorAll('.region-content').forEach(content => content.classList.remove('active'));
         document.querySelectorAll('.region-button').forEach(button => button.classList.remove('active'));
-    
-        // Находим контейнер региона и добавляем .active
         const container = document.getElementById(`region-${region}`);
         if (container) {
             container.classList.add('active');
         } else {
             console.error(`Region container #region-${region} not found`);
         }
-    
-        // Находим кнопку региона через data-region и добавляем .active
         const button = document.querySelector(`.region-button[data-region="${region}"]`);
         if (button) {
             button.classList.add('active');
         } else {
             console.error(`Region button for ${region} not found`);
         }
-    
-        // Рендерим список для выбранного региона
         renderBuyLists(region);
     }
 
+    // Рендеринг элементов
     function renderItems(data, container) {
-        container.innerHTML = ''; // Clear container before rendering
+        container.innerHTML = '';
         if (!data || !Array.isArray(data)) {
             container.innerHTML = '<p>Ошибка: данные не загружены.</p>';
             return;
@@ -790,6 +805,7 @@
         }
     }
 
+    // Рендеринг списка покупок
     function renderBuyLists(region) {
         console.log(`Rendering Buy List for region: ${region}`);
         const container = document.getElementById(`region-${region}`);
@@ -805,27 +821,15 @@
         renderItems(data, container);
     }
 
+    // Загрузка списка покупок
     async function loadBuyLists() {
         try {
-            console.log('Loading eu_buy_list.json');
             const euResponse = await fetch('eu_buy_list.json');
             if (!euResponse.ok) throw new Error(`Не удалось загрузить eu_buy_list.json: ${euResponse.status}`);
-            console.log('Loading us_buy_list.json');
             const usaResponse = await fetch('us_buy_list.json');
             if (!usaResponse.ok) throw new Error(`Не удалось загрузить us_buy_list.json: ${usaResponse.status}`);
-            try {
-                buyListDataEU = await euResponse.json();
-                console.log('EU Buy List loaded:', buyListDataEU);
-            } catch (e) {
-                throw new Error(`Некорректный JSON в eu_buy_list.json: ${e.message}`);
-            }
-            try {
-                buyListDataUSA = await usaResponse.json();
-                console.log('USA Buy List loaded:', buyListDataUSA);
-            } catch (e) {
-                throw new Error(`Некорректный JSON в us_buy_list.json: ${e.message}`);
-            }
-            // Рендер после загрузки данных
+            buyListDataEU = await euResponse.json();
+            buyListDataUSA = await usaResponse.json();
             renderBuyLists(currentRegion);
         } catch (error) {
             console.error('Ошибка загрузки Buy List:', error.message);
@@ -834,11 +838,85 @@
         }
     }
 
+    // Загрузка правил
+    async function loadRules() {
+        try {
+            const response = await fetch('rules.json');
+            rulesData = await response.json();
+            renderRules();
+        } catch (error) {
+            console.error('Ошибка загрузки правил:', error);
+        }
+    }
+
+    // Загрузка FAQ
+    async function loadFaq() {
+        try {
+            const response = await fetch('faq.json');
+            faqData = await response.json();
+            renderFaq();
+        } catch (error) {
+            console.error('Ошибка загрузки FAQ:', error);
+        }
+    }
+
+    // Рендеринг правил
+    function renderRules() {
+        if (!rulesData) return;
+        const container = document.getElementById('rules-content');
+        container.innerHTML = '';
+        rulesData.sections.forEach(section => {
+            const accordion = document.createElement('div');
+            accordion.className = 'accordion';
+            accordion.innerHTML = `
+                <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
+                <div class="accordion-content">
+                    ${section.content[currentLang].map(item => `<p>${item}</p>`).join('')}
+                </div>
+            `;
+            container.appendChild(accordion);
+        });
+    }
+
+    // Рендеринг FAQ
+    function renderFaq() {
+        if (!faqData) return;
+        const container = document.getElementById('pickup-content');
+        container.innerHTML = '';
+        faqData.sections.forEach(section => {
+            const accordion = document.createElement('div');
+            accordion.className = 'accordion';
+            accordion.innerHTML = `
+                <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
+                <div class="accordion-content">
+                    <ul class="pickup-list">
+                        ${section.content[currentLang].map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            container.appendChild(accordion);
+        });
+    }
+
+    // Инициализация при загрузке страницы
     document.addEventListener('DOMContentLoaded', async () => {
-        await loadBuyLists(); // Загружаем данные
-        openTab('buy-list'); // Открываем вкладку
+        await Promise.all([loadBuyLists(), loadRules(), loadFaq()]); // Загружаем все данные
+        openTab('buy-list'); // Открываем начальную вкладку
         switchRegion('eu');  // Устанавливаем начальный регион
+        switchLang(currentLang); // Устанавливаем начальный язык
+
+        // Обработчики для переключения языка
+        const langButton = document.getElementById('current-lang');
+        const dropdown = document.querySelector('.lang-dropdown-content');
+        langButton.addEventListener('click', e => {
+            e.stopPropagation();
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+        document.addEventListener('click', () => {
+            dropdown.style.display = 'none';
+        });
     });
 </script>
-</body>
-</html>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d504600fad53aa',t:'MTc0NjgzMzc2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d526edffee53bd',t:'MTc0NjgzNTE4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d53d826d071d62',t:'MTc0NjgzNjEwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d6bc4eefef028d',t:'MTc0Njg1MTc4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+    </body></html>
