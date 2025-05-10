@@ -908,29 +908,26 @@ function renderBuyLists() {
 }
 
 async function loadBuyLists() {
-    try {
-        const euResponse = await fetch('eu_buy_list.json');
-        if (!euResponse.ok) throw new Error(`Failed to load eu_buy_list.json: ${euResponse.status}`);
-        const usaResponse = await fetch('us_buy_list.json');
-        if (!usaResponse.ok) throw new Error(`Failed to load us_buy_list.json: ${usaResponse.status}`);
-        
-        try {
-            buyListDataEU = await euResponse.json();
-        } catch (e) {
-            throw new Error(`Invalid JSON in eu_buy_list.json: ${e.message}`);
+    buyListDataEU = [
+        {
+            category: "Apple MacBooks (EU)",
+            items: [
+                { name: "MacBook Air M4 13/15 16GB/256GB", percentage: 80, description: "" },
+                { name: "MacBook Pro 14\" M4", percentage: 77, description: "" }
+            ]
         }
-        try {
-            buyListDataUSA = await usaResponse.json();
-        } catch (e) {
-            throw new Error(`Invalid JSON in us_buy_list.json: ${e.message}`);
+    ];
+    buyListDataUSA = [
+        {
+            category: "Apple MacBooks (USA)",
+            items: [
+                { name: "MacBook Air M4 13/15 16GB/256GB", percentage: 80, description: "" },
+                { name: "MacBook Pro 14\" M4", percentage: 77, description: "" }
+            ]
         }
-        
-        renderBuyLists();
-    } catch (error) {
-        console.error('Ошибка загрузки Buy List:', error.message);
-        document.getElementById('region-eu').innerHTML = `<p>Ошибка загрузки EU списка: ${error.message}</p>`;
-        document.getElementById('region-usa').innerHTML = `<p>Ошибка загрузки USA списка: ${error.message}</p>`;
-    }
+    ];
+    renderBuyLists();
+}
 }
 
 document.addEventListener('DOMContentLoaded', () => {
