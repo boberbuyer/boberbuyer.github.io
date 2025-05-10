@@ -581,7 +581,7 @@
             <iframe src="https://app.nocodb.com/#/nc/form/3ab4d606-d930-4ab5-85bc-81a0181a39b2" class="form-iframe"></iframe>
         </div>
     </div>
-    <script>
+    <script type="text/javascript">
     let rulesData = null;
     let faqData = null;
     let buyListData = null;
@@ -654,6 +654,7 @@
         });
     }
 
+    // Function to switch regions (EU / USA)
     function switchRegion(region) {
         document.querySelectorAll('.region-content').forEach(content => {
             content.classList.remove('active');
@@ -667,45 +668,44 @@
         if (targetButton) targetButton.classList.add('active');
     }
 
-
     function renderBuyLists() {
-    const euContainer = document.getElementById('region-eu');
-    const usaContainer = document.getElementById('region-usa');
+        const euContainer = document.getElementById('region-eu');
+        const usaContainer = document.getElementById('region-usa');
 
-    if (!buyListData || !buyListData.eu || !buyListData.usa) {
-        euContainer.innerHTML = '<p>Error: buy list not loaded.</p>';
-        usaContainer.innerHTML = '<p>Error: buy list not loaded.</p>';
-        return;
+        if (!buyListData || !buyListData.eu || !buyListData.usa) {
+            euContainer.innerHTML = '<p>Error: buy list not loaded.</p>';
+            usaContainer.innerHTML = '<p>Error: buy list not loaded.</p>';
+            return;
+        }
+
+        const renderRegion = (regionData, container) => {
+            container.innerHTML = '';
+            regionData.forEach(section => {
+                if (!section.title || !Array.isArray(section.items)) return;
+                const accordion = document.createElement('div');
+                accordion.className = 'accordion';
+                accordion.innerHTML = `
+                    <div class="accordion-title" onclick="toggleAccordion(this)">${section.title}</div>
+                    <div class="accordion-content">
+                        ${section.items.map(item => `
+                            <div class="item">
+                                <div class="item-details">
+                                    <h3>${item.name}</h3>
+                                    <p>${item.percentage}% ${item.description}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(accordion);
+            });
+        };
+
+        renderRegion(buyListData.eu, euContainer);
+        renderRegion(buyListData.usa, usaContainer);
     }
 
-    const renderRegion = (regionData, container) => {
-        container.innerHTML = '';
-        regionData.forEach(section => {
-            if (!section.title || !Array.isArray(section.items)) return;
-            const accordion = document.createElement('div');
-            accordion.className = 'accordion';
-            accordion.innerHTML = `
-                <div class="accordion-title" onclick="toggleAccordion(this)">${section.title}</div>
-                <div class="accordion-content">
-                    ${section.items.map(item => `
-                        <div class="item">
-                            <div class="item-details">
-                                <h3>${item.name}</h3>
-                                <p>${item.percentage}% ${item.description}</p>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-            container.appendChild(accordion);
-        });
-    };
-
-    renderRegion(buyListData.eu, euContainer);
-    renderRegion(buyListData.usa, usaContainer);
-}
-
-
+    // Function to load buy list data from server (async)
     async function loadBuyLists() {
         try {
             const response = await fetch('buy_list.json?cache=' + new Date().getTime());
@@ -783,6 +783,14 @@
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
+        const preloader = document.querySelector('.preloader');
+        setTimeout(() => {
+            preloader.classList.add('hidden');
+            document.body.classList.add('loaded');
+            document.querySelector('.sidebar').classList.add('loaded');
+            document.querySelector('.content').classList.add('loaded');
+        }, 1000); // Fast loading effect (1 second)
+
         const hash = window.location.hash.substring(1);
         await loadBuyLists(); // Wait for buy list to load before rendering
         await loadRules();
@@ -802,5 +810,6 @@
         });
     });
 </script>
+
 </body>
 </html>
