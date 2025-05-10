@@ -314,60 +314,67 @@
             padding-bottom: 10px;
         }
 
-        .accordion {
-            margin-bottom: 15px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
+.accordion {
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden; /* важно: чтобы скругления не обрезались */
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
 
-        .accordion-title {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 12px 16px;
-            font-size: 16px;
-            font-weight: 500;
-            color: #E5E7EB;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s ease-in-out;
-        }
+.accordion-title {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #E5E7EB;
+    border-radius: 8px 8px 0 0; /* только верхние скругления */
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    position: relative;
+}
 
-        .accordion-title:hover {
-            background: rgba(255, 255, 255, 0.25);
-        }
+.accordion-title:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
 
-        .accordion-title::after {
-            content: '↓';
-            font-size: 14px;
-            float: right;
-            transition: transform 0.3s ease-in-out;
-        }
+.accordion-title::after {
+    content: '↓';
+    font-size: 14px;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease-in-out;
+}
 
-        .accordion-title.active::after {
-            transform: rotate(180deg);
-        }
+.accordion-title.active::after {
+    transform: translateY(-50%) rotate(180deg);
+}
 
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            padding: 0 16px;
-            color: #D1D5DB;
-            font-size: 14px;
-            line-height: 1.5;
-            background: rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease-in-out;
-        }
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 16px;
+    color: #D1D5DB;
+    font-size: 14px;
+    line-height: 1.5;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0 0 8px 8px; /* только нижние скругления */
+    transition: all 0.3s ease-in-out;
+}
 
-        .accordion-content.active {
-            max-height: 1000px;
-            padding: 12px 16px;
-            overflow: auto;
-        }
+.accordion-content.active {
+    max-height: 1000px;
+    padding: 12px 16px;
+    overflow: auto;
+}
 
-        .accordion-content p {
-            margin: 0 0 8px 0;
-            color: #D1D5DB;
-        }
+.accordion-content p {
+    margin: 0 0 8px 0;
+    color: #D1D5DB;
+}
+
 
         .item {
             padding: 10px 0;
