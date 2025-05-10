@@ -25,7 +25,6 @@
         }
 
         a:visited {
-            color: #38bdf8;
         }
 
         a:active {
@@ -695,249 +694,254 @@
         </div>
     </div>
 
-    <script>
-        let rulesData = null;
-        let faqData = null;
-        let buyListDataEU = null;
-        let buyListDataUSA = null;
-        let currentRegion = 'eu';
-        let currentLang = localStorage.getItem('lang') || 'en';
+    <script>let rulesData = null;
+let faqData = null;
+let buyListDataEU = null;
+let buyListDataUSA = null;
+let currentRegion = 'eu';
+let currentLang = localStorage.getItem('lang') || 'en';
 
-        function openTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            document.querySelector(`a[href="#${tabId}"]`).classList.add('active');
-            if (window.innerWidth <= 768) {
-                document.querySelector('.sidebar').classList.remove('active');
-            }
-            if (tabId === 'rules') renderRules();
-            if (tabId === 'pickup') renderFaq();
-            if (tabId === 'buy-list' && buyListDataEU && buyListDataUSA) {
-                renderBuyLists(currentRegion);
-            }
-        }
+function openTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    document.querySelector(`a[href="#${tabId}"]`).classList.add('active');
+    if (window.innerWidth <= 768) {
+        document.querySelector('.sidebar').classList.remove('active');
+    }
+    if (tabId === 'rules') renderRules();
+    if (tabId === 'pickup') renderFaq();
+    if (tabId === 'buy-list' && buyListDataEU && buyListDataUSA) {
+        renderBuyLists(currentRegion);
+    }
+}
 
-        function switchLang(lang) {
-            currentLang = lang;
-            localStorage.setItem('lang', lang);
-            document.getElementById('current-lang').textContent = {
-                'en': '🇺🇸',
-                'ru': '🇷🇺',
-                'ua': '🇺🇦'
-            }[lang];
-            document.querySelector('.lang-dropdown-content').style.display = 'none';
-            renderRules();
-            renderFaq();
-        }
+function switchLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    document.getElementById('current-lang').textContent = {
+        'en': '🇺🇸',
+        'ru': '🇷🇺',
+        'ua': '🇺🇦'
+    }[lang];
+    document.querySelector('.lang-dropdown-content').style.display = 'none';
+    renderRules();
+    renderFaq();
+}
 
-        function toggleAccordion(element) {
-            const content = element.nextElementSibling;
-            const isActive = content.classList.contains('active');
-            document.querySelectorAll('.accordion-content').forEach(c => {
-                c.classList.remove('active');
-                c.previousElementSibling.classList.remove('active');
-            });
-            if (!isActive) {
-                content.classList.add('active');
-                element.classList.add('active');
-            }
-        }
+function toggleAccordion(element) {
+    const content = element.nextElementSibling;
+    const isActive = content.classList.contains('active');
+    document.querySelectorAll('.accordion-content').forEach(c => {
+        c.classList.remove('active');
+        c.previousElementSibling.classList.remove('active');
+    });
+    if (!isActive) {
+        content.classList.add('active');
+        element.classList.add('active');
+    }
+}
 
-        function toggleSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.classList.toggle('active');
-        }
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('active');
+}
 
-        function searchItems() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
-            const accordions = document.querySelectorAll('#buy-list .accordion');
-            accordions.forEach(accordion => {
-                const items = accordion.querySelectorAll('.item');
-                let hasVisibleItems = false;
-                items.forEach(item => {
-                    const title = item.querySelector('h3').textContent.toLowerCase();
-                    const desc = item.querySelector('p').textContent.toLowerCase();
-                    const isVisible = title.includes(input) || desc.includes(input);
-                    item.style.display = isVisible ? 'block' : 'none';
-                    if (isVisible) hasVisibleItems = true;
-                });
-                accordion.style.display = hasVisibleItems ? 'block' : 'none';
-                if (hasVisibleItems) {
-                    accordion.querySelector('.accordion-content').classList.add('active');
-                    accordion.querySelector('.accordion-title').classList.add('active');
-                }
-            });
-        }
-
-        function switchRegion(region) {
-            console.log(`Switching to region: ${region}`);
-            currentRegion = region;
-            document.querySelectorAll('.region-content').forEach(content => content.classList.remove('active'));
-            document.querySelectorAll('.region-button').forEach(button => button.classList.remove('active'));
-            const container = document.getElementById(`region-${region}`);
-            if (container) {
-                container.classList.add('active');
-            } else {
-                console.error(`Region container #region-${region} not found`);
-            }
-            const button = document.querySelector(`.region-button[data-region="${region}"]`);
-            if (button) {
-                button.classList.add('active');
-            } else {
-                console.error(`Region button for ${region} not found`);
-            }
-            renderBuyLists(region);
-        }
-
-        function renderItems(data, container) {
-            container.innerHTML = '';
-            if (!data || !Array.isArray(data)) {
-                container.innerHTML = '<p>Loading buy list...</p>';
-                return;
-            }
-            data.forEach(category => {
-                if (!category.category || !Array.isArray(category.items)) return;
-                const accordion = document.createElement('div');
-                accordion.className = 'accordion';
-                accordion.innerHTML = `
-                    <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
-                    <div class="accordion-content">
-                        ${category.items.map(item => {
-                            if (!item.name || typeof item.percentage === 'undefined' || !item.description) return '';
-                            return `
-                                <div class="item">
-                                    <div class="item-details">
-                                        <h3>${item.name}</h3>
-                                        <p>${item.percentage}% ${item.description}</p>
-                                    </div>
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
-                `;
-                container.appendChild(accordion);
-            });
-            if (container.innerHTML === '') {
-                container.innerHTML = '<p>Нет товаров для отображения.</p>';
-            }
-        }
-
-        function renderBuyLists(region) {
-            console.log(`Rendering Buy List for region: ${region}`);
-            const container = document.getElementById(`region-${region}`);
-            if (!container) {
-                console.error(`Container for region ${region} not found`);
-                return;
-            }
-            const data = region === 'eu' ? buyListDataEU : buyListDataUSA;
-            if (!data) {
-                container.innerHTML = '<p>Loading buy list...</p>';
-                return;
-            }
-            renderItems(data, container);
-        }
-
-        async function loadBuyLists() {
-            try {
-                const euResponse = await fetch('eu_buy_list.json');
-                if (!euResponse.ok) throw new Error(`Не удалось загрузить eu_buy_list.json: ${euResponse.status}`);
-                const usaResponse = await fetch('us_buy_list.json');
-                if (!usaResponse.ok) throw new Error(`Не удалось загрузить us_buy_list.json: ${usaResponse.status}`);
-                buyListDataEU = await euResponse.json();
-                buyListDataUSA = await usaResponse.json();
-                renderBuyLists(currentRegion);
-            } catch (error) {
-                console.error('Ошибка загрузки Buy List:', error.message);
-                document.getElementById('region-eu').innerHTML = '<p>Loading buy list...</p>';
-                document.getElementById('region-usa').innerHTML = '<p>Ошибка загрузки USA списка: Failed to fetch</p>';
-            }
-        }
-
-        async function loadRules() {
-            try {
-                const response = await fetch('rules.json');
-                rulesData = await response.json();
-                renderRules();
-            } catch (error) {
-                console.error('Ошибка загрузки правил:', error);
-                // При ошибке загрузки оставляем пустой контейнер, чтобы не дублировать текст
-            }
-        }
-
-        async function loadFaq() {
-            try {
-                const response = await fetch('faq.json');
-                faqData = await response.json();
-                renderFaq();
-            } catch (error) {
-                console.error('Ошибка загрузки FAQ:', error);
-                // При ошибке загрузки оставляем пустой контейнер
-            }
-        }
-
-        function renderRules() {
-            if (!rulesData) return; // Если JSON не загрузился, оставляем пустой контейнер
-            const container = document.getElementById('rules-content');
-            container.innerHTML = '';
-            rulesData.sections.forEach(section => {
-                const accordion = document.createElement('div');
-                accordion.className = 'accordion';
-                accordion.innerHTML = `
-                    <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
-                    <div class="accordion-content">
-                        ${section.content[currentLang].map(item => `<p>${item}</p>`).join('')}
-                    </div>
-                `;
-                container.appendChild(accordion);
-            });
-        }
-
-        function renderFaq() {
-            if (!faqData) return; // Если JSON не загрузился, оставляем пустой контейнер
-            const container = document.getElementById('pickup-content');
-            container.innerHTML = '';
-            faqData.sections.forEach(section => {
-                const accordion = document.createElement('div');
-                accordion.className = 'accordion';
-                accordion.innerHTML = `
-                    <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
-                    <div class="accordion-content">
-                        <ul class="pickup-list">
-                            ${section.content[currentLang].map(item => `<li>${item}</li>`).join('')}
-                        </ul>
-                    </div>
-                `;
-                container.appendChild(accordion);
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            await Promise.all([loadBuyLists(), loadRules(), loadFaq()]);
-            openTab('buy-list');
-            switchRegion('eu');
-            switchLang(currentLang);
-
-            const sidebar = document.querySelector('.sidebar');
-            // Открываем sidebar только если ширина экрана больше 768px (не мобильная версия)
-            if (window.innerWidth > 768) {
-                sidebar.classList.add('active');
-            }
-
-            const langButton = document.getElementById('current-lang');
-            const dropdown = document.querySelector('.lang-dropdown-content');
-            langButton.addEventListener('click', e => {
-                e.stopPropagation();
-                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-            });
-            document.addEventListener('click', () => {
-                dropdown.style.display = 'none';
-            });
-
-            // Скрытие спиннера после загрузки
-            document.getElementById('loader').style.display = 'none';
+function searchItems() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const accordions = document.querySelectorAll('#buy-list .accordion');
+    accordions.forEach(accordion => {
+        const items = accordion.querySelectorAll('.item');
+        let hasVisibleItems = false;
+        items.forEach(item => {
+            const title = item.querySelector('h3').textContent.toLowerCase();
+            const desc = item.querySelector('p').textContent.toLowerCase();
+            const isVisible = title.includes(input) || desc.includes(input);
+            item.style.display = isVisible ? 'block' : 'none';
+            if (isVisible) hasVisibleItems = true;
         });
-    </script>
+        accordion.style.display = hasVisibleItems ? 'block' : 'none';
+        if (hasVisibleItems) {
+            accordion.querySelector('.accordion-content').classList.add('active');
+            accordion.querySelector('.accordion-title').classList.add('active');
+        }
+    });
+}
+
+function switchRegion(region) {
+    console.log(`Switching to region: ${region}`);
+    currentRegion = region;
+    document.querySelectorAll('.region-content').forEach(content => content.classList.remove('active'));
+    document.querySelectorAll('.region-button').forEach(button => button.classList.remove('active'));
+    const container = document.getElementById(`region-${region}`);
+    if (container) {
+        container.classList.add('active');
+    } else {
+        console.error(`Region container #region-${region} not found`);
+    }
+    const button = document.querySelector(`.region-button[data-region="${region}"]`);
+    if (button) {
+        button.classList.add('active');
+    } else {
+        console.error(`Region button for ${region} not found`);
+    }
+    renderBuyLists(region);
+}
+
+function renderItems(data, container) {
+    container.innerHTML = '';
+    if (!data || !Array.isArray(data)) {
+        container.innerHTML = '<p>Loading buy list...</p>';
+        return;
+    }
+    data.forEach(category => {
+        if (!category.category || !Array.isArray(category.items)) return;
+        const accordion = document.createElement('div');
+        accordion.className = 'accordion';
+        accordion.innerHTML = `
+            <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
+            <div class="accordion-content">
+                ${category.items.map(item => {
+                    if (!item.name || typeof item.percentage === 'undefined' || !item.description) return '';
+                    return `
+                        <div class="item">
+                            <div class="item-details">
+                                <h3>${item.name}</h3>
+                                <p>${item.percentage}% ${item.description}</p>
+                            </div>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+        `;
+        container.appendChild(accordion);
+    });
+    if (container.innerHTML === '') {
+        container.innerHTML = '<p>Нет товаров для отображения.</p>';
+    }
+}
+
+function renderBuyLists(region) {
+    console.log(`Rendering Buy List for region: ${region}`);
+    const container = document.getElementById(`region-${region}`);
+    if (!container) {
+        console.error(`Container for region ${region} not found`);
+        return;
+    }
+    const data = region === 'eu' ? buyListDataEU : buyListDataUSA;
+    if (!data) {
+        container.innerHTML = '<p>Loading buy list...</p>';
+        return;
+    }
+    renderItems(data, container);
+}
+
+async function loadBuyLists() {
+    try {
+        const euResponse = await fetch('eu_buy_list.json');
+        if (!euResponse.ok) throw new Error(`Не удалось загрузить eu_buy_list.json: ${euResponse.status}`);
+        const usaResponse = await fetch('us_buy_list.json');
+        if (!usaResponse.ok) throw new Error(`Не удалось загрузить us_buy_list.json: ${usaResponse.status}`);
+        buyListDataEU = await euResponse.json();
+        buyListDataUSA = await usaResponse.json();
+        renderBuyLists(currentRegion);
+    } catch (error) {
+        console.error('Ошибка загрузки Buy List:', error.message);
+        document.getElementById('region-eu').innerHTML = '<p>Loading buy list...</p>';
+        document.getElementById('region-usa').innerHTML = '<p>Ошибка загрузки USA списка: Failed to fetch</p>';
+    }
+}
+
+async function loadRules() {
+    try {
+        const response = await fetch('rules.json');
+        rulesData = await response.json();
+        renderRules();
+    } catch (error) {
+        console.error('Ошибка загрузки правил:', error);
+    }
+}
+
+async function loadFaq() {
+    try {
+        const response = await fetch('faq.json');
+        faqData = await response.json();
+        renderFaq();
+    } catch (error) {
+        console.error('Ошибка загрузки FAQ:', error);
+    }
+}
+
+function renderRules() {
+    if (!rulesData) return;
+    const container = document.getElementById('rules-content');
+    container.innerHTML = '';
+    rulesData.sections.forEach(section => {
+        const accordion = document.createElement('div');
+        accordion.className = 'accordion';
+        accordion.innerHTML = `
+            <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
+            <div class="accordion-content">
+                ${section.content[currentLang].map(item => `<p>${item}</p>`).join('')}
+            </div>
+        `;
+        container.appendChild(accordion);
+    });
+}
+
+function renderFaq() {
+    if (!faqData) return;
+    const container = document.getElementById('pickup-content');
+    container.innerHTML = '';
+    faqData.sections.forEach(section => {
+        const accordion = document.createElement('div');
+        accordion.className = 'accordion';
+        accordion.innerHTML = `
+            <div class="accordion-title" onclick="toggleAccordion(this)">${section.title[currentLang]}</div>
+            <div class="accordion-content">
+                <ul class="pickup-list">
+                    ${section.content[currentLang].map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+        container.appendChild(accordion);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await Promise.all([loadBuyLists(), loadRules(), loadFaq()]);
+    
+    // Автоматическое открытие вкладки на основе хэша URL
+    const hash = window.location.hash.substring(1); // Убираем # из хэша
+    if (hash && document.getElementById(hash)) {
+        openTab(hash);
+    } else {
+        openTab('buy-list'); // По умолчанию открываем buy-list, если хэш отсутствует
+    }
+    switchRegion('eu');
+    switchLang(currentLang);
+
+    const sidebar = document.querySelector('.sidebar');
+    if (window.innerWidth > 768) {
+        sidebar.classList.add('active');
+    }
+
+    const langButton = document.getElementById('current-lang');
+    const dropdown = document.querySelector('.lang-dropdown-content');
+    langButton.addEventListener('click', e => {
+        e.stopPropagation();
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+    document.addEventListener('click', () => {
+        dropdown.style.display = 'none';
+    });
+
+    // Скрытие спиннера после загрузки
+    document.getElementById('loader').style.display = 'none';
+});
+
+// Скрипт Cloudflare (оставлен без изменений)
+(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93da529f2e60bcfb',t:'MTc0Njg4OTQwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
     
 </body>
 </html>
