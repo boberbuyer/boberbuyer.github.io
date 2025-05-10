@@ -327,9 +327,7 @@
             max-height: 0;
             overflow: hidden;
             padding: 0 16px;
-            color: #D1D
-
-5DB;
+            color: #D1D5DB;
             font-size: 14px;
             line-height: 1.5;
             background: rgb(12 12 12 / 17%);
@@ -485,7 +483,7 @@
         <ul class="menu">
             <li class="menu-item"><a href="#buy-list" class="menu-link" onclick="openTab('buy-list')">Buy List</a></li>
             <li class="menu-item"><a href="#rules" class="menu-link" onclick="openTab('rules')">Rules</a></li>
-            <li class="menu-item"><a href="#pickup" class="menu-link active" onclick="openTab('pickup')">Info &amp; Pickup</a></li>
+            <li class="menu-item"><a href="#pickup" class="menu-link active" onclick="openTab('pickup')">Info & Pickup</a></li>
             <li class="menu-item"><a href="#links" class="menu-link" onclick="openTab('links')">Links</a></li>
             <li class="menu-item"><a href="#form" class="menu-link" onclick="openTab('form')">Form</a></li>
             <li class="menu-item lang-selector">
@@ -668,39 +666,72 @@
         }
 
         function renderBuyLists() {
-            if (!buyListData) {
-                document.getElementById('region-eu').innerHTML = '<p>Loading buy list...</p>';
-                document.getElementById('region-usa').innerHTML = '<p>Loading buy list...</p>';
-                return;
-            }
+            const euContainer = document.getElementById('region-eu');
+            const usaContainer = document.getElementById('region-usa');
             const activeRegion = document.querySelector('.region-button.active').textContent.includes('EU') ? 'eu' : 'usa';
             const container = document.getElementById(`region-${activeRegion}`);
+
+            if (!buyListData || !buyListData.eu || !buyListData.usa) {
+                euContainer.innerHTML = '<p>Loading buy list...</p>';
+                usaContainer.innerHTML = '<p>Loading buy list...</p>';
+                console.error('buyListData is not loaded or missing eu/usa keys:', buyListData);
+                return;
+            }
+
+            // Render only the active region
             container.innerHTML = '';
-            buyListData[activeRegion].forEach(section => {
+            const sections = buyListData[activeRegion] || [];
+            if (!Array.isArray(sections)) {
+                container.innerHTML = '<p>Invalid data format for region.</p>';
+                console.error(`buyListData[${activeRegion}] is not an array:`, sections);
+                return;
+            }
+
+            sections.forEach(section => {
+                if (!section.title || !Array.isArray(section.items)) {
+                    console.warn('Skipping invalid section:', section);
+                    return;
+                }
                 const accordion = document.createElement('div');
                 accordion.className = 'accordion';
                 accordion.innerHTML = `
                     <div class="accordion-title" onclick="toggleAccordion(this)">${section.title}</div>
                     <div class="accordion-content">
-                        ${section.items.map(item => `
-                            <div class="item">
-                                <div class="item-details">
-                                    <h3>${item.name}</h3>
-                                    <p>${item.percentage}% ${item.description}</p>
+                        ${section.items.map(item => {
+                            if (!item.name || item.percentage === undefined || item.description === undefined) {
+                                console.warn('Skipping invalid item:', item);
+                                return '';
+                            }
+                            return `
+                                <div class="item">
+                                    <div class="item-details">
+                                        <h3>${item.name}</h3>
+                                        <p>${item.percentage}% ${item.description}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        `).join('')}
+                            `;
+                        }).join('')}
                     </div>
                 `;
                 container.appendChild(accordion);
             });
+
+            if (sections.length === 0) {
+                container.innerHTML = '<p>No items available for this region.</p>';
+            }
         }
 
         async function loadBuyLists() {
             try {
-                const response = await fetch('buy_list.json');
-                if (!response.ok) throw new Error('Error loading Buy List');
+                const response = await fetch('buy_list.json?cache=' + new Date().getTime());
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
                 buyListData = await response.json();
+                console.log('Loaded buyListData:', buyListData);
+                if (!buyListData.eu || !buyListData.usa) {
+                    throw new Error('buy_list.json is missing eu or usa keys');
+                }
                 renderBuyLists();
             } catch (error) {
                 console.error('Error loading buy list:', error);
