@@ -856,11 +856,12 @@ function searchItems() {
 }
 
 function switchRegion(region) {
+    console.log(`Switching to region: ${region}`);
     document.querySelectorAll('.region-content').forEach(content => content.classList.remove('active'));
     document.querySelectorAll('.region-button').forEach(button => button.classList.remove('active'));
     document.getElementById(`region-${region}`).classList.add('active');
     document.querySelector(`.region-button[onclick="switchRegion('${region}')"]`).classList.add('active');
-    renderBuyLists();
+    renderBuyLists(region);
 }
 
 function renderItems(data, container) {
@@ -896,11 +897,12 @@ function renderItems(data, container) {
     }
 }
 
-function renderBuyLists() {
-    const activeRegion = document.querySelector('.region-button.active').textContent.includes('EU') ? 'eu' : 'usa';
-    const container = document.getElementById(`region-${activeRegion}`);
-    const data = activeRegion === 'eu' ? buyListDataEU : buyListDataUSA;
+function renderBuyLists(region = 'eu') {
+    console.log(`Rendering Buy List for region: ${region}`);
+    const container = document.getElementById(`region-${region}`);
+    const data = region === 'eu' ? buyListDataEU : buyListDataUSA;
     if (!data) {
+        console.warn(`No data for ${region} region`);
         container.innerHTML = '<p>Загрузка...</p>';
         return;
     }
@@ -909,21 +911,25 @@ function renderBuyLists() {
 
 async function loadBuyLists() {
     try {
+        console.log('Loading eu_buy_list.json');
         const euResponse = await fetch('eu_buy_list.json');
         if (!euResponse.ok) throw new Error(`Не удалось загрузить eu_buy_list.json: ${euResponse.status}`);
+        console.log('Loading us_buy_list.json');
         const usaResponse = await fetch('us_buy_list.json');
         if (!usaResponse.ok) throw new Error(`Не удалось загрузить us_buy_list.json: ${usaResponse.status}`);
         try {
             buyListDataEU = await euResponse.json();
+            console.log('EU Buy List loaded:', buyListDataEU);
         } catch (e) {
             throw new Error(`Некорректный JSON в eu_buy_list.json: ${e.message}`);
         }
         try {
             buyListDataUSA = await usaResponse.json();
+            console.log('USA Buy List loaded:', buyListDataUSA);
         } catch (e) {
             throw new Error(`Некорректный JSON в us_buy_list.json: ${e.message}`);
         }
-        renderBuyLists();
+        renderBuyLists('eu');
     } catch (error) {
         console.error('Ошибка загрузки Buy List:', error.message);
         document.getElementById('region-eu').innerHTML = `<p>Ошибка загрузки EU списка: ${error.message}</p>`;
