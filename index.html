@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<html lang="ru"><head><script type="text/javascript">
         var gk_isXlsx = false;
         var gk_xlsxFileLookup = {};
         var gk_fileData = {};
@@ -37,9 +37,9 @@
         }
         return gk_fileData[filename] || "";
         }
-        </script><!DOCTYPE html>
-<html lang="ru">
-<head>
+        </script>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bober Service Menu</title>
@@ -176,7 +176,7 @@
             display: none;
             position: absolute;
             top: 0;
-            left: 100%;
+            left: 0%;
             background: rgba(44, 53, 57, 0.95);
             min-width: 40px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -192,7 +192,7 @@
             padding: 14px 20px;
             border-radius: 12px;
             display: block;
-            transition: color 0.3s;
+            transition: color 0.3s, background 0.3s;
             cursor: pointer;
             background: none;
             border: none;
@@ -201,6 +201,7 @@
 
         .lang-dropdown-content button:hover {
             color: #E5E7EB;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .lang-selector:hover .lang-dropdown-content {
@@ -314,30 +315,32 @@
         }
 
         .accordion {
-            margin-bottom: 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.15); /* Lighter background for better contrast */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .accordion-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 0;
+            background: rgb(255 255 255 / 6%); /* Slightly brighter for headers */
+            padding: 12px 16px;
             font-size: 16px;
-            font-weight: 400;
-            color: #E5E7EB;
+            font-weight: 500;
+            color: #E5E7EB; /* Keep header text bright */
+            border-radius: 8px;
             cursor: pointer;
-            transition: color 0.2s;
+            transition: background 0.3s ease-in-out;
         }
 
         .accordion-title:hover {
-            color: #4facfe;
+            background: rgba(255, 255, 255, 0.25); /* Even brighter on hover */
         }
 
         .accordion-title::after {
             content: '↓';
             font-size: 14px;
-            transition: transform 0.3s;
+            float: right;
+            transition: transform 0.3s ease-in-out;
         }
 
         .accordion-title.active::after {
@@ -347,15 +350,38 @@
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            padding: 0;
+            padding: 0 16px;
+            color: #D1D5DB; /* Brighter text for better readability */
             font-size: 14px;
-            color: #9CA3AF;
-            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+            line-height: 1.5;
+            background: rgba(255, 255, 255, 0.1); /* Light background for content */
+            transition: all 0.3s ease-in-out;
         }
 
         .accordion-content.active {
             max-height: 1000px;
-            padding: 16px 0;
+            padding: 12px 16px;
+            overflow: auto;
+        }
+
+        .accordion-content p {
+            margin: 0 0 8px 0;
+            color: #D1D5DB; /* Consistent readable text */
+        }
+
+        .item {
+            padding: 10px 0;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease-in-out;
+        }
+
+        .item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .item:last-child {
+            border-bottom: none;
         }
 
         .item-details h3 {
@@ -367,7 +393,7 @@
 
         .item-details p {
             margin: 3px 0 0;
-            color: #9CA3AF;
+            color: #D1D5DB; /* Brighter for readability */
             font-size: 12px;
             line-height: 1.3;
         }
@@ -375,7 +401,7 @@
         .pickup-list {
             margin: 0;
             padding: 0 0 0 20px;
-            color: #9CA3AF;
+            color: #D1D5DB; /* Brighter for list items */
             font-size: 14px;
             line-height: 1.5;
         }
@@ -437,6 +463,27 @@
                 transform: translateX(-50%);
                 top: 100%;
             }
+
+            .accordion-title {
+                font-size: 14px;
+                padding: 10px 12px;
+            }
+
+            .accordion-content {
+                padding: 0 12px;
+            }
+
+            .accordion-content.active {
+                padding: 10px 12px;
+            }
+
+            .item-details h3 {
+                font-size: 13px;
+            }
+
+            .item-details p {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -450,14 +497,14 @@
             <div class="header-title-text">Bober Service</div>
         </div>
         <ul class="menu">
-            <li class="menu-item"><a href="#buy-list" class="menu-link active" onclick="openTab('buy-list')">Buy List</a></li>
+            <li class="menu-item"><a href="#buy-list" class="menu-link" onclick="openTab('buy-list')">Buy List</a></li>
             <li class="menu-item"><a href="#rules" class="menu-link" onclick="openTab('rules')">Rules</a></li>
-            <li class="menu-item"><a href="#pickup" class="menu-link" onclick="openTab('pickup')">Info & Pickup</a></li>
-            <li class="menu-item"><a href="#links" class="menu-link" onclick="openTab('links')">Links</a></li>
+            <li class="menu-item"><a href="#pickup" class="menu-link" onclick="openTab('pickup')">Info &amp; Pickup</a></li>
+            <li class="menu-item"><a href="#links" class="menu-link active" onclick="openTab('links')">Links</a></li>
             <li class="menu-item"><a href="#form" class="menu-link" onclick="openTab('form')">Form</a></li>
             <li class="menu-item lang-selector">
-                <button class="lang-button" id="current-lang">Language</button>
-                <div class="lang-dropdown-content">
+                <button class="lang-button" id="current-lang">🇺🇦</button>
+                <div class="lang-dropdown-content" style="display: none;">
                     <button onclick="switchLang('ru')">🇷🇺</button>
                     <button onclick="switchLang('en')">🇺🇸</button>
                     <button onclick="switchLang('ua')">🇺🇦</button>
@@ -467,7 +514,7 @@
     </div>
 
     <div class="content">
-        <div id="buy-list" class="tab-content active">
+        <div id="buy-list" class="tab-content">
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Search items..." onkeyup="searchItems()">
             </div>
@@ -484,10 +531,10 @@
         <div id="pickup" class="tab-content">
             <div id="pickup-content"></div>
         </div>
-        <div id="links" class="tab-content">
+        <div id="links" class="tab-content active">
             <div class="accordion">
-                <div class="accordion-title" onclick="toggleAccordion(this)">Links</div>
-                <div class="accordion-content">
+                <div class="accordion-title active" onclick="toggleAccordion(this)">Links</div>
+                <div class="accordion-content active">
                     <ul class="pickup-list">
                         <li>Our bot: <a href="https://t.me/boberservice_bot">@bober_bot</a></li>
                         <li>Our channel: <a href="https://t.me/+qDWPqtDt4lMzNDM0">@bober_channel</a></li>
@@ -524,10 +571,10 @@
         currentLang = lang;
         localStorage.setItem('lang', lang);
         document.getElementById('current-lang').textContent = {
-            'en': 'Language',
-            'ru': 'Language',
-            'ua': 'Language'
-        }[lang] || 'Language';
+            'en': '🇺🇸',
+            'ru': '🇷🇺',
+            'ua': '🇺🇦'
+        }[lang];
         document.querySelector('.lang-dropdown-content').style.display = 'none';
         renderRules();
         renderFaq();
@@ -582,43 +629,6 @@
         document.querySelector(`.region-button[onclick="switchRegion('${region}')"]`).classList.add('active');
     }
 
-    async function loadBuyLists() {
-    try {
-        const euResponse = await fetch('eu_buy_list.json');
-        const usaResponse = await fetch('us_buy_list.json');
-
-        if (!euResponse.ok) throw new Error(`EU buy list not found: ${euResponse.status}`);
-        if (!usaResponse.ok) throw new Error(`USA buy list not found: ${usaResponse.status}`);
-
-        const euText = await euResponse.text();
-        const usaText = await usaResponse.text();
-
-        if (!euText.trim()) throw new Error("EU buy list is empty");
-        if (!usaText.trim()) throw new Error("USA buy list is empty");
-
-        let euData, usaData;
-        try {
-            euData = JSON.parse(euText);
-        } catch (e) {
-            throw new Error("EU JSON is malformed");
-        }
-
-        try {
-            usaData = JSON.parse(usaText);
-        } catch (e) {
-            throw new Error("USA JSON is malformed");
-        }
-
-        const euContainer = document.getElementById('region-eu');
-        const usaContainer = document.getElementById('region-usa');
-
-        renderItems(euData, euContainer);
-        renderItems(usaData, usaContainer);
-
-    } catch (error) {
-        console.error('Ошибка при загрузке buy list:', error.message);
-    }
-
     function renderItems(data, container) {
         container.innerHTML = '';
         data.forEach(category => {
@@ -640,7 +650,44 @@
             container.appendChild(accordion);
         });
     }
-}
+
+    async function loadBuyLists() {
+        try {
+            const euResponse = await fetch('eu_buy_list.json');
+            const usaResponse = await fetch('us_buy_list.json');
+
+            if (!euResponse.ok) throw new Error(`EU buy list not found: ${euResponse.status}`);
+            if (!usaResponse.ok) throw new Error(`USA buy list not found: ${usaResponse.status}`);
+
+            const euText = await euResponse.text();
+            const usaText = await usaResponse.text();
+
+            if (!euText.trim()) throw new Error("EU buy list is empty");
+            if (!usaText.trim()) throw new Error("USA buy list is empty");
+
+            let euData, usaData;
+            try {
+                euData = JSON.parse(euText);
+            } catch (e) {
+                throw new Error("EU JSON is malformed: " + e.message);
+            }
+
+            try {
+                usaData = JSON.parse(usaText);
+            } catch (e) {
+                throw new Error("USA JSON is malformed: " + e.message);
+            }
+
+            const euContainer = document.getElementById('region-eu');
+            const usaContainer = document.getElementById('region-usa');
+
+            renderItems(euData, euContainer);
+            renderItems(usaData, usaContainer);
+
+        } catch (error) {
+            console.error('Error loading buy list:', error.message);
+        }
+    }
 
     async function loadRules() {
         try {
@@ -720,5 +767,5 @@
     });
 </script>
 
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d504600fad53aa',t:'MTc0NjgzMzc2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d526edffee53bd',t:'MTc0NjgzNTE4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d504600fad53aa',t:'MTc0NjgzMzc2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d526edffee53bd',t:'MTc0NjgzNTE4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d53d826d071d62',t:'MTc0NjgzNjEwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+</body></html>
