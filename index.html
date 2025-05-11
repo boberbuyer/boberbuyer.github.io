@@ -829,10 +829,10 @@
                     <div class="accordion-title" onclick="toggleAccordion(this)">${category.category}</div>
                     <div class="accordion-content">
                         <div class="item-header">
-                            <span class="header-name">${currentLang === 'en' ? 'Item' : 'Товар'}</span>
-                            <span class="header-percentage">${currentLang === 'en' ? 'Percentage' : 'Процент'}</span>
-                            <span class="header-description">${currentLang === 'en' ? 'Description' : 'Описание'}</span>
-                            <span class="header-image">${currentLang === 'en' ? 'Photo' : 'Фото'}</span>
+                            <span class="header-name">${currentLang === 'en' ? 'Item' : 'Item'}</span>
+                            <span class="header-percentage">${currentLang === 'en' ? 'Percentage' : 'Fee'}</span>
+                            <span class="header-description">${currentLang === 'en' ? 'Description' : 'Info'}</span>
+                            <span class="header-image">${currentLang === 'en' ? 'Photo' : 'Photo'}</span>
                         </div>
                         ${category.items.map(item => {
                             if (!item.name) return '';
