@@ -146,7 +146,7 @@ function setupEventListeners() {
     
     // Compact mode toggle
     const compactToggle = document.getElementById('compact-toggle');
-    const appContainer = document.querySelector('.app-container compact-mode');
+    const appContainer = document.querySelector('.app-container');
     
     compactToggle.addEventListener('click', () => {
         appContainer.classList.toggle('compact-mode');
@@ -245,14 +245,21 @@ function setupEventListeners() {
 
 // Initialize UI
 function initializeUI() {
-    // Set compact mode from localStorage
-    const compactMode = localStorage.getItem('compactMode') === 'true';
+    // Set compact mode from localStorage or default to compact mode
+    const compactMode = localStorage.getItem('compactMode');
     const appContainer = document.querySelector('.app-container');
     const compactToggle = document.getElementById('compact-toggle');
     
-    if (compactMode) {
+    // Default to compact mode if not set
+    if (compactMode === null) {
         appContainer.classList.add('compact-mode');
         compactToggle.querySelector('i').className = 'fas fa-expand-alt';
+        localStorage.setItem('compactMode', 'true');
+    } else if (compactMode === 'true') {
+        appContainer.classList.add('compact-mode');
+        compactToggle.querySelector('i').className = 'fas fa-expand-alt';
+    } else {
+        compactToggle.querySelector('i').className = 'fas fa-compress-alt';
     }
     
     // Open default tab
@@ -790,9 +797,6 @@ function renderFaq() {
         accordion.appendChild(content);
         container.appendChild(accordion);
     });
-    
-    // Removed the code that opens the first accordion by default
-    // Now all FAQ accordions will be closed by default
 }
 
 // Utility Functions
