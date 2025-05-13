@@ -146,7 +146,7 @@ function setupEventListeners() {
     
     // Compact mode toggle
     const compactToggle = document.getElementById('compact-toggle');
-    const appContainer = document.querySelector('.app-container');
+    const appContainer = document.querySelector('.app-container compact-mode');
     
     compactToggle.addEventListener('click', () => {
         appContainer.classList.toggle('compact-mode');
