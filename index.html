@@ -44,6 +44,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="#services" class="nav-link" data-tab="services">
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Services</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#links" class="nav-link" data-tab="links">
                             <i class="fas fa-link"></i>
                             <span>Links</span>
@@ -133,6 +139,22 @@
                     </div>
                 </div>
 
+                <!-- Services Tab -->
+                <div id="services" class="tab-content">
+                    <div class="content-island">
+                        <div class="search-container">
+                            <div class="search-bar">
+                                <i class="fas fa-search search-icon"></i>
+                                <input type="text" id="servicesSearchInput" placeholder="Search services...">
+                                <button id="clear-services-search" class="clear-search">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="services-content" class="services-grid"></div>
+                    </div>
+                </div>
+
                 <!-- Links Tab -->
                 <div id="links" class="tab-content">
                     <div class="content-island">
@@ -168,7 +190,7 @@
 
                 <!-- Form Tab -->
                 <div id="form" class="tab-content">
-                    <div class="form-iframe-container">
+                    <div class="form-iframe-containernoco">
                         <iframe src="https://app.nocodb.com/#/nc/form/3ab4d606-d930-4ab5-85bc-81a0181a39b2" class="form-iframe"></iframe>
                     </div>
                 </div>
@@ -177,7 +199,6 @@
                 <div id="login" class="tab-content">
                     <div class="login-panel" id="login-panel">
                         <div class="login-card">
-                            <h2>Admin Login</h2>
                             <div class="input-group">
                                 <i class="fas fa-lock"></i>
                                 <input type="password" id="password-input" placeholder="Enter Password">
@@ -191,6 +212,11 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Site Footer -->
+            <footer class="site-footer">
+                <p>This website is a work of fiction. All content, services, and information presented are purely fictional and for demonstration purposes only. This site does not promote or encourage any illegal activities.</p>
+            </footer>
         </main>
     </div>
 
@@ -207,6 +233,16 @@
     <!-- Image Hover Preview -->
     <div class="hover-preview" id="hover-preview">
         <img id="hover-preview-image" src="" alt="Preview">
+    </div>
+
+    <!-- Service Details Modal -->
+    <div class="modal-backdrop" id="service-modal-backdrop">
+        <div class="service-modal">
+            <button class="close-modal" id="close-service-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="service-modal-content" id="service-modal-content"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>
