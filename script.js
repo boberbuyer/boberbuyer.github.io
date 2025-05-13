@@ -133,47 +133,63 @@ function setupEventListeners() {
     const searchInput = document.getElementById('searchInput');
     const clearSearch = document.getElementById('clear-search');
     
-    searchInput.addEventListener('input', () => {
-        searchItems();
-        clearSearch.classList.toggle('active', searchInput.value.length > 0);
-    });
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            searchItems();
+            if (clearSearch) {
+                clearSearch.classList.toggle('active', searchInput.value.length > 0);
+            }
+        });
+    }
     
-    clearSearch.addEventListener('click', () => {
-        searchInput.value = '';
-        searchItems();
-        clearSearch.classList.remove('active');
-    });
+    if (clearSearch) {
+        clearSearch.addEventListener('click', () => {
+            if (searchInput) {
+                searchInput.value = '';
+                searchItems();
+                clearSearch.classList.remove('active');
+            }
+        });
+    }
     
     // Compact mode toggle
     const compactToggle = document.getElementById('compact-toggle');
     const appContainer = document.querySelector('.app-container');
     
-    compactToggle.addEventListener('click', () => {
-        appContainer.classList.toggle('compact-mode');
-        
-        // Update icon
-        const icon = compactToggle.querySelector('i');
-        if (appContainer.classList.contains('compact-mode')) {
-            icon.className = 'fas fa-expand-alt';
-        } else {
-            icon.className = 'fas fa-compress-alt';
-        }
-        
-        // Save preference
-        localStorage.setItem('compactMode', appContainer.classList.contains('compact-mode'));
-    });
+    if (compactToggle && appContainer) {
+        compactToggle.addEventListener('click', () => {
+            appContainer.classList.toggle('compact-mode');
+            
+            // Update icon
+            const icon = compactToggle.querySelector('i');
+            if (icon) {
+                if (appContainer.classList.contains('compact-mode')) {
+                    icon.className = 'fas fa-expand-alt';
+                } else {
+                    icon.className = 'fas fa-compress-alt';
+                }
+            }
+            
+            // Save preference
+            localStorage.setItem('compactMode', appContainer.classList.contains('compact-mode'));
+        });
+    }
     
     // Modal close
     const modalBackdrop = document.getElementById('modal-backdrop');
     const closeModal = document.querySelector('.close-modal');
     
-    modalBackdrop.addEventListener('click', (e) => {
-        if (e.target === modalBackdrop) {
-            hideModal();
-        }
-    });
+    if (modalBackdrop) {
+        modalBackdrop.addEventListener('click', (e) => {
+            if (e.target === modalBackdrop) {
+                hideModal();
+            }
+        });
+    }
     
-    closeModal.addEventListener('click', hideModal);
+    if (closeModal) {
+        closeModal.addEventListener('click', hideModal);
+    }
     
     // Login functionality
     const loginButton = document.getElementById('login-button');
@@ -183,36 +199,40 @@ function setupEventListeners() {
     const loginIframe = document.getElementById('login-iframe');
     const iframeContainer = document.querySelector('#login .form-iframe-container');
     
-    loginButton.addEventListener('click', checkPassword);
-    
-    passwordInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') checkPassword();
-    });
+    if (loginButton && passwordInput) {
+        loginButton.addEventListener('click', checkPassword);
+        
+        passwordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkPassword();
+        });
+    }
     
     function checkPassword() {
         const input = passwordInput.value;
         const ADMIN_PASSWORD = '111';
         
         if (input === ADMIN_PASSWORD) {
-            loginPanel.style.display = 'none';
-            iframeContainer.style.display = 'block';
-            loginIframe.src = 'panel.html';
-            errorMessage.style.display = 'none';
+            if (loginPanel) loginPanel.style.display = 'none';
+            if (iframeContainer) iframeContainer.style.display = 'block';
+            if (loginIframe) loginIframe.src = 'panel.html';
+            if (errorMessage) errorMessage.style.display = 'none';
         } else {
-            errorMessage.style.display = 'block';
-            passwordInput.value = '';
-            passwordInput.focus();
-            
-            // Hide error message after 3 seconds
-            setTimeout(() => {
-                errorMessage.style.display = 'none';
-            }, 3000);
+            if (errorMessage) {
+                errorMessage.style.display = 'block';
+                passwordInput.value = '';
+                passwordInput.focus();
+                
+                // Hide error message after 3 seconds
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            }
         }
     }
     
     // Close dropdowns when clicking outside
     document.addEventListener('click', (e) => {
-        if (!langButton.contains(e.target) && !langDropdown.contains(e.target)) {
+        if (langButton && langDropdown && !langButton.contains(e.target) && !langDropdown.contains(e.target)) {
             langDropdown.classList.remove('active');
         }
     });
@@ -221,9 +241,9 @@ function setupEventListeners() {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             hideModal();
-            langDropdown.classList.remove('active');
+            if (langDropdown) langDropdown.classList.remove('active');
             
-            if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+            if (window.innerWidth <= 768 && sidebar && sidebar.classList.contains('active')) {
                 sidebar.classList.remove('active');
             }
         }
@@ -231,14 +251,16 @@ function setupEventListeners() {
     
     // Window resize handler
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-            if (sidebar.classList.contains('active')) {
-                mainContent.classList.add('sidebar-expanded');
+        if (sidebar && mainContent) {
+            if (window.innerWidth > 768) {
+                if (sidebar.classList.contains('active')) {
+                    mainContent.classList.add('sidebar-expanded');
+                } else {
+                    mainContent.classList.remove('sidebar-expanded');
+                }
             } else {
                 mainContent.classList.remove('sidebar-expanded');
             }
-        } else {
-            mainContent.classList.remove('sidebar-expanded');
         }
     });
 }
@@ -250,16 +272,21 @@ function initializeUI() {
     const appContainer = document.querySelector('.app-container');
     const compactToggle = document.getElementById('compact-toggle');
     
-    // Default to compact mode if not set
-    if (compactMode === null) {
-        appContainer.classList.add('compact-mode');
-        compactToggle.querySelector('i').className = 'fas fa-expand-alt';
-        localStorage.setItem('compactMode', 'true');
-    } else if (compactMode === 'true') {
-        appContainer.classList.add('compact-mode');
-        compactToggle.querySelector('i').className = 'fas fa-expand-alt';
-    } else {
-        compactToggle.querySelector('i').className = 'fas fa-compress-alt';
+    if (appContainer && compactToggle) {
+        // Default to compact mode if not set
+        if (compactMode === null) {
+            appContainer.classList.add('compact-mode');
+            const icon = compactToggle.querySelector('i');
+            if (icon) icon.className = 'fas fa-expand-alt';
+            localStorage.setItem('compactMode', 'true');
+        } else if (compactMode === 'true') {
+            appContainer.classList.add('compact-mode');
+            const icon = compactToggle.querySelector('i');
+            if (icon) icon.className = 'fas fa-expand-alt';
+        } else {
+            const icon = compactToggle.querySelector('i');
+            if (icon) icon.className = 'fas fa-compress-alt';
+        }
     }
     
     // Open default tab
@@ -283,8 +310,10 @@ function initializeUI() {
         const sidebar = document.getElementById('sidebar');
         const mainContent = document.querySelector('.main-content');
         
-        sidebar.classList.add('active');
-        mainContent.classList.add('sidebar-expanded');
+        if (sidebar && mainContent) {
+            sidebar.classList.add('active');
+            mainContent.classList.add('sidebar-expanded');
+        }
     }
     
     // Ensure Links accordion is active on init
@@ -340,7 +369,9 @@ function switchLang(lang) {
     
     // Update language button
     const langButton = document.getElementById('current-lang');
-    langButton.textContent = { 'en': '🇺🇸', 'ru': '🇷🇺', 'ua': '🇺🇦' }[lang];
+    if (langButton) {
+        langButton.textContent = { 'en': '🇺🇸', 'ru': '🇷🇺', 'ua': '🇺🇦' }[lang];
+    }
     
     // Update menu items
     const tabTitles = {
@@ -355,7 +386,7 @@ function switchLang(lang) {
     document.querySelectorAll('.nav-link').forEach(link => {
         const tabId = link.getAttribute('data-tab');
         const span = link.querySelector('span');
-        if (span) {
+        if (span && tabId && tabTitles[tabId] && tabTitles[tabId][currentLang]) {
             span.textContent = tabTitles[tabId][currentLang];
         }
     });
@@ -395,13 +426,17 @@ function switchRegion(region) {
 }
 
 function toggleAccordion(element) {
+    if (!element) return;
+    
     const content = element.nextElementSibling;
+    if (!content) return;
     
     // Close all other accordions except the Links accordion
     document.querySelectorAll('.accordion-title, .category-title').forEach(title => {
         if (title !== element && !title.closest('#links')) {
             title.classList.remove('active');
-            title.nextElementSibling.classList.remove('active');
+            const nextEl = title.nextElementSibling;
+            if (nextEl) nextEl.classList.remove('active');
         }
     });
     
@@ -419,37 +454,72 @@ function toggleAccordion(element) {
 
 // Search Functionality
 function searchItems() {
-    const input = document.getElementById('searchInput').value.toLowerCase().trim();
-    const categoryTables = document.querySelectorAll('#buy-list .category-table');
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) return;
+    
+    const input = searchInput.value.toLowerCase().trim();
+    const activeRegionContent = document.querySelector('.region-content.active');
+    if (!activeRegionContent) return;
+    
+    const categoryTables = activeRegionContent.querySelectorAll('.category-table');
+    let hasResults = false;
     
     categoryTables.forEach(category => {
-        const items = category.querySelectorAll('.item');
+        const items = category.querySelectorAll('.item:not(:first-child)'); // Skip header row
         let hasVisibleItems = false;
         
         items.forEach(item => {
-            const name = item.querySelector('.item-name').textContent.toLowerCase();
-            const percentage = item.querySelector('.item-percentage').textContent.toLowerCase();
-            const description = item.querySelector('.item-description') ? 
-                item.querySelector('.item-description').textContent.toLowerCase() : '';
+            const nameEl = item.querySelector('.item-name');
+            const percentageEl = item.querySelector('.item-percentage');
+            const descriptionEl = item.querySelector('.item-description');
+            
+            const name = nameEl ? nameEl.textContent.toLowerCase() : '';
+            const percentage = percentageEl ? percentageEl.textContent.toLowerCase() : '';
+            const description = descriptionEl ? descriptionEl.textContent.toLowerCase() : '';
             
             const isVisible = name.includes(input) || 
                               percentage.includes(input) || 
                               description.includes(input);
             
             item.style.display = isVisible ? '' : 'none';
-            if (isVisible) hasVisibleItems = true;
+            if (isVisible) {
+                hasVisibleItems = true;
+                hasResults = true;
+            }
         });
         
+        // Show/hide category based on visible items
         category.style.display = hasVisibleItems ? '' : 'none';
         
-        // Expand categories with visible items
+        // Expand categories with visible items when searching
         if (hasVisibleItems && input.length > 0) {
-            const content = category.querySelector('.table-content');
             const title = category.querySelector('.category-title');
-            content.classList.add('active');
-            title.classList.add('active');
+            const content = title?.nextElementSibling;
+            if (title && content) {
+                title.classList.add('active');
+                content.classList.add('active');
+            }
         }
     });
+    
+    // Show a "no results" message if needed
+    const noResultsMsg = activeRegionContent.querySelector('.no-results-message');
+    
+    if (!hasResults && input.length > 0) {
+        if (!noResultsMsg) {
+            const message = document.createElement('p');
+            message.className = 'no-results-message';
+            message.textContent = currentLang === 'en' ? 
+                'No items found matching your search.' : 
+                'Ничего не найдено по вашему запросу.';
+            message.style.padding = 'var(--space-md)';
+            message.style.textAlign = 'center';
+            message.style.color = 'var(--text-secondary)';
+            activeRegionContent.appendChild(message);
+        }
+    } else if (noResultsMsg) {
+        noResultsMsg.remove();
+    }
 }
 
 // Image Preview and Modal
@@ -458,6 +528,8 @@ function showHoverPreview(src, alt, event) {
     
     const hoverPreview = document.getElementById('hover-preview');
     const hoverPreviewImage = document.getElementById('hover-preview-image');
+    
+    if (!hoverPreview || !hoverPreviewImage) return;
     
     hoverPreviewImage.src = src;
     hoverPreviewImage.alt = alt || 'Preview';
@@ -489,7 +561,9 @@ function showHoverPreview(src, alt, event) {
 
 function hideHoverPreview() {
     const hoverPreview = document.getElementById('hover-preview');
-    hoverPreview.classList.remove('active');
+    if (hoverPreview) {
+        hoverPreview.classList.remove('active');
+    }
 }
 
 function showModal(src, alt) {
@@ -497,6 +571,8 @@ function showModal(src, alt) {
     
     const modalBackdrop = document.getElementById('modal-backdrop');
     const modalImage = document.getElementById('modal-image');
+    
+    if (!modalBackdrop || !modalImage) return;
     
     modalImage.src = src;
     modalImage.alt = alt || 'Image';
@@ -506,8 +582,10 @@ function showModal(src, alt) {
 
 function hideModal() {
     const modalBackdrop = document.getElementById('modal-backdrop');
-    modalBackdrop.classList.remove('active');
-    document.body.style.overflow = '';
+    if (modalBackdrop) {
+        modalBackdrop.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 }
 
 // Data Loading
@@ -547,8 +625,10 @@ async function loadBuyLists() {
     } catch (error) {
         console.error('Error loading buy lists:', error);
         const errorMessage = `<p style="color: var(--error); padding: var(--space-md);">Error loading buy list: ${error.message}</p>`;
-        document.getElementById('region-eu').innerHTML = errorMessage;
-        document.getElementById('region-usa').innerHTML = errorMessage;
+        const euContainer = document.getElementById('region-eu');
+        const usaContainer = document.getElementById('region-usa');
+        if (euContainer) euContainer.innerHTML = errorMessage;
+        if (usaContainer) usaContainer.innerHTML = errorMessage;
         return false;
     }
 }
@@ -563,7 +643,10 @@ async function loadRules() {
         return true;
     } catch (error) {
         console.error('Error loading rules:', error);
-        document.getElementById('rules-content').innerHTML = `<p style="color: var(--error); padding: var(--space-md);">Error loading rules: ${error.message}</p>`;
+        const rulesContent = document.getElementById('rules-content');
+        if (rulesContent) {
+            rulesContent.innerHTML = `<p style="color: var(--error); padding: var(--space-md);">Error loading rules: ${error.message}</p>`;
+        }
         return false;
     }
 }
@@ -578,7 +661,10 @@ async function loadFaq() {
         return true;
     } catch (error) {
         console.error('Error loading FAQ:', error);
-        document.getElementById('pickup-content').innerHTML = `<p style="color: var(--error); padding: var(--space-md);">Error loading FAQ: ${error.message}</p>`;
+        const pickupContent = document.getElementById('pickup-content');
+        if (pickupContent) {
+            pickupContent.innerHTML = `<p style="color: var(--error); padding: var(--space-md);">Error loading FAQ: ${error.message}</p>`;
+        }
         return false;
     }
 }
@@ -599,6 +685,12 @@ function renderBuyLists(region) {
     }
     
     renderItems(data, container);
+    
+    // Re-apply search filter if there's an active search
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput && searchInput.value.trim().length > 0) {
+        searchItems();
+    }
 }
 
 function renderItems(data, container) {
