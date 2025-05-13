@@ -267,7 +267,7 @@ function initializeUI() {
     if (hash && document.getElementById(hash) && hash !== 'login') {
         openTab(hash);
     } else {
-        openTab('links');
+        openTab('buy-list');
     }
     
     // Set default region
