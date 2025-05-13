@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Amazon Order Service",
+    "description": "We place orders using our special old accss",
+    "fullDescription": "We offer time-tested and verified Amazon accounts from which we will place orders on your behalf. 99% of our accounts are not flagged by Amazon OFM. This service is perfect for those who need reliable ordering without the risk of account bans or restrictions. We handle the entire ordering process securely and efficiently.",
+    "price": "$90 + 8%",
+    "imageUrl": "https://avatars.dzeninfra.ru/get-zen_doc/9661583/pub_6447f04ed65d9f7645e79f4c_64521e371ceb7237ea0bc2cd/scale_1200"
+  },
+  {
+    "id": 2,
+    "title": "Bank Registration ",
+    "description": "Помощь в регистрации БА",
+    "fullDescription": "Мы оказываем всестороннюю помощь в регистрации на популярных банковских и платежных сервисах, включая Wise, Revolut, RedotPay, Kast и другие.",
+    "price": "$100-400",
+    "imageUrl": "https://static.vecteezy.com/system/resources/previews/005/374/564/non_2x/illustration-graphic-cartoon-character-of-money-saving-of-bank-free-vector.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Documents Service",
+    "description": "Custom documents",
+    "fullDescription": "Our services include Bills, IDs, Passports, Driver Licenses and more. We also offer Amazon verification assistance. All designs are created with attention to detail and can be customized to meet your exact specifications.",
+    "price": "$5-50",
+    "imageUrl": "https://img.freepik.com/premium-vector/illustration-of-task_498740-25875.jpg?size=626&ext=jpg"
+  }
+]
