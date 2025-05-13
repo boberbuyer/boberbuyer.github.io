@@ -58,7 +58,8 @@ async function init() {
         await Promise.all([
             loadBuyLists(),
             loadRules(),
-            loadFaq()
+            loadFaq(),
+            loadServices()
         ]);
     } catch (error) {
         console.error('Initialization failed:', error);
@@ -77,19 +78,23 @@ function setupEventListeners() {
     const closeSidebar = document.getElementById('close-sidebar');
     const mainContent = document.querySelector('.main-content');
     
-    hamburger.addEventListener('click', () => {
-        sidebar.classList.toggle('active');
-        if (window.innerWidth > 768) {
-            mainContent.classList.toggle('sidebar-expanded');
-        }
-    });
+    if (hamburger && sidebar && mainContent) {
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            if (window.innerWidth > 768) {
+                mainContent.classList.toggle('sidebar-expanded');
+            }
+        });
+    }
     
-    closeSidebar.addEventListener('click', () => {
-        sidebar.classList.remove('active');
-        if (window.innerWidth > 768) {
-            mainContent.classList.remove('sidebar-expanded');
-        }
-    });
+    if (closeSidebar && sidebar && mainContent) {
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            if (window.innerWidth > 768) {
+                mainContent.classList.remove('sidebar-expanded');
+            }
+        });
+    }
     
     // Tab navigation
     document.querySelectorAll('.nav-link').forEach(link => {
@@ -98,7 +103,7 @@ function setupEventListeners() {
             const tabId = link.getAttribute('data-tab');
             openTab(tabId);
             
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 768 && sidebar) {
                 sidebar.classList.remove('active');
             }
         });
@@ -116,20 +121,22 @@ function setupEventListeners() {
     const langButton = document.getElementById('current-lang');
     const langDropdown = document.getElementById('lang-dropdown');
     
-    langButton.addEventListener('click', (e) => {
-        e.stopPropagation();
-        langDropdown.classList.toggle('active');
-    });
-    
-    langDropdown.querySelectorAll('button').forEach(button => {
-        button.addEventListener('click', () => {
-            const lang = button.getAttribute('data-lang');
-            switchLang(lang);
-            langDropdown.classList.remove('active');
+    if (langButton && langDropdown) {
+        langButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langDropdown.classList.toggle('active');
         });
-    });
+        
+        langDropdown.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', () => {
+                const lang = button.getAttribute('data-lang');
+                switchLang(lang);
+                langDropdown.classList.remove('active');
+            });
+        });
+    }
     
-    // Search functionality
+    // Search functionality for buy list
     const searchInput = document.getElementById('searchInput');
     const clearSearch = document.getElementById('clear-search');
     
@@ -142,13 +149,32 @@ function setupEventListeners() {
         });
     }
     
-    if (clearSearch) {
+    if (clearSearch && searchInput) {
         clearSearch.addEventListener('click', () => {
-            if (searchInput) {
-                searchInput.value = '';
-                searchItems();
-                clearSearch.classList.remove('active');
+            searchInput.value = '';
+            searchItems();
+            clearSearch.classList.remove('active');
+        });
+    }
+    
+    // Search functionality for services
+    const servicesSearchInput = document.getElementById('servicesSearchInput');
+    const clearServicesSearch = document.getElementById('clear-services-search');
+    
+    if (servicesSearchInput) {
+        servicesSearchInput.addEventListener('input', () => {
+            searchServices();
+            if (clearServicesSearch) {
+                clearServicesSearch.classList.toggle('active', servicesSearchInput.value.length > 0);
             }
+        });
+    }
+    
+    if (clearServicesSearch && servicesSearchInput) {
+        clearServicesSearch.addEventListener('click', () => {
+            servicesSearchInput.value = '';
+            searchServices();
+            clearServicesSearch.classList.remove('active');
         });
     }
     
@@ -189,6 +215,22 @@ function setupEventListeners() {
     
     if (closeModal) {
         closeModal.addEventListener('click', hideModal);
+    }
+    
+    // Service modal close
+    const serviceModalBackdrop = document.getElementById('service-modal-backdrop');
+    const closeServiceModal = document.getElementById('close-service-modal');
+    
+    if (serviceModalBackdrop) {
+        serviceModalBackdrop.addEventListener('click', (e) => {
+            if (e.target === serviceModalBackdrop) {
+                hideServiceModal();
+            }
+        });
+    }
+    
+    if (closeServiceModal) {
+        closeServiceModal.addEventListener('click', hideServiceModal);
     }
     
     // Login functionality
@@ -241,6 +283,7 @@ function setupEventListeners() {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             hideModal();
+            hideServiceModal();
             if (langDropdown) langDropdown.classList.remove('active');
             
             if (window.innerWidth <= 768 && sidebar && sidebar.classList.contains('active')) {
@@ -346,6 +389,7 @@ function openTab(tabId) {
     if (tabId === 'rules') renderRules();
     if (tabId === 'pickup') renderFaq();
     if (tabId === 'buy-list') renderBuyLists(currentRegion);
+    if (tabId === 'services') renderServices();
     
     // Ensure Links accordion is always active
     const linksAccordionTitle = document.querySelector('#links .accordion-title');
@@ -358,6 +402,7 @@ function openTab(tabId) {
     // Hide modal and preview
     hideModal();
     hideHoverPreview();
+    hideServiceModal();
 }
 
 // Language Switching
@@ -378,6 +423,7 @@ function switchLang(lang) {
         'buy-list': { en: 'Buy List', ru: 'Скуп Лист', ua: 'Скуп Лист' },
         'rules': { en: 'Rules', ru: 'Правила', ua: 'Правила' },
         'pickup': { en: 'Info & Pickup', ru: 'Инфо и Пикап', ua: 'Інфо та Пікап' },
+        'services': { en: 'Services', ru: 'Услуги', ua: 'Послуги' },
         'links': { en: 'Links', ru: 'Ссылки', ua: 'Посилання' },
         'form': { en: 'Pickup form', ru: 'Форма на пикап', ua: 'Форма на пикап' },
         'login': { en: 'Login', ru: 'Логин', ua: 'Логін' }
@@ -395,6 +441,7 @@ function switchLang(lang) {
     renderRules();
     renderFaq();
     renderBuyLists(currentRegion);
+    renderServices();
 }
 
 // Region Switching
@@ -403,6 +450,7 @@ let buyListDataEU = null;
 let buyListDataUSA = null;
 let rulesData = null;
 let faqData = null;
+let servicesData = null;
 
 function switchRegion(region) {
     currentRegion = region;
@@ -522,6 +570,54 @@ function searchItems() {
     }
 }
 
+// Search Services
+function searchServices() {
+    const searchInput = document.getElementById('servicesSearchInput');
+    if (!searchInput) return;
+    
+    const input = searchInput.value.toLowerCase().trim();
+    const servicesContainer = document.getElementById('services-content');
+    if (!servicesContainer) return;
+    
+    const serviceCards = servicesContainer.querySelectorAll('.service-card');
+    let hasResults = false;
+    
+    serviceCards.forEach(card => {
+        const titleEl = card.querySelector('.service-title');
+        const descriptionEl = card.querySelector('.service-description');
+        const priceEl = card.querySelector('.service-price');
+        
+        const title = titleEl ? titleEl.textContent.toLowerCase() : '';
+        const description = descriptionEl ? descriptionEl.textContent.toLowerCase() : '';
+        const price = priceEl ? priceEl.textContent.toLowerCase() : '';
+        
+        const isVisible = title.includes(input) || 
+                          description.includes(input) || 
+                          price.includes(input);
+        
+        card.style.display = isVisible ? '' : 'none';
+        if (isVisible) {
+            hasResults = true;
+        }
+    });
+    
+    // Show a "no results" message if needed
+    const noResultsMsg = servicesContainer.querySelector('.no-results-message');
+    
+    if (!hasResults && input.length > 0) {
+        if (!noResultsMsg) {
+            const message = document.createElement('p');
+            message.className = 'no-results-message';
+            message.textContent = currentLang === 'en' ? 
+                'No services found matching your search.' : 
+                'Услуги не найдены по вашему запросу.';
+            servicesContainer.appendChild(message);
+        }
+    } else if (noResultsMsg) {
+        noResultsMsg.remove();
+    }
+}
+
 // Image Preview and Modal
 function showHoverPreview(src, alt, event) {
     if (!src) return;
@@ -582,6 +678,46 @@ function showModal(src, alt) {
 
 function hideModal() {
     const modalBackdrop = document.getElementById('modal-backdrop');
+    if (modalBackdrop) {
+        modalBackdrop.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Service Modal
+function showServiceModal(serviceId) {
+    if (!servicesData || !serviceId) return;
+    
+    const service = servicesData.find(s => s.id === serviceId);
+    if (!service) return;
+    
+    const modalBackdrop = document.getElementById('service-modal-backdrop');
+    const modalContent = document.getElementById('service-modal-content');
+    
+    if (!modalBackdrop || !modalContent) return;
+    
+    // Create modal content
+    modalContent.innerHTML = `
+        <img src="${service.imageUrl}" alt="${service.title}" class="service-modal-image">
+        <div class="service-modal-info">
+            <h2 class="service-modal-title">${service.title}</h2>
+            <div class="service-modal-description">${service.fullDescription || service.description}</div>
+            <div class="service-modal-price">
+                <i class="fas fa-tag"></i>
+                ${service.price}
+            </div>
+            <a href="https://t.me/bobercc" class="service-modal-cta">
+                ${currentLang === 'en' ? 'Order Now' : 'Заказать'}
+            </a>
+        </div>
+    `;
+    
+    modalBackdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideServiceModal() {
+    const modalBackdrop = document.getElementById('service-modal-backdrop');
     if (modalBackdrop) {
         modalBackdrop.classList.remove('active');
         document.body.style.overflow = '';
@@ -667,6 +803,36 @@ async function loadFaq() {
         }
         return false;
     }
+}
+
+async function loadServices() {
+    try {
+        const response = await fetch('services.json', { cache: 'no-store' });
+        if (!response.ok) {
+            // If file doesn't exist yet, use mock data
+            servicesData = getMockServices();
+            renderServices();
+            return true;
+        }
+        servicesData = await response.json();
+        renderServices();
+        return true;
+    } catch (error) {
+        console.error('Error loading services:', error);
+        // Use mock data if there's an error
+        servicesData = getMockServices();
+        renderServices();
+        return true;
+    }
+}
+
+// Mock data for services
+function getMockServices() {
+    return [
+        {
+
+        }
+    ];
 }
 
 // Content Rendering
@@ -889,6 +1055,52 @@ function renderFaq() {
         accordion.appendChild(content);
         container.appendChild(accordion);
     });
+}
+
+function renderServices() {
+    const container = document.getElementById('services-content');
+    if (!container) {
+        console.error('Services container not found');
+        return;
+    }
+    
+    if (!servicesData || !Array.isArray(servicesData) || servicesData.length === 0) {
+        container.innerHTML = '<p class="no-results-message">No services available at the moment.</p>';
+        return;
+    }
+    
+    container.innerHTML = '';
+    
+    servicesData.forEach(service => {
+        const serviceCard = document.createElement('div');
+        serviceCard.className = 'service-card';
+        serviceCard.setAttribute('data-id', service.id);
+        serviceCard.addEventListener('click', () => showServiceModal(service.id));
+        
+        // Add a "Popular" badge to some services
+        const hasBadge = service.id % 3 === 0; // Just for demo, add badge to every 3rd service
+        
+        serviceCard.innerHTML = `
+            <img src="${service.imageUrl}" alt="${service.title}" class="service-image">
+            <div class="service-content">
+                <h3 class="service-title">${service.title}</h3>
+                ${hasBadge ? '<span class="service-badge">Popular</span>' : ''}
+                <p class="service-description">${service.description}</p>
+                <div class="service-price">
+                    <i class="fas fa-tag"></i>
+                    ${service.price}
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(serviceCard);
+    });
+    
+    // Re-apply search filter if there's an active search
+    const searchInput = document.getElementById('servicesSearchInput');
+    if (searchInput && searchInput.value.trim().length > 0) {
+        searchServices();
+    }
 }
 
 // Utility Functions
