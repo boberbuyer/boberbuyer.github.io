@@ -10,8 +10,8 @@
   {
     "id": 2,
     "title": "Bank Registration ",
-    "description": "Помощь в регистрации БА",
-    "fullDescription": "Мы оказываем всестороннюю помощь в регистрации на популярных банковских и платежных сервисах, включая Wise, Revolut, RedotPay, Kast и другие.",
+    "description": "Продажа БА",
+    "fullDescription": "Мы оказываем помощь в регистрации популярных банковских и платежных сервисов, включая Wise, Revolut, RedotPay, Kast и другие.",
     "price": "$100-400",
     "imageUrl": "https://static.vecteezy.com/system/resources/previews/005/374/564/non_2x/illustration-graphic-cartoon-character-of-money-saving-of-bank-free-vector.jpg"
   },
@@ -22,5 +22,13 @@
     "fullDescription": "Our services include Bills, IDs, Passports, Driver Licenses and more. We also offer Amazon verification assistance. All designs are created with attention to detail and can be customized to meet your exact specifications.",
     "price": "$5-50",
     "imageUrl": "https://img.freepik.com/premium-vector/illustration-of-task_498740-25875.jpg?size=626&ext=jpg"
+  },
+  {
+    "id": 4,
+    "title": "Your Service",
+    "description": "You can buy AD here",
+    "fullDescription": "Dm @bobercc",
+    "price": "$5-50",
+    "imageUrl": "https://avatars.mds.yandex.net/i?id=c7ff81e9b63abf35ca2a0687e4acec920a718ffd-5234460-images-thumbs&n=13"
   }
 ]
