@@ -1,222 +1,233 @@
 [
   {
-    "category": "test How to calculate fee? / Как считываем процент?",
+    "category": "How to calculate fee? / Как считываем процент?",
     "items": [
       {
-        "name": "We take the minimum price from Amazon, Idealo and from there we calculate the fee",
+        "name": "We take the minimum price from Amazon, Bestbuy or Apple.com and from there we calculate the fee",
         "percentage": "",
-        "description": "",
+        "description": "If you have specific item, dm @bobercc",
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/DIN_4844-2_Warnung_vor_einer_Gefahrenstelle_D-W000.svg/2335px-DIN_4844-2_Warnung_vor_einer_Gefahrenstelle_D-W000.svg.png"
       }
     ]
   },
   {
-    "category": "Apple MacBooks",
+    "category": "Apple - MacBooks",
     "items": [
       {
         "name": "NEW MacBook Air M4 13/15 16GB/256GB",
         "percentage": 85,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/LzsxYgOwNMmmeZIobQj7qA/maDYrSlZ4ZN2dG9qKHzROqAIkuvmYzYrt1ZoHwz6-RnCNyJRv6q_JTtkJ_A0SQECPfezkjHTpRxNp4x-bSB9oJ_Er5LKM4HxlNK6eo-S0YE6I-gIo42QeIMtrpi9o4Yx91OYiG0rgd0Qrr2nOh0TEQ/jfH0BbN7lvdI7paSLHpLk5I1mPVvgATPROSB4NcTkLQ"
+        "imageUrl": ""
       },
       {
         "name": "NEW MacBook Air M4 13/15 16GB/512GB",
         "percentage": 85,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/S8Kcez1nA-BMXAFZIRTo9A/TujpyE2T1yWAMjV8tPPswwzv8G1F4hiNTuqruOCIZgBdtlsiqVxIV2ZlAC312ORTDPKpagc-0LcVmVF9yicKGPmO9LQkLQ2uvpvrhn1YkTHELNXJeDhHN8dT9KEm5_Jet2IxaYvhULbyUhd8BfFZQQ/7OfJeyRXPJrN2lQBB9zLC-x6U1moHZJmNFFvbV460A8"
+        "imageUrl": ""
       },
       {
         "name": "NEW MacBook Air M4 13/15 24GB/512GB",
         "percentage": 85,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/B7rrJQufSb0mgDD8_nLDiQ/Dt5gBvi2lnKKsfOnmWdS6PS7al4XO1kdUDbWYGoYXRHhTOKpBObbDg7of3JM3hEzmOcya8jEso3LvGcAnP5FpaaXa5eXKEFhP1EqnhH2fU8SdJmCMFXOrXa3sreJ8BzuViGdg5x8VgIvYuH9jkxGDQ/S4L-FrL4Vpma1_pGAGOIXT5Fz-UAcqW1KSdG57PjE70"
+        "imageUrl": ""
       },
       {
         "name": "MacBook Pro 14\" M4 (16GB/512 SSD, 24GB/512 SSD - M4, M4 Pro, M4 Max)",
         "percentage": 82,
         "description": "all other specifics -5%",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/F01-84KcbkbmrSUWxLxTeg/e7IyEw_wXwxlI9n0odoeUmdSe0LpbkzXbwStlQ2378W5OZsSiWrNc3uBSwa_cmCsNgww02EqqKadGVfKY58nr83toW_BfJ_dUCqtwpMOoTvhhYymm9eEBFRhDMw72BYWyo7aXfB6XAHzu7wH3bFUWg/xlmffN-qB19weYqfG9XPAQ9-5ozOtpMO9IGuuSpNXJw"
+        "imageUrl": ""
       },
       {
         "name": "MacBook Pro 16\" M4 (24GB/512 SSD - M4, M4 Pro, M4 Max)",
         "percentage": 82,
         "description": "ONLY 24/512 !!!",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/SPkKpOJHjWy0QyFl8NvHeA/efvs8K8hzq887N-dbeH5nG0thmVA3sWfMqpEvQaDv38Y3KbTg-C9_seeHrMHYVKs1rxPwseXbgl8dlbTl2QrnuBAoxStlkpt4pk7GEEKiw3xLpZd17IEUEQBMDhs2VLvm74LE89Dogdzfw-a038Jcw/1pJya8TGUxztaTZTV1EkwYbgqQlxbGTvNQqYKm5mczk"
+        "imageUrl": ""
       }
     ]
   },
   {
-    "category": "iPhone (Unlocked ONLY)",
+    "category": "Apple - iPhone (Unlocked ONLY)",
     "items": [
       {
         "name": "iPhone 16 Pro/Pro Max",
         "percentage": 75,
         "description": "(128/256 GB) (-5% for 512GB or 1 TB or Esim)",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/4gjYZvQVOcFx8MYb_KKqOw/ORs2lCtm5ItpPGu6gGcGqJ3f-GIdvO8_HuAgBTUVpybBBURVrtXLuVritW3Vk7q_XZN3G2fTVP1-Afrnv0aSUaeG3ub7DtnvEk7HVZI2hMmnWQYdRXGmceGwjZ7zginN9CfONlWpqo4fv_7AkW90Dhb8XYwdBT-wex0VN6OeYQxT33-hdTIEfzXv0595-deXdwTm6LJNSDRDti75jD_dHg/i5zwAzXah0bnSyqnmdeBCsD8G-ASyYuGq13iErL4pFE"
+        "imageUrl": ""
       },
       {
         "name": "iPhone 16",
         "percentage": 69,
         "description": "(128/256 GB) (-5% for 512GB or 1 TB or Esim)",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/yvnuaCyA1zEUJMtCryURpA/eY_QfQNJHiKV2TbPMSm6G5hsf7t5ii-CsRe9-3AsfPMeG1nCiozFyZlC8jZvL2FCcm4uNXKMJWEBlXqm4EXygGxIsG5o36_K7R-sAcYnEbQTzvD1tiPn7vaG79a5ChsjeO3H17by8gdkOQLtc714Q97AhDY7B6EShP9zdKindosFGSH653geBRGmhbe5yLub/Cl0OlrWTzyg5trYXgDTf6T5DiF9kxcOGt8qvdiUc1EA"
+        "imageUrl": ""
       },
       {
         "name": "iPhone 16 Plus",
         "percentage": 69,
         "description": "(128/256 GB EU) (-4% for 512GB or 1 TB or Esim)",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/dKWAtTm7I7bZMhQiDN39LA/K2O7SzMO4a2bXabGo10iWRcsyYjC8ZndZBcOns6kxaK0soMco4HJABm9acwPYrRMfirXaahgQjD7QoJt5nggNENP6WlaYuu-LdUW9q9sD1bK1WxaBPH5C67d7acCP6gDyUjCUYfO1OnqDaNZqm8d7QI63A88f-8EolxyVPrdMWlenjdD-PUYMS3HMCh7mG3C/12QztJHWCsiUr0lvDd1nCfN1PNCRTrNHMJCedMm24EU"
+        "imageUrl": ""
       },
       {
         "name": "iPhone 15",
         "percentage": 65,
         "description": "(128/256 GB EU) (-5% for 512GB or 1 TB)",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/BZzzjaoN0mbhiET7hdH6Fw/gFKvm4flmuzykzISU4z0P9WSxJgAEZGy0zOZGiBN5KJuyPpPSGo2ZFuM2pF6WtuuenMilaq5A5ZW0WYA8vh3FchQBUBkpI_WAtu2hxWUr82A6Dp0KKwvzUljgQRuKrzEZuM05OUGlBOmhPSQYYfbCTMBYiBvgGF53NFaTN2b-VA/vwK4GIstd90kUyWJEaCByu92u3CqRuR90uRk0S1S2EM"
+        "imageUrl": ""
       }
     ]
   },
   {
-    "category": "iPad",
+    "category": "Apple - iPad",
     "items": [
       {
         "name": "iPad Air 11\" M3/ 13\"M3",
         "percentage": 80,
         "description": "(-5% 512gb/1tb)",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/1hDT0i2IjyOgkZ-FauQFKg/I0WWf8WRatHLcz7bdjKMoK2ywI2Vllj6MjwIeF35pdcIUyukJySTRfKKrruVnfADPxJbkb4c4uU43f4IY7XAmQ0WdbmTBG1t00RwEwgQg8axUy0X0U6ORj6i9UfCaHtW0_pUxoxSMs0cyH3YbD6wkMh2qZOtE8OqUCw_RGpboNP92T-kVzppC7h9SYFkdEed35Wv6Bj-KQsOKymFqaHnBg/JpSzB9AauwfOGScGqbQnQ_BoPFcTSmQ3bLS43AE0EaU"
+        "imageUrl": ""
       },
       {
         "name": "iPad Air 11\" M2/ 13\"M2",
         "percentage": 70,
         "description": "(-5% 512gb/1tb)",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/254OolAeJRiTklU_qJkGlA/aGsCNZeU2Nxu6gUU8ztByeYbheyLbhsEceWZPC8b0mfkZm-pP2SCYzohiXkVL_He5avJAD5nJHKhhF07qD1ql0aSVcuh-iFFPA2dlFh8D5-baeCGodGhcjv7RmX3t1mzjoX-3sDTyAqJNThEONNrCnBJd6Q5dowA8gu1ibH2SOs/5fbMSGqaa8JUZocNLP2UP7y7ja1gLN4OIjKZgFtILik"
+        "imageUrl": ""
       },
       {
         "name": "iPad Pro 11\" M4/ 13\"M4",
         "percentage": 80,
-        "description": "(-5% 1tb/2tb)",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/aNJlWi5uv7nsM_ZEj1kohw/T3Cnj6q7Bnp-I9ist82c-U7kvQqdk0iRw_nZwEGnBg6Nf5eg8Nu1Yll2yT_5TdyDK0kY_gdu7ib6gem1QzArdiRlFI9P9HCSbIAEOr10Q6ZLTezDFQMVZpi5H6FvPmfepvV1jUC3rqJpg2LffiVdeIGrB4Tg0kU1MStB_sk2ZHA/nI9b19ZYHrLck2T_lcGrvfu5H09IMh8EEQPygAekDMs"
+        "description": "(-5% 512gb/1tb/2tb)",
+        "imageUrl": ""
       },
       {
         "name": "iPad Pro 12.9\" M2 6th",
         "percentage": 65,
         "description": "(-5% 512gb)",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/mWtwS0GzO7g_q-siHRINow/9I8QWCwGZHs0jNenx_bHwNjLlOOYQpaIrLwm1n10frmNvIVk1ozMvPkx-un1kp9NONCblHItBzFGLXGwSCKb8rIaI1sk0YzHjB_aeLu6DChDmDmIWywWzA4162PYXHWdv4AC4w9YuPqzBosb59KXfw/B2BXNJnhc_5OubMflQMN7yhuHpHWbFKq8KPzjBWK59Q"
+        "imageUrl": ""
       },
       {
         "name": "iPad Pro 11\" M2 4th",
         "percentage": 60,
         "description": "(-5% 512gb)",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/PhZPBVoGsL2gte6c5O5-fg/TLoXhvpGtWfHOwiPYNL8JLA2OF1R6Ff45okFojSQ0CQniUV_pv57Oo5mLVKpPpBYOakuv6sF6u8v8PuZVACh8t0bJUlTYraz3N5xPGAM4iUzWX7dUTqNxEOWinSSx7PhGxbiVg_N7o1vjC0AgdVmtw/vkznfz31yX04m19YOtQO4uyAzYFHgj6F4GbCS9HajG8"
+        "imageUrl": ""
       },
       {
         "name": "iPad Air 10.9\" M1 5th",
         "percentage": 60,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/PaEB5PvO3c6xIAIqP6__lw/QHjrmfzXBnerDsQDKYhNzQQr9qr4LlNsFBmGS7yYo4dglbTjykErdbpydn-SZxsG9IHac2HERb9re-gSMoT7ag1Yy0Yiucg_Q0YUrimFM9eOAg_Bhgq74tt-TqKmj3rGoh-Tp4RtWTKBXW5iIVrOOQ/ePCjoH9_TRBfUH4GSCBeiW-j90nzDp4JVi1TFZkwAmU"
+        "imageUrl": ""
       },
       {
         "name": "Apple iPad 11\"",
         "percentage": 75,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/mkhgxfS9EAfIxeRzWv1Y8A/XySRGKvq03Dwpi93D_1PH12mzFehp5UUXe4nPRnZe0YlWKJDuBBf731lKOlBWARV41j3vQGS4W9LTMEAdJtTytsFphFBiCitMQQ8KM-EpnFds5SnqC7ojx9uf-pnrOROwZbNz3BLnFb1tQ2XijQ1zQ/DdObAzZ8hw6tkLu2UuKdkeSeKe3Q09yQqvb_GAHIp8o"
+        "imageUrl": ""
       },
       {
         "name": "iPad Mini 8.3\" 6th",
         "percentage": 55,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/2XlZ5DGeMB39lX1NP77i2g/1Vtb3tWdTYKgR-3Z-r6rSTF_m2Uwy2eulJ41JTDo4fOkMovDdLiFHAKmCsQKw9JsoQwnQ0HTbP7p7XCYMiMIFPoww1P598fFaLIr6CHiJHbYIsbTi2xYk2G7WXFFwnfvykEtiG_ucH8R0oN_liFktw/fHgzciiijtZPYPtUTNTIGte0Opf3FQIyWyYP2456BCI"
+        "imageUrl": ""
       }
     ]
   },
   {
-    "category": "Apple Watch",
+    "category": "Apple - Apple Watch",
     "items": [
       {
         "name": "Apple Watch Ultra 2",
         "percentage": 80,
         "description": "(Only M/L и One Size)",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/6BOnAak_wBH4hemRXFgX3w/6wDbVyH1_9EtUlnkKCMfTcgXQKA67VK_qUOQqKP4p7a8info8ghEaiqnmqTh1911CV-KK5WUwWPluOdB9E8rhcMCB1sVu2DhZWhWpOnbYNtyRETdhqiHwGXsYx1Z7f0v_UyTYpFuAeDUv2QYibakXQ/iCW26CV2fNMRkmDZNS76jn9dJIa_b_oIhlalb6YAzH8"
+        "imageUrl": ""
       },
       {
         "name": "Apple Watch Ultra",
         "percentage": 68,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/u59DsNFeMfDXDq0nW7BY3w/PCFhWUi_uiUE9qIdTqvpuM5R-_o4RcZVG7KEGdGIsWSWIWfvir5Og_82ZDNbLt4rSyG-MlkvqfeK-Uvd_d60Rd050sWlR2MI8oBKILfGZZnabFwS6p9I7DgadV52NAWClSqUmOqK44ZuP_omI9OrUw/Nv9OfudvMVL9D2baKBdUKYThWaVcxepEjoEzd-SaZqI"
+        "imageUrl": ""
       },
       {
         "name": "Apple Watch Series 10",
-        "percentage": 75,
+        "percentage": 85,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/MnkM3FAdbVJ7p156R03XTw/cUCs0R-d635CeilinLODer_cpxTNGtYKg_-Nc-14iBdAunT4bRhnOL98ZRCKZwszA7tE4_U3zNe6SRN205rnwhe_YMxT5rubuY6euaTm1Xw0mI1lnS7JGrPrnsSveO2Y9mzhQCM6zowFyLG60D5CfGPiaJSwFd2IcB6dapFc0BIc1KNRhwlSZoe--rGyWaQhBpRrxw3Fg2WeHwUK8vSRhFgoXiQWNtRCxLO84NrYNWmRjLot43WobAMMUkhFLcqHKolKQbZ8ITqVkCR8Hzr4OYocsX49xyAOm414NqOTzEY/qEbEAzSnwYeeB_I8-_1cp_CkTkBHK7zZle89Cl3RQWw"
+        "imageUrl": ""
       },
       {
         "name": "Apple Watch Series 9",
         "percentage": 60,
         "description": "(-6% for Red/Pink/Starlight)",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/_yzx7DMp9aXQ3X4XN-ytZw/K3Sa3ausqGrrKKegJJCvI7y8C_v5upx8a3SNt2U2eofCeKH_jayzsnET8QB_eUlLoY4zKFyvrV4T8U9hDPyA3zl_X7ACDMltLuBGVfrJS0NoEJWT10DWDeIaPTnDGbBzJPjlPujCbHn-wBL0Y_PRgw/6phltH8F267mu-fQKAjvS2PyUh_eADJJWF9f7nP-zoI"
+        "imageUrl": ""
       }
     ]
   },
   {
-    "category": "AirPods",
+    "category": "Apple - AirPods",
     "items": [
       {
         "name": "Apple AirPods Max USB-C (2024)",
         "percentage": 70,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/SBbdsnPktI_M2ITZFoXuWA/3qDzUGoLRUNKnwAVWgZGn9OtahbKxV9G61oibiVxNlHdIA1IBV8sL18k9aK-BxbyzKVua3LoPUDMKLdmAbfuOkMsA1YIHLINQwYbjk4bQ8BTrXOMeN2Hd4SnFC1cP3GvbAvEPtqA_Hkjlnb4nsEp5c9K1hoaizFPOkzq96ociEplObpF7qW1j7kchT_dCDkA/nyOjUuKQWz2QqY02mFI9DZY8U6MIhSwInJfYjrG1r1o"
+        "imageUrl": ""
       },
       {
         "name": "AirPods Max",
         "percentage": 60,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/tFPji8-Ma7x2Eb4lCNORUg/7jpF0XNj22mG4C3QT_C323pQAZsEaqs-jtq2vkwOlG2GLA1KFpcKTcWx258xodrI3HZrZ-pdRobZVF07NpK-vuUk86Osd-D0wGHmWqoLdHQuq3LM5cVCZx6s8g6RJXf5pNhs_qL2VKueOR0jtiJNYA/aeEkPq4RCQeArJyVeLgdVsM2R682-iYcbIjP0xMICxA"
+        "imageUrl": ""
       },
       {
         "name": "Airpods 4",
         "percentage": 65,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/lsZUW6wr5SfvkoJPd7nKxw/jzpiCbet287jYNFtjTRIwmCAoarcYYduYBs96n__VebMrt_U6ofHBduyBwJ3Eb5ZmuByf2RXt-Rn_LkZN9lZark5XnKRiJK5YToU4xTE4rW6n1cfa581ekmH9qPRkrfZbiIXHzTShqAzS6rBhfAdp8MKjHkloOaVvD_foirfpa8/b8PbOCi9myU0Tg9Yolx2sOpekvfJjC1yhhrqELiDCmc"
+        "imageUrl": ""
       },
       {
         "name": "Airpods 4 ANC",
         "percentage": 67,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/8YjeUI_ff7hlIlETgDBw1w/9i63OgCOTw1GW7O-lE7EKD9YzrbeYQ05BJRtcdlHbS2w1-E73PBLhIU76G_h00UjGoG-SB0vA2rqpCwLeYYKbmot8PKi_218ihtiPsxUVs4EmDc4cxj6_cLFkt4lPJkmZnZMC-opeClKrIfZX4VlQmQI61OE6cysZd3v6m6X3Xw/bmql3Ic-3y2gaOHVxd8m7FbeAfjPnL1Isc4CJ_PzR5Q"
+        "imageUrl": ""
       },
       {
         "name": "AirPods Pro 2",
         "percentage": 67,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/oDf-mCP9URYFQ58Kosoguw/grYfvVQN3BGUXddSbOBmTyCtTDStZ1dr81uFl8Ym8MYPMGvnihU-_Nmx4blWqp1EoYmlIJwpuglHii6jRRB4joMPaMo6GGzm0i4uzprPiw7cuQs_1GVuA0peWlwtXm4UhlhKotXJXzzLvf84z4XTTQ/2iSWnzB1dwJlwx_WeGk31lzvxkazfxS-nhLt7m8nWR8"
+        "imageUrl": ""
       },
       {
         "name": "AirPods Pro",
         "percentage": 62,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/UlRS8xSEB_xvTLewpl-Rag/Hk78OkIpdur3C15H8DWAK8wEbUstk9lf8iZhonVIXiUI2Oi6S4g62guUbtPHz8-B79rmi-H_qzQgR_81ZT4_YQvS1aZf7tkiMQd0shNsgvTeyQ6m3QPZudevrTY7mtYuHu6q3lq5HWhx140h-cRLuw/cwZqaNIhOj7DRCYJscC5IpyzDKwhXSRvc8qYEAC8DUw"
+        "imageUrl": ""
       },
       {
         "name": "AirPods 3",
         "percentage": 60,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/jpMMmvrDGA6u0cVNX6ucHA/2cVKYK3grInaXU3cBFKAo2tlCpxqmO2QXMetnAEw3h_7fQPFCiH1Q0dofhFp8ZSZNq7rcHCxP0EvKhsrt5dWpJsioS1-znGfHfhKWyNI5OdcUPF7eC4gOPXizHBA67y7gKNtilo4pJG_8IywmkJAlA/WUm4GxsK1aIPXzAKOEG8SSSgHqFmr3Z59Ic_bbGV0b8"
+        "imageUrl": ""
       }
     ]
   },
   {
-    "category": "Apple Pencil",
+    "category": "Apple - Apple Pencil",
     "items": [
       {
         "name": "Apple Pencil (MU8F2)",
         "percentage": 35,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/zT15AoKLoGmIHjU7mhmlSg/TBv29wXcECuDI7HHesYmDDMSFdLFxwXBUm7ar2HI_K1dVTXcnFSU315Lt5UX6XGe2rR6E-gARGCQ7q3gL1-ptAZZV29xEeDKEZ7di2lG1Ij0XbJ02jgLgEcfRV-l1WfR63XZ78JhVj5j-o9S_GFP6g/7J9LZ8p6BPcTDMx3ZExqjeUk5-xRleFxzukaczwGdk4"
+        "imageUrl": ""
       },
       {
         "name": "Apple Pencil Pro (MX2D3)",
         "percentage": 40,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/Ifh7wLdHVlMotUOIE3YIiQ/Ve6f0DflqalLIyLtSDxQ1YuAGOkdqk6v6L6ag7eXU2zl5B4G50CsKJe3cPWYeym-q9TKl6-3op3i1y9RDBMDPPSFePBhW6UodnNPd50DNRIVSoIcx5jKiushgRHgJ2pqK627Ju99QK33NS_xoEEE6TBPeO_hOPjRq6AlZs8op0k/OKAGT-yJsSPpCNz4GD6IkPpkZwhud17rTAJQ9AcZwms"
+        "imageUrl": ""
+      }
+    ]
+  },
+  {
+    "category": "Apple - Mac mini",
+    "items": [
+      {
+        "name": "Apple 2024 Mac mini M4 10 10 24GB/512GB",
+        "percentage": 85,
+        "description": "",
+        "imageUrl": ""
       }
     ]
   },
@@ -227,31 +238,37 @@
         "name": "DJI Osmo Pocket 3",
         "percentage": 67,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/RGn69sZg2HwIi1XVdaEP4w/jJVWfe6xgPOn5FxHyyhR_gTN4MKiHExT_p1q6F7sICXWnl5xVvf1A43tUoWUjF2tSytnFewiI_fwtnG0Zy4UIE3w4RRasn16Sk2doMxyJgg9plZBC6h--X1vhd3nM7YhNXRAcoaOHjatqpTDzX0zvuyUOzpyKZsOcpxOWI4XV1E/f8Ei3iwbkV6yZbG22JxGnJBb3nny-6ZG8BEHXa3PT60"
+        "imageUrl": ""
       },
       {
         "name": "DJI Osmo Mobile 7",
         "percentage": 60,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/x90mDhC6pjVwyoG08pNekA/bZmbeZ4g513VM3SfxDkltbTJCVRR-1-z8eUPIbEAeNIxXrXOPK5g5NOCAsj8d3KviyEnket_JxQsbDG5oA2dBBET77vuP5WhHJ03vJUwTtZFfyMEFF-piicMMC7T7uhgBWT-bfTeLIaJ9G7CvJTHpclEEuKf2p8uVq7q48Ycqw7WwXZPjTIspOZRZNQKsWTL/UlhAPc-_L6Tl8jTdXQ1p-YzeTD8PNigLX7xskBQMLVs"
+        "imageUrl": ""
       },
       {
         "name": "DJI Osmo Mobile 7",
         "percentage": 63,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/yHCt9e1wnyVAt9J2LC5Kxg/gF6RtEEat6iePnUNqn9Cu2ul3ReEIJeXXyn06oxCVFVoZag3Kz2qFX-d7JU_eFKUwB4AohmVrOXfZHbKDpBglWvOin2mGIaD6ebEq8DZwYAc1N5I7Ud2o8ZfvNryamYnz3ScKa4q9jdVSzGepYhHIlprdDmGvDjWhmWzVrwgqhTChFxwOGNnqyaXAIS8m5P8/zbJF-lxQIKy0FodpCt37f1aVoYCL7NS1UKRbhWH0dac"
+        "imageUrl": ""
       },
       {
         "name": "DJI Mic Mini (2 TX + 1 RX)",
         "percentage": 60,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/dUrmgZr9AXdpYhKa6CZ9Uw/UEmAlDlKwDhA1h2UHYc2Tq3Z9MLuN_QCprRBnnMOpOfJL0_SuxCmsXPQgoljWhcVwiwUn1KujGwV1Ppj5hA6TdzsbkV4oKht4M1XNAx5NkNO55fcBumkVNU-9536Ee0loL8YPguAK1pnUjvEYesek94hu-mnBIcpyDgRwZXvR99Z957LhRwDHPtxoU4v1vYG/TuTGMkDiSTKUeotBXZUJ0uW_WkztJ6afs0Z1xTyP43k"
+        "imageUrl": ""
       },
       {
         "name": "DJI Mic 2 (2 TX + 1 RX + Charging Case)",
         "percentage": 65,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/gCB_f8lQPJ41OviuIPaL3g/LBEZ-BuD-d8eDb3dHzlPqWTsI4p3jFPI0EL6DY-bOJYNt1pmNmt_h6Sf6z2uCjHzBId9wV54jUEAx1wDtLWJ2vSh6yUV0_jBdlLCPPpl9ZXZsgLHBFpruCM9MFZixvypgICdiiF9u9rcce3-8liRQRyxIfVIYgidxHLJGqRC16B8RuIRHNeWB4QKQubH6pvN/YcR7gaR1POrh5DbmlkN9CeDpGIN77I-sR1Qhe2nRK6I"
+        "imageUrl": ""
+      },
+      {
+        "name": "DJI Mavic 4 Pro",
+        "percentage": 75,
+        "description": "",
+        "imageUrl": ""
       }
     ]
   },
@@ -262,54 +279,54 @@
         "name": "Garmin fēnix 8 – 51 mm AMOLED, Sapphire",
         "percentage": 67,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/PevbSYxiwUlHLKmHfiZPiQ/DQzJPXP1rbbYb8vrZxcpAo3HlcqN_LNODIyED2pl2Ew2wjfNi2OagT6OC7lC97T-uWEBnsn1ieboXeU10Q0Xp0qUQ2bw67pPZbJNquho8FxlHBzYOXtTv7Rpq0kv4rz3YMbpXVHq75UO3xj4OVz-LBOF5nX5nl0NaUMWQWkGA57rXmTZ__XZl0bu71wa2ktI/d6YA8udmIGQDkIdXHBtAvypOwzWLHW4i64v8jehbbKE"
+        "imageUrl": ""
       },
       {
         "name": "Garmin fēnix 8 – 47 mm AMOLED, Sapphire",
         "percentage": 60,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/T5j4ThPayPflyT-OUYFD-Q/vACHDHGTyjlfJSBqcflpdSG12kPEicQD8u8jtGqbqTKT7zvrJRiObN2sqHY0dqDmVFKy5ubAoZk7dy-OBzzVWYsqYXzE_et2_XlVd802tAzPYiCy3eYZ2gO5xzDo6rvtYrmCWz3yZlBwCZtj68M8A0hOSxq5SH3VPfswHysSP4LLZC1dYKBRy_Pokfsjy0Mx/uueKmzdNwdIuYZUHxJc-OAFdeHr2ACCm6KsXPCep6n0"
+        "imageUrl": ""
       },
       {
         "name": "Garmin fēnix 7 Pro Sapphire Solar",
         "percentage": 60,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/Run8pfgHY_kWQHtTX04dWw/Ozzr9Lwq4icvOED7DYYWYhChBbEnAgJGeed3I5KN-dmmsShoPhCNiPESKAfn2c6gfy7SQnsdBTDzP5DedQRRl_kRAjQegsuxwX2f_wfs7woHbTut8wmXuw1WTd0jFc9ZF_N1U6evd9RT5FvJblESNw71lod07IRR0iiW933Dom2Pn2j6Js4tVmZ7C2P0Qdhm/Okgc7hjRvOUvDaOdJ1c4mSVEVHOpu_cmndOy1bTl7UQ"
+        "imageUrl": ""
       },
       {
-        "name": "Garmin Instinct 2 Solar",
-        "percentage": 65,
+        "name": "Garmin Instinct 2X Solar",
+        "percentage": 75,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/SyiFGPvBMN1xV8h9e-7JyQ/2jzTcINXLND0fvCprD_XxHfXbr_P2BZBal1PZ56Pyu_H7CyPSnKuLN2zO4yn4SNhhQrcyMm8osAKRoVB4hocpmQuxnAVcNtBH1Xo99vfsE9V0B5ItC6yLOqN0fN90R00WBUuwBG-a0K9sJCZlPl-1liE-fSFcfXHRTbl3OefW6XATpxcVY1DyccY2k-qzsq1/QLQ5uAgHhS--6LzeHNzMejKmIaCth0lDN6qStuwUXI0"
+        "imageUrl": ""
       }
     ]
   },
   {
-    "category": "Gaming Stuff",
+    "category": "Consoles",
     "items": [
       {
         "name": "Meta 3/3S 128/256/512 GB",
         "percentage": 70,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/d68wLzIQX2rG9KuLhQJl7g/b7fZoEj-lMThax7bkJqLwwFwSM8dnqsMpz_4-7zuPditXUky1rEqWjB177Qd7h01KgafJAqIJF2WdEYzZSIdpcXU-EEzTqjaqsVkHwc7r4sF9XQd7EjnRxtjHxbGEExEs5HrYl96tCPxnZenhrBEZiNJi7OUbzqnHfnXlbQRoOCQ8M1biCg9HV2OFka86n_q8dtbxplSEqvSyyu_nY-IjA/NVkSxWB73tkvee9HKutAg8ITFvAZLyVpOUDqeQ64HtY"
+        "imageUrl": ""
       },
       {
         "name": "Steam Deck OLED 512GB/1TB",
         "percentage": 67,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/o2CC3sMkJYVIz9VRiPCbZg/YM82DFiwNy-woIZ-m71dGxg6ZgLIQXfDhsOAlNvF0DQibNcgt_MtV05sVIq6GnztI-quqRtAqBtVm21MksRQdkjIYinWVukYMhD52Hsr4ffLUffUHX94Qfh6ucS3jmFHlW4GwV-Rz4PpwOa-qpv2MB3_2kchozLTqQo2NhS5FqWvSPi6kaggnWhlR7BNoSTODnCH864Yd55YPuAIb-GomA/x0tSOoEIRMeBfebTh86o_L8Iu-IE4wZK57yP-M67d4I"
+        "imageUrl": ""
       },
       {
         "name": "Playstation 5 VR 2",
         "percentage": 70,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/EVDwKEGf1T99URUD2js52g/K-ZEUZRRW6a9nwfYzYDfV_E2VIv6HlPFAKrOmAQNEujq1wYzfdwRYGu-07YkT75gzKXjyJCK3_XJdNxcUcwxC2LCz58NG-kIjGDfyKmjsc2tO7WktdehyXB7SKm0Of3lD9V49GfTVQrsdMRXnfEGQJkA2me3DGNyPw2X-vFRLuihrB-Eft8uFbwqHXmgU2GvjrvR0meJrHrkaltyZnAMlw/0BQ74a6jHzj5Jq-WeUwqs8cTrRzc-5yi4o8WMR_-ltw"
+        "imageUrl": ""
       },
       {
         "name": "Xbox S 512GB/1TB",
         "percentage": 60,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/u9u9TjK5qxPj0KfbHYuCag/FWoMdES0IuHHmp7d2Km4AvCcH_6E5Xm0FS1DtDOve8bwna2GuABMrGL3GtWyK6bq9ZaZ258r2GBHnmz2VLx51YtSE_MSa4NMkQC7tOSOAyGfdj_CTntaX-7IJ8DUHE8Cz_UZHXtNjQ2Gbkj6iwfuhT4IDF7tNbsvcuPHvkovBIFQTifZfcXP30i_26Ub8lBypTcGlpDpVo65q_BZj5U8jw/GiQv84bhUxEnfOpjXRwlUzTeQ9oF47-tMR8E1WNPeRs"
+        "imageUrl": ""
       }
     ]
   },
@@ -320,95 +337,89 @@
         "name": "AMD Ryzen 7 9800X3D",
         "percentage": 70,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/5tOTdQy_984FUeLBhcaTWg/fQ87h0TTnNKpi-O-g80AmZrAtiYABnYtO62NY0MZHfcG0fVLEgR6oC8EWnpv1ThvYS8X-COGHHN1HS7Ng7_VIhsfOCMUI4L4ZLPsWJ-dkB79qbhyioSQL90VMUnkXAJ6gknIbYbZIOpzdS0rlMUThCpA6R1qImla5iJM4XbtWn3avP6dGlnfhvB8qWVUfI_s/mga0Ts3cJ3I5EMY2GIwhuZ6oXmIVqBsQI6Cuv66IPXg"
+        "imageUrl": ""
       },
       {
         "name": "AMD Ryzen 7 7800X3D",
         "percentage": 70,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/d2BIjYPsvxK5w4zz_au8Qg/O8qf37h63yERiOecgQq5P2As7a6BbSoVG3OaaQlkUG5-dXhutEcCtI8NiTdQmLX-gjji7v4oGtaLpokDkggUItB1V-bZx0dFSP3_zt0tKLluTbheOiDMu2sShNqdsYifTRjqimX7mWIuY9Xu6ywUhUGkOzF5c0j9tUj2rHx4PjE9Q9waL3PB9eNBeVbtX7d8/DvTMoTWLB3sWrDn6yQCS_PBaV4VZYnmUXcppqgrM-LI"
+        "imageUrl": ""
       },
       {
         "name": "AMD Ryzen 9 9950X3D",
         "percentage": 72,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/5-nHEzfTUE422mc219OR9A/58OJOjkQS5Cts_4VKqInaetCtgZKXHfabx2KVmyrJIyhz813eepj0RiLRNQTQ2mMk7be6L8o6x8AnVPLg7ERXy9anb4DpGnhKg_p6PQ1h4RZRU_VR_FIcEOZFMLDU7hdAe1HL1j3N5zTEnZ9X9qUug/7VQrgu3kao6RfQfmBcmfGOcsosEqBLSia26P1Y2wDio"
-      },
-      {
-        "name": "AMD Ryzen 7 9800X3D",
-        "percentage": 70,
-        "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/UAtzOkEb0iTkhDBz-sw8ZA/z-J828tHiDmtKsnfsC1rQ7g8HFrztaG04nmxcETgpoCAnI-zM6eBiCM5tJ1sBzQC70yzSeu0s0ksXH4uPQiIDr7cEpyuYhBYH3EDjfMhuVXXDZzG4gfU0-s7vqt0lzAWyuUZJeETDim-ZZeevVG-20jaiczjtmUJC2WlZG6lD6d0jPKE-1K_I_d94XZgbdsG/zkbBHVe5qXcRziYHjZXzX_C_blKGdPpg_KybOGc8ZRY"
+        "imageUrl": ""
       },
       {
         "name": "ASUS GeForce RTX 5070 TUF Gaming OC",
         "percentage": 71,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/DUlVUxBQU8h0qCInttFDCg/DgEZip8yRH4pW7olKOAasvty-clvqIZSEDqWIZsLUi_KPe8T2lNdPH1fYOgNr4k5fZhd7FyUTx1nPAMY6nF9rF8pEJxgbVy0T33lIshkTUpMrW8uCVqibmH_28BwkiOs9A-zJ8rtSziSuZn_-w-_cbq7ZC6WYZqcktMNZiMUdzUI2zYUkk-M0AY3PoPOJQpb/RIV6zVJT0jFl7m5v5UG4PCv4y0AqE2wX89QM6m6Q8SU"
+        "imageUrl": ""
       },
       {
         "name": "ASUS GeForce RTX 5080 TUF Gaming OC",
         "percentage": 70,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/kjsoflh4gnmY7tndh0HXqg/d4-yTZbA4RzigmMQNCG0lr9mHUokVr1rWub8RBXeOqybQQCWOl9PpalK7aFSDr1Co8baQtC3g19Qt7TCZWkgik2F-L9FJ3q5TH8zycAdiWv8XyerORRN1iPt5ACVBqkooi8G_rbIovQo6t3KTVlZZJ3mPzxA6ndtP9kX0wf0lu87NRluvbWFfVDxVpormbPw/zau0e2m3efW2ABkCa_htgPOt3cBI3tsKiFXkqx_YrgQ"
+        "imageUrl": ""
       }
     ]
   },
   {
-    "category": "Gaming Laptops",
+    "category": "Laptop",
     "items": [
       {
         "name": "ASUS TUF Gaming",
         "percentage": 50,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/v9DDtu2qD7QFxIS-KTFNig/prBzan0T-83ippkZ4fi7VY0csA8bcjMBKVBeIuTPyWNWswVGS3aPWyWettnJawj4ySB3eEintfdfwB0A8wPUNSra-lo7SMW8uDK0rIIa87MUN2VZ39u8kLJx1M05S5jItf5Eb9yADQhsvjKrlEf9LjwJDjdnPysassXPdqruFV8-QmkQ_ayL3JYj8daDyJdq/WWKDsQ3hVMz98mDduWHmUQzQR0He6rR1lVIV2pzApBg"
+        "imageUrl": ""
       },
       {
         "name": "HP Victus",
         "percentage": 55,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/PwgOb6xCvwco7Aq0gpvDEg/LlkR-BQwbpCF746HN28lm940X1RP1-mgdnsQMdjIdd4DfxPjvUamAJjYiPtRSpeGc91P_kfcl8N4nwTzByUWpyzEVlakGBHUMvESCFWwX1pTDeTavlokOAVykKyk7Dbmh3cpGvZ5Kpwr5SGaSz7XROM3HtO2hDVzJXX0-jBGGqFgdiMDZaPH3alt6w8lRrLuojgVZfyAQo9lZP1HJW4Yvy_UXaBBTvuswQcAuXy7uusQUkC_vDZtZ20uQLRPCtc7/NBDlT7BnQSxatqwbz8rETRhOKONDaQv5MYUHb1maj1c"
+        "imageUrl": ""
       },
       {
         "name": "Lenovo Legion 5",
         "percentage": 60,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/A27Yf843F-unXSUHTzEp4w/bOKlyhrOGYvZ-7-Fi4nkMuB_CJfYGZgh39FjPZkVXi0H6ndZ3iQ8yWYKtqzGtkz2JTme63zBpb3wbuje9hwY20UkFoOl0tRKjUcFdUhMmlbudDE4SYtfOptqqOXYhug0Kdw_MKTTBy5pSCIjpgKc9bjdT5JhmIIZa_PzuK9Z9YKOQjuEpdayBmUfw9vY7QeE6QQg_IzaeUa2lMFykDiybg/6d7twhJ9YKiVl1-h8roKCLW77BRwKEMNC0qDu4chth8"
+        "imageUrl": ""
       },
       {
         "name": "MSI Cyborg 15",
         "percentage": 55,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/MPmXEunsIEQKuO2VU7AlKw/hDeMMCyPOG5USJFY5H_Km8Q26nzhQJdjfisWYc0jReg6MKd0akuq4dpc7HzdL9unbPxm_VMnhEFHHyI9Xc-2Mt88YhcR81nINqOT4L5J-xpj0wDClKu_f3CIlQQ1v35GDErpVV3zfsAjMM25IonoTsCI1MPm8QcGsEQK41FUPAZUMg3a-0OmfVvfKVOZa29S/71UZgB93K0U6aFrs9a2AQzHqCgMsWkczFcpJEXbLAr0"
+        "imageUrl": ""
       },
       {
         "name": "GIGABYTE G6X 9MG 2024",
         "percentage": 60,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/J9qRJrbLwNneAeIjUv5zIQ/A3UG0GD1YKHfX9tbTqpAhSZT3bdLaUXa6m7OC2kAinrdbkk_7vFyuarvXuWbcl8DV7FHGTe8hdEfnbCp3TfnwIAV7lsK-UFzLVA48tXPbFiA1Yt0fw_LD-YqpCUMPlmwkYQYUL5EH0Hj1xDyX1Y8z0UKfahJ9cKCECaLUbqyw1i2_e8yfGcNpl7b8l9cwahLOoIeiK_YoXHPX3dD8UfHOQ/aQH8-D0suHSiEPfj3k21tbJIQZJwZV9YZCoggnm0W90"
+        "imageUrl": ""
       }
     ]
   },
   {
-    "category": "Google Pixel",
+    "category": "Google phones",
     "items": [
       {
         "name": "Pixel 9 Pro",
         "percentage": 68,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/Qe-PddCU1sKV05TcanjD2g/fTj_85PVD6eYR0cQbc3VA87lZ7XxtcXJiWq7wePhHDtPmRsTG7gP5StQyhl4znGNdDkXFRoFJuD8G_JDzlEPYEpvCqrPYSB8bBSZ5iHBx7m7LmsUd0TVf65hhCuq051c7GtM7YgLjp6G-_KRiWrCVgj21Qj1Q_RjE8_KUm3ny1aXT1x42jRnxlozH9v-wiXa/tBJpLc9KbQKEkq6AsvR3eiDVoIUsZPWsTPneUlDpqZo"
+        "imageUrl": ""
       },
       {
         "name": "Pixel 9 Pro XL",
         "percentage": 62,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/Nj7WpwVHRECkvsMrWZgT-w/CVKUxyPdCoNmU-_4BAblApiG4lD8vm1CLQCvJEqjF39ZYaBxpEFldaiwhU6hZS85h9HsEiEUxR36jTa_rNGkmlQT1BDwPfgAka3zYx2NwRfpvtEqBM_duFJBVKi0btbizBicwNTKBoH_6rFDB7h5oEYE6VxaJwEF7ENiuDk32X_kUEgKdjq7cBn0dYaqQ9fgKk9KN96DnTS6Kcca75-5EazLLgBZkHeM77_P6VrehV1vR4WAlALLzE20iml5noqg/o0aoQ_BpKLU9g8wgadasUP8LUZhqIS4Q7RSL1unrXSM"
+        "imageUrl": ""
       },
       {
         "name": "Pixel 9",
         "percentage": 60,
         "description": "",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/eD-i-04LN3susMO8hu7Arg/89cbOydCFPsq5AjW4vF1f-RzLv1prI7_NKtYzxtNSh6Y-ywkb-cntl3MUWIlAGeQZd2hrwVFeerN8bU-8Da-xITbgb093eNKphJAmkOud4oSJmRDHBmE-Ei4kkkU1LUdKPqSqyRY2zULqQAltpNuxobfGb_uvvuYj9JXTqWPKy6_A32__7fkjaSQ-Y5IfspcSOocmxbc0-8HM-5JYIi1Sc6jO01TUeFOSRPOYrwVm9xAQDr-qSq9Kxeq0mduXFFq/ibyOFOV6uwcIINYsvxJ6Q1CEwIeskfh9qstxt9O3wZc"
+        "imageUrl": ""
       }
     ]
   },
@@ -416,11 +427,10 @@
     "category": "Other",
     "items": [
       {
-        "name": "ANY OTHER OFFER",
+        "name": "ANY OTHER OFFER -> D.M @bobercc",
         "percentage": 0,
-        "description": "D.M @bobercc",
-        "imageUrl": "https://v5.airtableusercontent.com/v3/u/40/40/1746936000000/bNtWijY8iSSMCH57WyjvMg/NPISw13k-cBs0IkpMo9rGMyifn-6a2e9NXau2q4DXVEdjKORZ-2KraO_KGW5dfLjdEr5k_3uJ-SFqE7d0oUahHFxPcHtrwkXyt2GY5-qKshZlI8CS73932s4ZRq7TJvfCo77niat8jnB2jS74fBqOHZUIvL4ywLIfURZb0nZ6PHHDEcbd6sA1po83g_Qaux-/7_MPyOe-pZQVHvp-HGG1gSdOSf2OiEquhqZ8S2uGR4U"
+        "description": "",
+        "imageUrl": ""
       }
     ]
   }
-]
