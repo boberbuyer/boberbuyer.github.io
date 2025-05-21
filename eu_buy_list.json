@@ -1,5 +1,16 @@
 [
   {
+    "category": "How to calculate fee? / Как считываем процент?",
+    "items": [
+      {
+        "name": "We take the minimum price from Amazon, Bestbuy or Apple.com and from there we calculate the fee",
+        "percentage": "",
+        "description": "If you have specific item, dm @bobercc",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/DIN_4844-2_Warnung_vor_einer_Gefahrenstelle_D-W000.svg/2335px-DIN_4844-2_Warnung_vor_einer_Gefahrenstelle_D-W000.svg.png"
+      }
+    ]
+  },
+  {
     "category": "Apple - iPhone (Unlocked ONLY)",
     "items": [
       {
