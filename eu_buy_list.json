@@ -17,7 +17,7 @@
         "name": "iPhone 16 Pro/Pro Max",
         "percentage": 80,
         "description": "(128/256 GB EU) (-3% for 512GB or 1 TB or Esim)",
-        "imageUrl": ""
+        "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/74ac07a0-2f0e-4c33-8a32-654c4b2b6209.jpg;maxHeight=640;maxWidth=550;format=webp"
       },
       {
         "name": "iPhone 16",
@@ -85,13 +85,13 @@
     "category": "Apple - MacBooks",
     "items": [
       {
-        "name": "MacBook Pro 16\" M4(M4, M4 Pro, M4 Max)",
+        "name": "MacBook Pro 16",
         "percentage": 75,
         "description": "Idealo.de",
-        "imageUrl": ""
+        "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/c79f9163-6c3e-4947-9ad9-63164bb9cfaa.jpg;maxHeight=427;maxWidth=640?format=webp"
       },
       {
-        "name": "Apple MacBook Air 13\" 2025 M4",
+        "name": "Apple MacBook Air 13",
         "percentage": 80,
         "description": "Idealo.de",
         "imageUrl": ""
@@ -135,7 +135,7 @@
         "name": "Apple iPad Air 11 2025",
         "percentage": 72,
         "description": "idealo.de",
-        "imageUrl": ""
+        "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/3b5ee3e2-98e7-49d3-81f5-c6e76b2f3db2.jpg;maxHeight=427;maxWidth=640?format=webp"
       },
       {
         "name": "Apple iPad Air 13 2025",
@@ -194,7 +194,7 @@
         "name": "Apple Watch Ultra 2",
         "percentage": 70,
         "description": "(Only M/L и One Size)",
-        "imageUrl": ""
+        "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/67f34ca8-18d6-4f90-b769-f2650816c43c.jpg;maxHeight=427;maxWidth=640?format=webp"
       },
       {
         "name": "Apple Watch Ultra",
@@ -223,7 +223,7 @@
         "name": "Apple AirPods Max USB-C (2024)",
         "percentage": 71,
         "description": "EXCEPT Purple",
-        "imageUrl": ""
+        "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5ae43c78-09d5-4007-b211-c46cdca2aa57.jpg;maxHeight=427;maxWidth=640?format=webp"
       },
       {
         "name": "AirPods Max",
@@ -270,7 +270,7 @@
         "name": "Apple Pencil (MU8F2)",
         "percentage": 35,
         "description": "",
-        "imageUrl": ""
+        "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6252/6252354_sd.jpg;maxHeight=427;maxWidth=640?format=webp"
       },
       {
         "name": "Apple Pencil Pro (MX2D3)",
@@ -284,16 +284,16 @@
     "category": "DJI",
     "items": [
       {
-        "name": "DJI Air 3S Fly More Combo (DJI RC 2)",
-        "percentage": 70,
-        "description": "",
-        "imageUrl": ""
-      },
-      {
         "name": "DJI Avata 2 Fly More Combo",
         "percentage": 75,
         "description": "",
         "imageUrl": ""
+      },
+      {
+        "name": "DJI Air 3S Fly More Combo (DJI RC 2)",
+        "percentage": 70,
+        "description": "",
+        "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/aae5a7d7-73c3-45f7-8510-81ca00dc6a5e.jpg;maxHeight=427;maxWidth=640?format=webp"
       },
       {
         "name": "Mavic 3 / Mavic 3 Pro",
@@ -433,15 +433,15 @@
     "category": "Dyson",
     "items": [
       {
-        "name": "Dyson LIMITED EDITION !!!",
-        "percentage": 80,
-        "description": "Jasper Plum",
-        "imageUrl": ""
-      },
-      {
         "name": "Dyson Airwrap",
         "percentage": 70,
         "description": "EU",
+        "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/aae5a7d7-73c3-45f7-8510-81ca00dc6a5e.jpg;maxHeight=427;maxWidth=640?format=webp"
+      },
+      {
+        "name": "Dyson LIMITED EDITION !!!",
+        "percentage": 80,
+        "description": "Jasper Plum",
         "imageUrl": ""
       },
       {
@@ -571,7 +571,7 @@
         "name": "Sony PlayStation 5 Pro (PS5 Pro)",
         "percentage": 73,
         "description": "EU",
-        "imageUrl": ""
+        "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6601/6601524_sd.jpg;maxHeight=427;maxWidth=640?format=webp"
       },
       {
         "name": "Playstation 5 slim Blu-ray",
@@ -630,7 +630,7 @@
         "name": "Meta Quest 3/ 3S",
         "percentage": 70,
         "description": "128Gb / 512GB",
-        "imageUrl": ""
+        "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/598062b4-de5c-4b07-beb8-39354a441899.jpg;maxHeight=427;maxWidth=640?format=webp"
       },
       {
         "name": "Meta Quest 2",
@@ -735,7 +735,7 @@
         "name": "Pixel 9 Pro XL",
         "percentage": 66,
         "description": "(-5% за 512gb/1Tb)",
-        "imageUrl": ""
+        "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/df9c78b6-693b-4060-b888-011eb20facb4.jpg;maxHeight=640;maxWidth=550;format=webp"
       },
       {
         "name": "Pixel 9 Pro",
@@ -788,7 +788,7 @@
         "name": "Hero 10",
         "percentage": 40,
         "description": "",
-        "imageUrl": ""
+        "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6554/6554864_rd.jpg;maxHeight=1920;maxWidth=900?format=webp"
       },
       {
         "name": "Hero 11",
@@ -817,7 +817,7 @@
         "name": "Bambu Lab P1S",
         "percentage": 65,
         "description": "",
-        "imageUrl": ""
+        "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/216de0c9-f0f7-46a3-930f-dff58c53bef4.png;maxHeight=427;maxWidth=640?format=webp"
       },
       {
         "name": "Bambu Lab P1S Combo",
