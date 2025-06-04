@@ -1,11 +1,11 @@
 [
   {
-    "category": "How to calculate fee? / Как считываем процент?",
+    "category": "How to calculate fee? / Как считываем процент? ",
     "items": [
       {
         "name": "We take the minimum price from Amazon, Bestbuy or Apple.com and from there we calculate the fee",
         "percentage": "",
-        "description": "If you have specific item, dm @bobercc",
+        "description": "The final price may change, we recommend that you agree on it and then send it. If you have specific item, dm @bobercc",
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/DIN_4844-2_Warnung_vor_einer_Gefahrenstelle_D-W000.svg/2335px-DIN_4844-2_Warnung_vor_einer_Gefahrenstelle_D-W000.svg.png"
       }
     ]
@@ -15,31 +15,31 @@
     "items": [
       {
         "name": "NEW MacBook Air M4 13/15 16GB/256GB",
-        "percentage": 85,
-        "description": "",
+        "percentage": 84,
+        "description": "Prices change very often, please check!",
         "imageUrl": ""
       },
       {
         "name": "NEW MacBook Air M4 13/15 16GB/512GB",
-        "percentage": 85,
-        "description": "",
+        "percentage": 83,
+        "description": "Prices change very often, please check!",
         "imageUrl": ""
       },
       {
         "name": "NEW MacBook Air M4 13/15 24GB/512GB",
-        "percentage": 85,
-        "description": "",
+        "percentage": 83,
+        "description": "Prices change very often, please check!",
         "imageUrl": ""
       },
       {
         "name": "MacBook Pro 14\" M4 (16GB/512 SSD, 24GB/512 SSD - M4, M4 Pro, M4 Max)",
-        "percentage": 82,
+        "percentage": 80,
         "description": "all other specifics -5%",
         "imageUrl": ""
       },
       {
         "name": "MacBook Pro 16\" M4 (24GB/512 SSD - M4, M4 Pro, M4 Max)",
-        "percentage": 82,
+        "percentage": 80,
         "description": "ONLY 24/512 !!!",
         "imageUrl": ""
       }
@@ -50,25 +50,25 @@
     "items": [
       {
         "name": "iPhone 16 Pro/Pro Max",
-        "percentage": 75,
+        "percentage": 72,
         "description": "(128/256 GB) (-5% for 512GB or 1 TB or Esim)",
         "imageUrl": ""
       },
       {
         "name": "iPhone 16",
-        "percentage": 69,
+        "percentage": 67,
         "description": "(128/256 GB) (-5% for 512GB or 1 TB or Esim)",
         "imageUrl": ""
       },
       {
         "name": "iPhone 16 Plus",
-        "percentage": 69,
+        "percentage": 67,
         "description": "(128/256 GB EU) (-4% for 512GB or 1 TB or Esim)",
         "imageUrl": ""
       },
       {
         "name": "iPhone 15",
-        "percentage": 65,
+        "percentage": 63,
         "description": "(128/256 GB EU) (-5% for 512GB or 1 TB)",
         "imageUrl": ""
       }
@@ -79,49 +79,49 @@
     "items": [
       {
         "name": "iPad Air 11\" M3/ 13\"M3",
-        "percentage": 80,
-        "description": "(-5% 512gb/1tb)",
+        "percentage": 77,
+        "description": " (-5% 512gb/1tb)",
         "imageUrl": ""
       },
       {
         "name": "iPad Air 11\" M2/ 13\"M2",
-        "percentage": 70,
+        "percentage": 68,
         "description": "(-5% 512gb/1tb)",
         "imageUrl": ""
       },
       {
         "name": "iPad Pro 11\" M4/ 13\"M4",
-        "percentage": 80,
+        "percentage": 77,
         "description": "(-5% 512gb/1tb/2tb)",
         "imageUrl": ""
       },
       {
         "name": "iPad Pro 12.9\" M2 6th",
-        "percentage": 65,
-        "description": "(-5% 512gb)",
+        "percentage": 63,
+        "description": "-5% 512gb)",
         "imageUrl": ""
       },
       {
         "name": "iPad Pro 11\" M2 4th",
-        "percentage": 60,
+        "percentage": 58,
         "description": "(-5% 512gb)",
         "imageUrl": ""
       },
       {
         "name": "iPad Air 10.9\" M1 5th",
-        "percentage": 60,
+        "percentage": 58,
         "description": "",
         "imageUrl": ""
       },
       {
-        "name": "Apple iPad 11\"",
-        "percentage": 75,
+        "name": "Apple iPad 11\" ",
+        "percentage": 74,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "iPad Mini 8.3\" 6th",
-        "percentage": 55,
+        "percentage": 51,
         "description": "",
         "imageUrl": ""
       }
@@ -132,7 +132,7 @@
     "items": [
       {
         "name": "Apple Watch Ultra 2",
-        "percentage": 80,
+        "percentage": 78,
         "description": "(Only M/L и One Size)",
         "imageUrl": ""
       },
@@ -143,14 +143,14 @@
         "imageUrl": ""
       },
       {
-        "name": "Apple Watch Series 10",
-        "percentage": 85,
-        "description": "",
+        "name": "Apple Watch Series 10 M/L",
+        "percentage": 80,
+        "description": "(-10% S/L)",
         "imageUrl": ""
       },
       {
         "name": "Apple Watch Series 9",
-        "percentage": 60,
+        "percentage": 58,
         "description": "(-6% for Red/Pink/Starlight)",
         "imageUrl": ""
       }
@@ -161,43 +161,43 @@
     "items": [
       {
         "name": "Apple AirPods Max USB-C (2024)",
-        "percentage": 70,
+        "percentage": 78,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "AirPods Max",
-        "percentage": 60,
+        "percentage": 58,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "Airpods 4",
-        "percentage": 65,
-        "description": "",
-        "imageUrl": ""
-      },
-      {
-        "name": "Airpods 4 ANC",
-        "percentage": 67,
-        "description": "",
-        "imageUrl": ""
-      },
-      {
-        "name": "AirPods Pro 2",
-        "percentage": 67,
-        "description": "",
-        "imageUrl": ""
-      },
-      {
-        "name": "AirPods Pro",
         "percentage": 62,
         "description": "",
         "imageUrl": ""
       },
       {
-        "name": "AirPods 3",
+        "name": "Airpods 4 ANC",
+        "percentage": 64,
+        "description": "",
+        "imageUrl": ""
+      },
+      {
+        "name": "AirPods Pro 2",
+        "percentage": 64,
+        "description": "",
+        "imageUrl": ""
+      },
+      {
+        "name": "AirPods Pro",
         "percentage": 60,
+        "description": "",
+        "imageUrl": ""
+      },
+      {
+        "name": "AirPods 3",
+        "percentage": 58,
         "description": "",
         "imageUrl": ""
       }
@@ -208,13 +208,13 @@
     "items": [
       {
         "name": "Apple Pencil (MU8F2)",
-        "percentage": 35,
+        "percentage": 30,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "Apple Pencil Pro (MX2D3)",
-        "percentage": 40,
+        "percentage": 35,
         "description": "",
         "imageUrl": ""
       }
@@ -225,8 +225,8 @@
     "items": [
       {
         "name": "Apple 2024 Mac mini M4 10 10 24GB/512GB",
-        "percentage": 85,
-        "description": "",
+        "percentage": 80,
+        "description": "ask me",
         "imageUrl": ""
       }
     ]
@@ -236,37 +236,37 @@
     "items": [
       {
         "name": "DJI Osmo Pocket 3",
-        "percentage": 67,
+        "percentage": 64,
+        "description": "",
+        "imageUrl": ""
+      },
+      {
+        "name": "DJI Osmo Mobile 7",
+        "percentage": 58,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "DJI Osmo Mobile 7",
         "percentage": 60,
-        "description": "",
-        "imageUrl": ""
-      },
-      {
-        "name": "DJI Osmo Mobile 7",
-        "percentage": 63,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "DJI Mic Mini (2 TX + 1 RX)",
-        "percentage": 60,
+        "percentage": 58,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "DJI Mic 2 (2 TX + 1 RX + Charging Case)",
-        "percentage": 65,
+        "percentage": 63,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "DJI Mavic 4 Pro",
-        "percentage": 75,
+        "percentage": 72,
         "description": "",
         "imageUrl": ""
       }
@@ -276,26 +276,26 @@
     "category": "Garmin",
     "items": [
       {
-        "name": "Garmin fēnix 8 – 51 mm AMOLED, Sapphire",
-        "percentage": 67,
+        "name": "Garmin fēnix  8 – 51 mm AMOLED, Sapphire ",
+        "percentage": 64,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "Garmin fēnix 8 – 47 mm AMOLED, Sapphire",
-        "percentage": 60,
+        "percentage": 58,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "Garmin fēnix 7 Pro Sapphire Solar",
-        "percentage": 60,
+        "percentage": 58,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "Garmin Instinct 2X Solar",
-        "percentage": 75,
+        "percentage": 72,
         "description": "",
         "imageUrl": ""
       }
@@ -305,26 +305,26 @@
     "category": "Consoles",
     "items": [
       {
-        "name": "Meta 3/3S 128/256/512 GB",
-        "percentage": 70,
+        "name": "Meta Quest 3 / 3S 128/256/512 GB",
+        "percentage": 68,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "Steam Deck OLED 512GB/1TB",
-        "percentage": 67,
+        "percentage": 66,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "Playstation 5 VR 2",
-        "percentage": 70,
+        "percentage": 68,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "Xbox S 512GB/1TB",
-        "percentage": 60,
+        "percentage": 58,
         "description": "",
         "imageUrl": ""
       }
@@ -335,31 +335,31 @@
     "items": [
       {
         "name": "AMD Ryzen 7 9800X3D",
-        "percentage": 70,
+        "percentage": 68,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "AMD Ryzen 7 7800X3D",
-        "percentage": 70,
+        "percentage": 68,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "AMD Ryzen 9 9950X3D",
-        "percentage": 72,
+        "percentage": 69,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "ASUS GeForce RTX 5070 TUF Gaming OC",
-        "percentage": 71,
+        "percentage": 69,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "ASUS GeForce RTX 5080 TUF Gaming OC",
-        "percentage": 70,
+        "percentage": 69,
         "description": "",
         "imageUrl": ""
       }
@@ -370,31 +370,31 @@
     "items": [
       {
         "name": "ASUS TUF Gaming",
-        "percentage": 50,
+        "percentage": 48,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "HP Victus",
-        "percentage": 55,
+        "percentage": 52,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "Lenovo Legion 5",
-        "percentage": 60,
+        "percentage": 58,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "MSI Cyborg 15",
-        "percentage": 55,
+        "percentage": 52,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "GIGABYTE G6X 9MG 2024",
-        "percentage": 60,
+        "percentage": 58,
         "description": "",
         "imageUrl": ""
       }
@@ -405,19 +405,19 @@
     "items": [
       {
         "name": "Pixel 9 Pro",
-        "percentage": 68,
+        "percentage": 64,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "Pixel 9 Pro XL",
-        "percentage": 62,
+        "percentage": 60,
         "description": "",
         "imageUrl": ""
       },
       {
         "name": "Pixel 9",
-        "percentage": 60,
+        "percentage": 58,
         "description": "",
         "imageUrl": ""
       }
