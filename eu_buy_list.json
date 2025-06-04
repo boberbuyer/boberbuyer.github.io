@@ -1,11 +1,11 @@
 [
   {
-    "category": "How to calculate fee? / Как считываем процент?",
+    "category": "How to calculate fee? / Как считываем процент? (The final price not  stable)",
     "items": [
       {
         "name": "We take the minimum price from Amazon, Bestbuy or Apple.com and from there we calculate the fee",
         "percentage": "",
-        "description": "If you have specific item, dm @bobercc",
+        "description": "The final price may change, we recommend that you agree on it and then send it. If you have specific item, dm @bobercc",
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/DIN_4844-2_Warnung_vor_einer_Gefahrenstelle_D-W000.svg/2335px-DIN_4844-2_Warnung_vor_einer_Gefahrenstelle_D-W000.svg.png"
       }
     ]
@@ -14,69 +14,69 @@
     "category": "Apple - iPhone (Unlocked ONLY)",
     "items": [
       {
-        "name": "iPhone 16 Pro/Pro Max",
-        "percentage": 80,
-        "description": "(128/256 GB EU) (-3% for 512GB or 1 TB or Esim)",
+        "name": "iPhone 16 Pro/Pro Max  128/256 GB EU",
+        "percentage": 85,
+        "description": " (-5% for 512GB or 1 TB or Esim)",
         "imageUrl": ""
       },
       {
-        "name": "iPhone 16",
+        "name": "iPhone 16 128/256 GB EU",
         "percentage": 76,
-        "description": "(128/256 GB EU) (-4% for 512GB or 1 TB or Esim)",
+        "description": " (-4% for 512GB or 1 TB or Esim)",
         "imageUrl": ""
       },
       {
-        "name": "iPhone 16 Plus",
+        "name": "iPhone 16 Plus 128/256 GB EU",
         "percentage": 76,
-        "description": "(128/256 GB EU) (-4% for 512GB or 1 TB or Esim)",
+        "description": "(-4% for 512GB or 1 TB or Esim)",
         "imageUrl": ""
       },
       {
-        "name": "iPhone 15 Pro/Pro Max",
-        "percentage": 71,
-        "description": "(128/256 GB EU) (-4% for 512GB or 1 TB)",
+        "name": "iPhone 15 Pro/Pro Max 128/256 GB EU",
+        "percentage": 72,
+        "description": "(-2~% for 512GB or 1 TB)",
         "imageUrl": ""
       },
       {
-        "name": "iPhone 15 Plus",
-        "percentage": 68,
-        "description": "(128/256 GB EU) (-3% for 512GB or 1 TB)",
+        "name": "iPhone 15 Plus 128/256 GB EU",
+        "percentage": 74,
+        "description": "(-5% for 512GB or 1 TB)",
         "imageUrl": ""
       },
       {
-        "name": "iPhone 15",
-        "percentage": 68,
-        "description": "(128/256 GB EU) (-3% for 512GB or 1 TB)",
+        "name": "iPhone 15 256 GB EU",
+        "percentage": 74,
+        "description": "(-5% for 512GB, 127GB, 1 TB)",
         "imageUrl": ""
       },
       {
-        "name": "iPhone 14 Pro/Pro Max",
-        "percentage": 69,
-        "description": "(128/256 GB EU) (-4% for 512GB or 1 TB)",
+        "name": "iPhone 14 Pro/Pro Max ",
+        "percentage": 58,
+        "description": "Ask me for fee / Спросите у меня за %",
         "imageUrl": ""
       },
       {
         "name": "iPhone 14/Plus",
-        "percentage": 65,
-        "description": "(128/256 GB EU) (-4% for 512GB or 1 TB)",
+        "percentage": 58,
+        "description": "Ask me for fee / Спросите у меня за %",
         "imageUrl": ""
       },
       {
         "name": "iPhone 13 Pro/Pro Max",
-        "percentage": 60,
-        "description": "(128 GB EU) (-5% for 512GB)",
+        "percentage": 58,
+        "description": "Ask me for fee / Спросите у меня за %",
         "imageUrl": ""
       },
       {
         "name": "iPhone 13",
-        "percentage": 60,
-        "description": "(128/256 GB EU) (-5% for 512GB)",
+        "percentage": 58,
+        "description": "Ask me for fee / Спросите у меня за %",
         "imageUrl": ""
       },
       {
         "name": "iPhone 13 Mini",
-        "percentage": 55,
-        "description": "(128/256 GB EU) (-5% for 512GB)",
+        "percentage": 50,
+        "description": "Ask me for fee / Спросите у меня за %",
         "imageUrl": ""
       }
     ]
@@ -85,45 +85,45 @@
     "category": "Apple - MacBooks",
     "items": [
       {
-        "name": "MacBook Pro 16\" M4(M4, M4 Pro, M4 Max)",
+        "name": "MacBook Pro 16",
         "percentage": 75,
-        "description": "Idealo.de",
+        "description": "the price is changing actively ask me",
         "imageUrl": ""
       },
       {
         "name": "Apple MacBook Air 13\" 2025 M4",
         "percentage": 80,
-        "description": "Idealo.de",
+        "description": "the price is changing actively ask me",
         "imageUrl": ""
       },
       {
         "name": "MacBook Pro 14\" M4(M4, M4 Pro, M4 Max)",
         "percentage": 75,
-        "description": "Idealo.de",
+        "description": "the price is changing actively ask me",
         "imageUrl": ""
       },
       {
         "name": "MacBook Pro 14\" M3(M3, M3 Pro, M3 Max)",
         "percentage": 70,
-        "description": "Idealo.de",
+        "description": "the price is changing actively ask me",
         "imageUrl": ""
       },
       {
         "name": "MacBook Pro 16\" M3(M3 Pro, M3 Max)",
         "percentage": 70,
-        "description": "Idealo.de",
+        "description": "the price is changing actively ask me",
         "imageUrl": ""
       },
       {
         "name": "MacBook Pro 14\" M2",
         "percentage": 65,
-        "description": "Idealo.de",
+        "description": "the price is changing actively ask me",
         "imageUrl": ""
       },
       {
         "name": "MacBook Pro 16\" M2",
         "percentage": 65,
-        "description": "Idealo.de",
+        "description": "the price is changing actively ask me",
         "imageUrl": ""
       }
     ]
@@ -133,14 +133,14 @@
     "items": [
       {
         "name": "Apple iPad Air 11 2025",
-        "percentage": 72,
-        "description": "idealo.de",
+        "percentage": 71,
+        "description": "ask me for price",
         "imageUrl": ""
       },
       {
         "name": "Apple iPad Air 13 2025",
-        "percentage": 73,
-        "description": "idealo.de",
+        "percentage": 71,
+        "description": "ask me for price",
         "imageUrl": ""
       },
       {
@@ -221,14 +221,14 @@
     "items": [
       {
         "name": "Apple AirPods Max USB-C (2024)",
-        "percentage": 71,
-        "description": "EXCEPT Purple",
+        "percentage": 60,
+        "description": "the price is changing actively ask me",
         "imageUrl": ""
       },
       {
         "name": "AirPods Max",
-        "percentage": 69,
-        "description": "EXCEPT Pink",
+        "percentage": 60,
+        "description": "the price is changing actively ask me",
         "imageUrl": ""
       },
       {
